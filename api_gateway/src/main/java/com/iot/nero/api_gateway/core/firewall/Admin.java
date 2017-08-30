@@ -1,4 +1,9 @@
-package com.iot.nero.api_gateway.core.config;
+package com.iot.nero.api_gateway.core.firewall;
+
+import com.iot.nero.utils.spring.PropertyPlaceholder;
+import org.springframework.beans.factory.annotation.Value;
+
+import java.io.Serializable;
 
 import com.iot.nero.api_gateway.core.core.ApiGatewayHandler;
 import org.slf4j.LoggerFactory;
@@ -18,15 +23,30 @@ import java.util.logging.Logger;
  * Date   2017/8/30
  * Time   下午12:48
  */
+<<<<<<< HEAD:api_gateway/src/main/java/com/iot/nero/api_gateway/core/config/Config.java
 public class Config implements Serializable {
     private String userName;
+=======
+public class Admin implements Serializable {
+
+    private String userName ;
+
+>>>>>>> gtBailly-master:api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/Admin.java
     private String passWord;
     public Config() {
         loadConfig();
     }
 
-    public Config(String userName, String passWord) {
+    public Admin() {
+        this.userName = PropertyPlaceholder.getProperty("auth.username").toString();
+        this.passWord = PropertyPlaceholder.getProperty("auth.password").toString();
+    }
+
+    public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
 
@@ -34,16 +54,8 @@ public class Config implements Serializable {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getPassWord() {
         return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
     }
 
     @Override
@@ -54,6 +66,7 @@ public class Config implements Serializable {
                 '}';
     }
 
+<<<<<<< HEAD:api_gateway/src/main/java/com/iot/nero/api_gateway/core/config/Config.java
     private void loadConfig(){
         File file = new File("D:\\XAMPP\\htdocs\\iot_cloud\\api_gateway\\src\\main\\resources\\api_gateway\\config\\AuthConfig.xml");
         this.readXMLFile(file);
@@ -76,4 +89,6 @@ public class Config implements Serializable {
                 e.printStackTrace();
             }
     }
+=======
+>>>>>>> gtBailly-master:api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/Admin.java
 }

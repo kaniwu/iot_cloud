@@ -7,13 +7,17 @@ import com.iot.nero.api_gateway.common.UtilJson;
 import com.iot.nero.api_gateway.core.config.Config;
 import com.iot.nero.api_gateway.core.doc.ApiDoc;
 import com.iot.nero.api_gateway.core.exceptions.ApiException;
+import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
+import com.iot.nero.api_gateway.core.firewall.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
 import com.iot.nero.api_gateway.core.log.ApiLog;
+import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
@@ -51,8 +55,13 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     public ApiGatewayHandler() {
         parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
+<<<<<<< HEAD
         apiDoc  = new ApiDoc();
         apiLog  = new ApiLog();
+=======
+        apiDoc = new ApiDoc();
+        apiLog = new ApiLog();
+>>>>>>> gtBailly-master
         ipTables = new IpTables();
         adminAuth = new AdminAuth();
     }
@@ -68,13 +77,18 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     public void handle(HttpServletRequest request, HttpServletResponse response) {
 
         //apiLog.log(request);
+<<<<<<< HEAD
         ipTables.filter(request,response);
+=======
+        ipTables.filter(request, response);
+>>>>>>> gtBailly-master
 
         String method = request.getParameter(METHOD);
         String params = request.getParameter(PARAMS);
 
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
+<<<<<<< HEAD
         if (method.subSequence(0,3).equals("sys")) {
             Config config= new Config();
             Debug.debug(config.toString(),response);
@@ -84,23 +98,42 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             }
         } else {
             try {
+=======
+        try {
+            if (method.subSequence(0, 3).equals("sys")) {
+                Admin admin = new Admin();
+                adminAuth.auth(params);
+                Debug.debug(admin, response);
+                if (method.equals("sys.doc")) {
+                    result = apiStore.findApiRunnables();
+                }else{
+                    result = null;
+                }
+            } else {
+>>>>>>> gtBailly-master
                 apiRunnable = sysParamsValdate(request);
                 Object[] args = buildParams(apiRunnable, params, request, response);
                 result = apiRunnable.run(args);
-            } catch (ApiException e) {
-                response.setStatus(500);
-                result = handleErr(e);
-            } catch (IllegalAccessException e) {
-                response.setStatus(500);
-                result = handleErr(e);
-            } catch (InvocationTargetException e) {
-                response.setStatus(500);
-                result = handleErr(e.getTargetException());
             }
-            returnResult(result, response);
+        } catch (ApiException e) {
+            response.setStatus(500);
+            result = handleErr(e);
+        } catch (IllegalAccessException e) {
+            response.setStatus(500);
+            result = handleErr(e);
+        } catch (InvocationTargetException e) {
+            response.setStatus(500);
+            result = handleErr(e.getTargetException());
+        } catch (ParseException e) {
+            response.setStatus(500);
+            result = handleErr(e);
+        } catch (AuthFailedException e) {
+            response.setStatus(500);
+            result = handleErr(e);
         }
+        returnResult(result, response);
 
-    }
+}
 
     private Object handleErr(Throwable e) {
         String code = "";
