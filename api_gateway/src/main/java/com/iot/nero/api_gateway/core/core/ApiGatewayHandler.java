@@ -55,13 +55,8 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     public ApiGatewayHandler() {
         parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
-<<<<<<< HEAD
         apiDoc  = new ApiDoc();
         apiLog  = new ApiLog();
-=======
-        apiDoc = new ApiDoc();
-        apiLog = new ApiLog();
->>>>>>> gtBailly-master
         ipTables = new IpTables();
         adminAuth = new AdminAuth();
     }
@@ -77,18 +72,13 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     public void handle(HttpServletRequest request, HttpServletResponse response) {
 
         //apiLog.log(request);
-<<<<<<< HEAD
         ipTables.filter(request,response);
-=======
-        ipTables.filter(request, response);
->>>>>>> gtBailly-master
 
         String method = request.getParameter(METHOD);
         String params = request.getParameter(PARAMS);
 
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
-<<<<<<< HEAD
         if (method.subSequence(0,3).equals("sys")) {
             Config config= new Config();
             Debug.debug(config.toString(),response);
@@ -98,41 +88,38 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             }
         } else {
             try {
-=======
-        try {
-            if (method.subSequence(0, 3).equals("sys")) {
-                Admin admin = new Admin();
-                adminAuth.auth(params);
-                Debug.debug(admin, response);
-                if (method.equals("sys.doc")) {
-                    result = apiStore.findApiRunnables();
-                }else{
-                    result = null;
+                if (method.subSequence(0, 3).equals("sys")) {
+                    Admin admin = new Admin();
+                    adminAuth.auth(params);
+                    Debug.debug(admin, response);
+                    if (method.equals("sys.doc")) {
+                        result = apiStore.findApiRunnables();
+                    } else {
+                        result = null;
+                    }
+                } else {
+                    apiRunnable = sysParamsValdate(request);
+                    Object[] args = buildParams(apiRunnable, params, request, response);
+                    result = apiRunnable.run(args);
                 }
-            } else {
->>>>>>> gtBailly-master
-                apiRunnable = sysParamsValdate(request);
-                Object[] args = buildParams(apiRunnable, params, request, response);
-                result = apiRunnable.run(args);
+            } catch (ApiException e) {
+                response.setStatus(500);
+                result = handleErr(e);
+            } catch (IllegalAccessException e) {
+                response.setStatus(500);
+                result = handleErr(e);
+            } catch (InvocationTargetException e) {
+                response.setStatus(500);
+                result = handleErr(e.getTargetException());
+            } catch (ParseException e) {
+                response.setStatus(500);
+                result = handleErr(e);
+            } catch (AuthFailedException e) {
+                response.setStatus(500);
+                result = handleErr(e);
             }
-        } catch (ApiException e) {
-            response.setStatus(500);
-            result = handleErr(e);
-        } catch (IllegalAccessException e) {
-            response.setStatus(500);
-            result = handleErr(e);
-        } catch (InvocationTargetException e) {
-            response.setStatus(500);
-            result = handleErr(e.getTargetException());
-        } catch (ParseException e) {
-            response.setStatus(500);
-            result = handleErr(e);
-        } catch (AuthFailedException e) {
-            response.setStatus(500);
-            result = handleErr(e);
+            returnResult(result, response);
         }
-        returnResult(result, response);
-
 }
 
     private Object handleErr(Throwable e) {
