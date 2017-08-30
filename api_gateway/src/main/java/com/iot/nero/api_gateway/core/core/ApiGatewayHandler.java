@@ -2,7 +2,9 @@ package com.iot.nero.api_gateway.core.core;
 
 import com.alibaba.dubbo.common.json.ParseException;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.iot.nero.api_gateway.common.Debug;
 import com.iot.nero.api_gateway.common.UtilJson;
+import com.iot.nero.api_gateway.core.config.Config;
 import com.iot.nero.api_gateway.core.doc.ApiDoc;
 import com.iot.nero.api_gateway.core.exceptions.ApiException;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
@@ -50,6 +52,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     public ApiGatewayHandler() {
         parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
         apiDoc  = new ApiDoc();
+        apiLog  = new ApiLog();
+        ipTables = new IpTables();
+        adminAuth = new AdminAuth();
     }
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -62,7 +67,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     public void handle(HttpServletRequest request, HttpServletResponse response) {
 
-        apiLog.log(request);
+        //apiLog.log(request);
         ipTables.filter(request,response);
 
         String method = request.getParameter(METHOD);
@@ -71,8 +76,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
         if (method.subSequence(0,3).equals("sys")) {
-
-            adminAuth.auth(params);
+            Config config= new Config();
+            Debug.debug(config.toString(),response);
+            //adminAuth.auth(params);
             if(method.equals("sys.doc")){
                 apiDoc.genHtml(apiStore.findApiRunnables(),response);
             }

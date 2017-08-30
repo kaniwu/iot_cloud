@@ -9,5 +9,14 @@ package com.iot.nero.api_gateway.core.firewall;
 public class AdminAuth {
 
     public void auth(String params) {
+
+
+        //加载配置文件中用户名和密码
+
+        //认证
+
+        //错误，拒绝
+
+        //正确，过
     }
 }
