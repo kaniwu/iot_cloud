@@ -1,7 +1,12 @@
 package com.iot.nero.api_gateway.core.firewall;
 
+import com.iot.nero.api_gateway.common.Debug;
+import com.iot.nero.api_gateway.common.NetUtil;
+import com.iot.nero.api_gateway.core.core.ApiStore;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Author neroyang
@@ -12,7 +17,24 @@ import javax.servlet.http.HttpServletResponse;
 public class IpTables {
 
     public void filter(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String ip = NetUtil.getRealIP(request);
 
+            Debug.debug(ip,response);
+
+            //查黑名单缓存
+
+            //有，拒绝
+
+            //没有，查数据库
+
+            //有，拒绝并加入缓存
+
+            //没有，过
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void returnResult(HttpServletRequest request, HttpServletResponse response){

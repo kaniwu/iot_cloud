@@ -50,6 +50,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     public ApiGatewayHandler() {
         parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
         apiDoc  = new ApiDoc();
+        apiLog  = new ApiLog();
+        ipTables = new IpTables();
+        adminAuth = new AdminAuth();
     }
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -62,7 +65,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     public void handle(HttpServletRequest request, HttpServletResponse response) {
 
-        apiLog.log(request);
+        //apiLog.log(request);
         ipTables.filter(request,response);
 
         String method = request.getParameter(METHOD);
@@ -71,7 +74,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
         if (method.subSequence(0,3).equals("sys")) {
-
             adminAuth.auth(params);
             if(method.equals("sys.doc")){
                 apiDoc.genHtml(apiStore.findApiRunnables(),response);
