@@ -13,18 +13,6 @@ import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
  */
 public class AdminAuth {
 
-<<<<<<< HEAD
-    public void auth(String params) {
-
-
-        //加载配置文件中用户名和密码
-
-        //认证
-
-        //错误，拒绝
-
-        //正确，过
-=======
     public void auth(String params) throws ParseException, AuthFailedException {
 
         //加载配置文件中用户名和密码
@@ -37,6 +25,5 @@ public class AdminAuth {
         if(!admin.getPassWord().equals(ad.getPassWord())){
             throw new AuthFailedException(CONSTANT.ADMIN_PASSWORD_INCORRECT);
         }
->>>>>>> gtBailly-master
     }
 }

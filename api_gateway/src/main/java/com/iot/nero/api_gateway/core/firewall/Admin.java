@@ -23,19 +23,11 @@ import java.util.logging.Logger;
  * Date   2017/8/30
  * Time   下午12:48
  */
-<<<<<<< HEAD:api_gateway/src/main/java/com/iot/nero/api_gateway/core/config/Config.java
-public class Config implements Serializable {
-    private String userName;
-=======
 public class Admin implements Serializable {
 
     private String userName ;
 
->>>>>>> gtBailly-master:api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/Admin.java
     private String passWord;
-    public Config() {
-        loadConfig();
-    }
 
     public Admin() {
         this.userName = PropertyPlaceholder.getProperty("auth.username").toString();
@@ -65,30 +57,4 @@ public class Admin implements Serializable {
                 ", passWord='" + passWord + '\'' +
                 '}';
     }
-
-<<<<<<< HEAD:api_gateway/src/main/java/com/iot/nero/api_gateway/core/config/Config.java
-    private void loadConfig(){
-        File file = new File("D:\\XAMPP\\htdocs\\iot_cloud\\api_gateway\\src\\main\\resources\\api_gateway\\config\\AuthConfig.xml");
-        this.readXMLFile(file);
-    }
-
-
-     private void readXMLFile(File file) {
-        try {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(file);
-            NodeList usernameList = doc.getElementsByTagName("username");
-            NodeList passwordLisr = doc.getElementsByTagName("password");
-                Node usernameNode = usernameList.item(0);
-                Node passwordNode = passwordLisr.item(0);
-                this.userName=usernameNode.getTextContent();
-                this.passWord=passwordNode.getTextContent();
-        }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-    }
-=======
->>>>>>> gtBailly-master:api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/Admin.java
 }

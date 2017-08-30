@@ -4,7 +4,6 @@ import com.alibaba.dubbo.common.json.ParseException;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.iot.nero.api_gateway.common.Debug;
 import com.iot.nero.api_gateway.common.UtilJson;
-import com.iot.nero.api_gateway.core.config.Config;
 import com.iot.nero.api_gateway.core.doc.ApiDoc;
 import com.iot.nero.api_gateway.core.exceptions.ApiException;
 import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
@@ -55,8 +54,8 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     public ApiGatewayHandler() {
         parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
-        apiDoc  = new ApiDoc();
-        apiLog  = new ApiLog();
+        apiDoc = new ApiDoc();
+        apiLog = new ApiLog();
         ipTables = new IpTables();
         adminAuth = new AdminAuth();
     }
@@ -72,55 +71,48 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     public void handle(HttpServletRequest request, HttpServletResponse response) {
 
         //apiLog.log(request);
-        ipTables.filter(request,response);
+        ipTables.filter(request, response);
 
         String method = request.getParameter(METHOD);
         String params = request.getParameter(PARAMS);
 
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
-        if (method.subSequence(0,3).equals("sys")) {
-            Config config= new Config();
-            Debug.debug(config.toString(),response);
-            //adminAuth.auth(params);
-            if(method.equals("sys.doc")){
-                apiDoc.genHtml(apiStore.findApiRunnables(),response);
-            }
-        } else {
-            try {
-                if (method.subSequence(0, 3).equals("sys")) {
-                    Admin admin = new Admin();
-                    adminAuth.auth(params);
-                    Debug.debug(admin, response);
-                    if (method.equals("sys.doc")) {
-                        result = apiStore.findApiRunnables();
-                    } else {
-                        result = null;
-                    }
+
+        try {
+            if (method.subSequence(0, 3).equals("sys")) {
+                Admin admin = new Admin();
+                adminAuth.auth(params);
+                Debug.debug(admin, response);
+                if (method.equals("sys.doc")) {
+                    result = apiStore.findApiRunnables();
                 } else {
-                    apiRunnable = sysParamsValdate(request);
-                    Object[] args = buildParams(apiRunnable, params, request, response);
-                    result = apiRunnable.run(args);
+                    result = null;
                 }
-            } catch (ApiException e) {
-                response.setStatus(500);
-                result = handleErr(e);
-            } catch (IllegalAccessException e) {
-                response.setStatus(500);
-                result = handleErr(e);
-            } catch (InvocationTargetException e) {
-                response.setStatus(500);
-                result = handleErr(e.getTargetException());
-            } catch (ParseException e) {
-                response.setStatus(500);
-                result = handleErr(e);
-            } catch (AuthFailedException e) {
-                response.setStatus(500);
-                result = handleErr(e);
+            } else {
+                apiRunnable = sysParamsValdate(request);
+                Object[] args = buildParams(apiRunnable, params, request, response);
+                result = apiRunnable.run(args);
             }
-            returnResult(result, response);
+        } catch (ApiException e) {
+            response.setStatus(500);
+            result = handleErr(e);
+        } catch (IllegalAccessException e) {
+            response.setStatus(500);
+            result = handleErr(e);
+        } catch (InvocationTargetException e) {
+            response.setStatus(500);
+            result = handleErr(e.getTargetException());
+        } catch (ParseException e) {
+            response.setStatus(500);
+            result = handleErr(e);
+        } catch (AuthFailedException e) {
+            response.setStatus(500);
+            result = handleErr(e);
         }
-}
+        returnResult(result, response);
+
+    }
 
     private Object handleErr(Throwable e) {
         String code = "";
