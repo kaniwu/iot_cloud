@@ -6,19 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc980cdf-a28e-4151-b3c8-9fe823382e96" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/common/Debug.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/common/NetUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/AuthConfig.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/config/Config.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/config/Config.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/doc/ApiDoc.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/doc/ApiDoc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/AdminAuth.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/AdminAuth.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpTables.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpTables.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/spring.xml" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/spring.xml" />
-    </list>
+    <list default="true" id="dc980cdf-a28e-4151-b3c8-9fe823382e96" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/web_sso/target/" />
@@ -373,7 +361,7 @@
   <component name="MavenRunner">
     <option name="jreName" value="1.8" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="width" value="3200" />
     <option name="height" value="1800" />
   </component>
@@ -1269,7 +1257,7 @@
       <workItem from="1503056477916" duration="2462000" />
       <workItem from="1503558164290" duration="20111000" />
       <workItem from="1503733368411" duration="22101000" />
-      <workItem from="1504076899516" duration="9105000" />
+      <workItem from="1504076899516" duration="9710000" />
     </task>
     <servers />
   </component>
@@ -1306,7 +1294,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="437570000" />
+    <option name="totallyTimeSpent" value="438175000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1318,7 +1306,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1613" height="913" extended-state="6" />
+    <frame x="-6" y="-6" width="1613" height="913" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39919356" sideWeight="0.50238097" order="7" side_tool="true" content_ui="tabs" />
