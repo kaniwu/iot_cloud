@@ -78,6 +78,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
+
         try {
             if (method.subSequence(0, 3).equals("sys")) {
                 Admin admin = new Admin();

@@ -5,17 +5,31 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 
+import com.iot.nero.api_gateway.core.core.ApiGatewayHandler;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
+import java.io.Serializable;
+import java.util.logging.Logger;
+
 /**
  * Author neroyang
  * Email  nerosoft@outlook.com
  * Date   2017/8/30
  * Time   下午12:48
  */
+
 public class Admin implements Serializable {
 
     private String userName ;
 
     private String passWord;
+
 
     public Admin() {
         this.userName = PropertyPlaceholder.getProperty("auth.username").toString();
@@ -45,5 +59,4 @@ public class Admin implements Serializable {
                 ", passWord='" + passWord + '\'' +
                 '}';
     }
-
 }
