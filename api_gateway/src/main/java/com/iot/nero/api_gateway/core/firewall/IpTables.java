@@ -16,8 +16,7 @@ import java.io.IOException;
  */
 public class IpTables {
 
-    public void filter(HttpServletRequest request, HttpServletResponse response) {
-        try {
+    public void filter(HttpServletRequest request, HttpServletResponse response) throws IOException {
             String ip = NetUtil.getRealIP(request);
 
             Debug.debug(ip,response);
@@ -31,13 +30,6 @@ public class IpTables {
             //有，拒绝并加入缓存
 
             //没有，过
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void returnResult(HttpServletRequest request, HttpServletResponse response){
 
     }
 }

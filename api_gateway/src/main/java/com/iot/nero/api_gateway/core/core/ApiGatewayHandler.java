@@ -10,13 +10,11 @@ import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
 import com.iot.nero.api_gateway.core.firewall.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
-import com.iot.nero.api_gateway.core.log.ApiLog;
-import com.iot.nero.utils.spring.PropertyPlaceholder;
+import com.iot.nero.api_gateway.log.ApiLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
@@ -71,7 +69,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     public void handle(HttpServletRequest request, HttpServletResponse response) {
 
         //apiLog.log(request);
-        ipTables.filter(request, response);
+
 
         String method = request.getParameter(METHOD);
         String params = request.getParameter(PARAMS);
@@ -80,15 +78,18 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         ApiStore.ApiRunnable apiRunnable = null;
 
         try {
+            ipTables.filter(request, response);
             if (method.subSequence(0, 3).equals("sys")) {
                 Admin admin = new Admin();
-                adminAuth.auth(params);
                 Debug.debug(admin, response);
+                adminAuth.auth(params);
+
                 if (method.equals("sys.doc")) {
                     result = apiStore.findApiRunnables();
-                }else{
+                } else {
                     result = null;
                 }
+
             } else {
                 apiRunnable = sysParamsValdate(request);
                 Object[] args = buildParams(apiRunnable, params, request, response);
@@ -109,10 +110,13 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } catch (AuthFailedException e) {
             response.setStatus(500);
             result = handleErr(e);
+        } catch (IOException e) {
+            response.setStatus(500);
+            result = handleErr(e);
         }
-        returnResult(result, response);
+        Debug.debug(result, response);
 
-}
+    }
 
     private Object handleErr(Throwable e) {
         String code = "";

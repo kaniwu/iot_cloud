@@ -13,7 +13,6 @@ import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
  */
 public class AdminAuth {
 
-
     public void auth(String params) throws ParseException, AuthFailedException {
 
         //加载配置文件中用户名和密码
