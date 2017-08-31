@@ -1,2 +1,5 @@
-.idea/workspace.xml;
-*/target;
+.idea/workspace.xml
+*/target
+api_gateway/target/generated-sources/
+common/target/generated-sources/
+common/target/generated-test-sources/
