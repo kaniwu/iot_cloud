@@ -19,7 +19,12 @@ public class HelloWorld implements IHelloWorld {
 
     @ApiMapping("api.ni")
     public String niHao(String ni) {
-        return ni;
+        return "";
+    }
+
+    @ApiMapping("api.mockTest")
+    public Integer mockTest(){
+        return 0;
     }
 
 }

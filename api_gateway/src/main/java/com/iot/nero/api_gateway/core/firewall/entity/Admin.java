@@ -26,12 +26,14 @@ import java.util.logging.Logger;
 public class Admin implements Serializable {
 
     private String userName ;
-
     private String passWord;
 
     public Admin() {
-        this.userName = PropertyPlaceholder.getProperty("auth.username").toString();
-        this.passWord = PropertyPlaceholder.getProperty("auth.password").toString();
+    }
+
+    public Admin(String userName, String passWord) {
+        this.userName = userName;
+        this.passWord = passWord;
     }
 
     public void setUserName(String userName) {
