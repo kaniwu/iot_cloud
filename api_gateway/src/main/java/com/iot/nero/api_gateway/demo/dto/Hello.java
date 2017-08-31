@@ -1,4 +1,4 @@
-package com.iot.nero.api_gateway.dto;
+package com.iot.nero.api_gateway.demo.dto;
 
 import java.io.Serializable;
 

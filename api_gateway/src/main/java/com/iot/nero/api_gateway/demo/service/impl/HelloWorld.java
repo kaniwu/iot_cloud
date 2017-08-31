@@ -1,8 +1,8 @@
-package com.iot.nero.api_gateway.service.impl;
+package com.iot.nero.api_gateway.demo.service.impl;
 
 import com.iot.nero.api_gateway.core.core.ApiMapping;
-import com.iot.nero.api_gateway.dto.Hello;
-import com.iot.nero.api_gateway.service.IHelloWorld;
+import com.iot.nero.api_gateway.demo.dto.Hello;
+import com.iot.nero.api_gateway.demo.service.IHelloWorld;
 
 /**
  * Author neroyang

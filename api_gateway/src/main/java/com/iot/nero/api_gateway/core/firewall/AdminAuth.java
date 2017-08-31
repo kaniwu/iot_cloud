@@ -4,6 +4,7 @@ import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.common.json.ParseException;
 import com.iot.nero.api_gateway.core.CONSTANT;
 import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
+import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 
 /**
  * Author neroyang
