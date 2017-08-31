@@ -84,7 +84,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
                 adminAuth.auth(params);
                 if (method.equals("sys.doc")) {
-                    result = apiStore.findApiRunnables();
+                    result = apiDoc.getApis(apiStore.findApiRunnables());
                 } else {
                     result = null;
                 }
