@@ -37,6 +37,11 @@
         <!--<property name="password" value="root"/>-->
     <!--</bean>-->
 
+    <!--<bean class="api_gateway.config.">-->
+        <!--<property name="username" value="root"/>-->
+        <!--<property name="password" value="root"/>-->
+    <!--</bean>-->
+
     <bean class="com.iot.nero.api_gateway.core.core.ApiGatewayHandler"></bean>
 
     <bean id="IHelloWorld"

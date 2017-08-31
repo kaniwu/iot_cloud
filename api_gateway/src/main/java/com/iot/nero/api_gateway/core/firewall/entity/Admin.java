@@ -23,11 +23,13 @@ import java.util.logging.Logger;
  * Date   2017/8/30
  * Time   下午12:48
  */
+
 public class Admin implements Serializable {
 
     private String userName ;
 
     private String passWord;
+
 
     public Admin() {
         this.userName = PropertyPlaceholder.getProperty("auth.username").toString();
