@@ -81,12 +81,14 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         try {
             ipTables.filter(request, response);
             if (method.subSequence(0, 3).equals("sys")) {
+
                 adminAuth.auth(params);
                 if (method.equals("sys.doc")) {
                     result = apiStore.findApiRunnables();
                 } else {
                     result = null;
                 }
+
             } else {
                 apiRunnable = sysParamsValdate(request);
                 Object[] args = buildParams(apiRunnable, params, request, response);
