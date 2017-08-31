@@ -1,12 +1,15 @@
 package com.iot.nero.api_gateway.core.firewall;
 
-import com.iot.nero.api_gateway.common.Debug;
 import com.iot.nero.api_gateway.common.NetUtil;
-import com.iot.nero.api_gateway.core.core.ApiStore;
+import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
+import com.iot.nero.api_gateway.core.firewall.dao.IPDao;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import static com.iot.nero.api_gateway.core.CONSTANT.IP_NOT_ACCESS;
 
 /**
  * Author neroyang
@@ -16,19 +19,24 @@ import java.io.IOException;
  */
 public class IpTables {
 
-    public void filter(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    public void filter(HttpServletRequest request, HttpServletResponse response) throws IOException, IPNotAccessException {
+
             String ip = NetUtil.getRealIP(request);
 
-            Debug.debug(ip,response);
-
+            //Debug.debug(ip,response);
             //查黑名单缓存
-
-            //有，拒绝
+            if(IpCache.findIP(ip)!=null){
+                //有，拒绝
+                throw new IPNotAccessException(IP_NOT_ACCESS);
+            }
 
             //没有，查数据库
-
-            //有，拒绝并加入缓存
-
+            if(IPDao.findIP(ip)!=null){
+                //有，拒绝并加入缓存
+                IpCache.cacheIP(ip);
+                throw new IPNotAccessException(IP_NOT_ACCESS);
+            }
             //没有，过
 
     }

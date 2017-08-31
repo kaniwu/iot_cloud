@@ -7,7 +7,8 @@ import com.iot.nero.api_gateway.common.UtilJson;
 import com.iot.nero.api_gateway.core.doc.ApiDoc;
 import com.iot.nero.api_gateway.core.exceptions.ApiException;
 import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
-import com.iot.nero.api_gateway.core.firewall.Admin;
+import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
+import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
 import com.iot.nero.api_gateway.log.ApiLog;
@@ -80,10 +81,8 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         try {
             ipTables.filter(request, response);
             if (method.subSequence(0, 3).equals("sys")) {
-                Admin admin = new Admin();
-                Debug.debug(admin, response);
-                adminAuth.auth(params);
 
+                adminAuth.auth(params);
                 if (method.equals("sys.doc")) {
                     result = apiStore.findApiRunnables();
                 } else {
@@ -97,25 +96,28 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             }
         } catch (ApiException e) {
             response.setStatus(500);
-            result = handleErr(e);
+            result = handleErr(e.fillInStackTrace());
         } catch (IllegalAccessException e) {
             response.setStatus(500);
-            result = handleErr(e);
+            result = handleErr(e.fillInStackTrace());
         } catch (InvocationTargetException e) {
             response.setStatus(500);
             result = handleErr(e.getTargetException());
         } catch (ParseException e) {
             response.setStatus(500);
-            result = handleErr(e);
+            result = handleErr(e.fillInStackTrace());
         } catch (AuthFailedException e) {
             response.setStatus(500);
-            result = handleErr(e);
+            result = handleErr(e.fillInStackTrace());
         } catch (IOException e) {
             response.setStatus(500);
-            result = handleErr(e);
+            result = handleErr(e.fillInStackTrace());
+        } catch (IPNotAccessException e) {
+            response.setStatus(500);
+            result = handleErr(e.fillInStackTrace());
         }
-        Debug.debug(result, response);
 
+        Debug.debug(result, response);
     }
 
     private Object handleErr(Throwable e) {

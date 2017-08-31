@@ -1,4 +1,4 @@
-package com.iot.nero.api_gateway.core.firewall;
+package com.iot.nero.api_gateway.core.firewall.entity;
 
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.springframework.beans.factory.annotation.Value;
