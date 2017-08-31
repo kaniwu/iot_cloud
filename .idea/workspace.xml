@@ -2,51 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc980cdf-a28e-4151-b3c8-9fe823382e96" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/mock/Mock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/api_gateway.iml" afterPath="$PROJECT_DIR$/api_gateway/api_gateway.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/AdminAuth.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/AdminAuth.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/entity/Admin.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/entity/Admin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/demo/service/IHelloWorld.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/demo/service/IHelloWorld.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/demo/service/impl/HelloWorld.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/demo/service/impl/HelloWorld.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/api_gateway/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/common.iml" afterPath="$PROJECT_DIR$/common/common.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_admin/facade_admin.iml" afterPath="$PROJECT_DIR$/facade_admin/facade_admin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_agent/facade_agent.iml" afterPath="$PROJECT_DIR$/facade_agent/facade_agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_app/facade_app.iml" afterPath="$PROJECT_DIR$/facade_app/facade_app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_balance/facade_balance.iml" afterPath="$PROJECT_DIR$/facade_balance/facade_balance.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_cms/facade_cms.iml" afterPath="$PROJECT_DIR$/facade_cms/facade_cms.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_data/facade_data.iml" afterPath="$PROJECT_DIR$/facade_data/facade_data.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_log/facade_log.iml" afterPath="$PROJECT_DIR$/facade_log/facade_log.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_monitor/facade_monitor.iml" afterPath="$PROJECT_DIR$/facade_monitor/facade_monitor.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_resources/facade_resources.iml" afterPath="$PROJECT_DIR$/facade_resources/facade_resources.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facade_sso/facade_sso.iml" afterPath="$PROJECT_DIR$/facade_sso/facade_sso.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/iot_cloud.iml" afterPath="$PROJECT_DIR$/iot_cloud.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mq/mq.iml" afterPath="$PROJECT_DIR$/mq/mq.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent/parent.iml" afterPath="$PROJECT_DIR$/parent/parent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_admin/parent_admin.iml" afterPath="$PROJECT_DIR$/parent_admin/parent_admin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_agent/parent_agent.iml" afterPath="$PROJECT_DIR$/parent_agent/parent_agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_app/parent_app.iml" afterPath="$PROJECT_DIR$/parent_app/parent_app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_balance/parent_balance.iml" afterPath="$PROJECT_DIR$/parent_balance/parent_balance.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_cms/parent_cms.iml" afterPath="$PROJECT_DIR$/parent_cms/parent_cms.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_data/parent_data.iml" afterPath="$PROJECT_DIR$/parent_data/parent_data.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_log/parent_log.iml" afterPath="$PROJECT_DIR$/parent_log/parent_log.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_monitor/parent_monitor.iml" afterPath="$PROJECT_DIR$/parent_monitor/parent_monitor.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_resources/parent_resources.iml" afterPath="$PROJECT_DIR$/parent_resources/parent_resources.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parent_sso/parent_sso.iml" afterPath="$PROJECT_DIR$/parent_sso/parent_sso.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service_agent/service_agent.iml" afterPath="$PROJECT_DIR$/service_agent/service_agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service_app/service_app.iml" afterPath="$PROJECT_DIR$/service_app/service_app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service_cms/service_cms.iml" afterPath="$PROJECT_DIR$/service_cms/service_cms.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service_monitor/service_monitor.iml" afterPath="$PROJECT_DIR$/service_monitor/service_monitor.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service_sso/service_sso.iml" afterPath="$PROJECT_DIR$/service_sso/service_sso.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_app/web_app.iml" afterPath="$PROJECT_DIR$/web_app/web_app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_sso/web_sso.iml" afterPath="$PROJECT_DIR$/web_sso/web_sso.iml" />
     </list>
+    <ignored path="$PROJECT_DIR$/api_gateway/target/" />
+    <ignored path="$PROJECT_DIR$/common/target/" />
+    <ignored path="$PROJECT_DIR$/facade_admin/target/" />
+    <ignored path="$PROJECT_DIR$/facade_agent/target/" />
+    <ignored path="$PROJECT_DIR$/facade_app/target/" />
+    <ignored path="$PROJECT_DIR$/facade_balance/target/" />
+    <ignored path="$PROJECT_DIR$/facade_cms/target/" />
+    <ignored path="$PROJECT_DIR$/facade_data/target/" />
+    <ignored path="$PROJECT_DIR$/facade_log/target/" />
+    <ignored path="$PROJECT_DIR$/facade_monitor/target/" />
+    <ignored path="$PROJECT_DIR$/facade_resources/target/" />
+    <ignored path="$PROJECT_DIR$/facade_sso/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/mq/target/" />
+    <ignored path="$PROJECT_DIR$/parent/target/" />
+    <ignored path="$PROJECT_DIR$/parent_admin/target/" />
+    <ignored path="$PROJECT_DIR$/parent_agent/target/" />
+    <ignored path="$PROJECT_DIR$/parent_app/target/" />
+    <ignored path="$PROJECT_DIR$/parent_balance/target/" />
+    <ignored path="$PROJECT_DIR$/parent_cms/target/" />
+    <ignored path="$PROJECT_DIR$/parent_data/target/" />
+    <ignored path="$PROJECT_DIR$/parent_log/target/" />
+    <ignored path="$PROJECT_DIR$/parent_monitor/target/" />
+    <ignored path="$PROJECT_DIR$/parent_resources/target/" />
+    <ignored path="$PROJECT_DIR$/parent_sso/target/" />
+    <ignored path="$PROJECT_DIR$/service_agent/target/" />
+    <ignored path="$PROJECT_DIR$/service_app/target/" />
+    <ignored path="$PROJECT_DIR$/service_cms/target/" />
+    <ignored path="$PROJECT_DIR$/service_monitor/target/" />
+    <ignored path="$PROJECT_DIR$/service_sso/target/" />
+    <ignored path="$PROJECT_DIR$/web_app/target/" />
+    <ignored path="$PROJECT_DIR$/web_sso/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +67,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
+            <state relative-caret-position="1628">
               <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding />
             </state>
@@ -87,7 +77,7 @@
       <file leaf-file-name="api_gateway.iml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/api_gateway.iml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
+            <state relative-caret-position="2134">
               <caret line="97" column="9" lean-forward="false" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
               <folding />
             </state>
@@ -97,7 +87,7 @@
       <file leaf-file-name="ApiDoc.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/doc/ApiDoc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-220">
+            <state relative-caret-position="132">
               <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
               <folding />
             </state>
@@ -107,7 +97,7 @@
       <file leaf-file-name="ApiGatewayHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
+            <state relative-caret-position="2200">
               <caret line="130" column="53" lean-forward="false" selection-start-line="130" selection-start-column="53" selection-end-line="130" selection-end-column="53" />
               <folding>
                 <element signature="e#5257#5273#0" expanded="true" />
@@ -139,8 +129,8 @@
       <file leaf-file-name="AdminAuth.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/AdminAuth.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+            <state relative-caret-position="374">
+              <caret line="24" column="56" lean-forward="false" selection-start-line="24" selection-start-column="56" selection-end-line="24" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -149,8 +139,8 @@
       <file leaf-file-name="Admin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/entity/Admin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+            <state relative-caret-position="352">
+              <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -159,7 +149,7 @@
       <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/webapp/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
+            <state relative-caret-position="660">
               <caret line="30" column="11" lean-forward="false" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
               <folding />
             </state>
@@ -169,9 +159,11 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
+            <state relative-caret-position="484">
               <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-              <folding />
+              <folding>
+                <marker date="1504192554000" expanded="true" signature="82586:82628" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -180,6 +172,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -242,260 +239,18 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mock" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="firewall" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iot_cloud" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api_gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RunManager" selected="Tomcat Server.api">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
@@ -777,6 +532,7 @@
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -931,6 +687,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -1050,18 +812,31 @@
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.api" />
     </list>
   </component>
+  <component name="SbtLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc980cdf-a28e-4151-b3c8-9fe823382e96" name="Default" comment="" />
+      <created>1504192542005</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1504192542005</updated>
+      <workItem from="1504192544401" duration="21000" />
+    </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1279000" />
+    <option name="totallyTimeSpent" value="1300000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1079,16 +854,15 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53125" sideWeight="0.49761903" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46471775" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34475806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34475806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21369047" sideWeight="0.49596775" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21369047" sideWeight="0.49596775" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2125" sideWeight="0.50403225" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1097,12 +871,19 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296371" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46471775" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297619" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="jclasslib" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51309526" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296371" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1358,7 +1139,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/doc/ApiDoc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-220">
+        <state relative-caret-position="132">
           <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
           <folding />
         </state>
@@ -1366,7 +1147,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
+        <state relative-caret-position="1628">
           <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding />
         </state>
@@ -1374,7 +1155,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/api_gateway.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
+        <state relative-caret-position="2134">
           <caret line="97" column="9" lean-forward="false" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
           <folding />
         </state>
@@ -1382,9 +1163,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
+        <state relative-caret-position="484">
           <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding />
+          <folding>
+            <marker date="1504192554000" expanded="true" signature="82586:82628" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1406,7 +1189,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
+        <state relative-caret-position="660">
           <caret line="30" column="11" lean-forward="false" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
           <folding />
         </state>
@@ -1414,15 +1197,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/entity/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        <state relative-caret-position="352">
+          <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
+        <state relative-caret-position="2200">
           <caret line="130" column="53" lean-forward="false" selection-start-line="130" selection-start-column="53" selection-end-line="130" selection-end-column="53" />
           <folding>
             <element signature="e#5257#5273#0" expanded="true" />
@@ -1432,8 +1215,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/AdminAuth.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+        <state relative-caret-position="374">
+          <caret line="24" column="56" lean-forward="false" selection-start-line="24" selection-start-column="56" selection-end-line="24" selection-end-column="56" />
           <folding />
         </state>
       </provider>
