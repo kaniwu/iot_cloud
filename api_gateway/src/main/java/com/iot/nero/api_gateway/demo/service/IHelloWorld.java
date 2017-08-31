@@ -14,4 +14,6 @@ public interface IHelloWorld {
 
 
     String niHao(String ni);
+
+    Integer mockTest();
 }

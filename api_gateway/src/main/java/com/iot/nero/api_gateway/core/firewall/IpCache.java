@@ -9,7 +9,7 @@ package com.iot.nero.api_gateway.core.firewall;
 public class IpCache {
 
     public static Object findIP(String ip) {
-        return "sss";
+        return null;
     }
 
     public static void cacheIP(String ip) {

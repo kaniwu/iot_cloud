@@ -34,11 +34,7 @@
     <load-on-startup>2</load-on-startup>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-<<<<<<< HEAD
-      <param-value>classpath:api_gateway.spring/spring-*.xml</param-value>
-=======
       <param-value>classpath:api_gateway/config/*.xml;classpath:api_gateway.*/*.xml;classpath:*;</param-value>
->>>>>>> iot_cloud/master
     </init-param>
   </servlet>
 
