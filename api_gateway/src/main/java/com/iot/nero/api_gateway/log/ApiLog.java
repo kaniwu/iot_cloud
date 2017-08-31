@@ -1,4 +1,4 @@
-package com.iot.nero.api_gateway.core.log;
+package com.iot.nero.api_gateway.log;
 
 import javax.servlet.http.HttpServletRequest;
 
