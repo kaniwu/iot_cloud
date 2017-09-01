@@ -107,6 +107,47 @@ public class ApiStore {
         List<String> paramsName;
         Annotation[] annotations;
 
+
+        public Class<?> getReturnType() {
+            return returnType;
+        }
+
+        public void setReturnType(Class<?> returnType) {
+            this.returnType = returnType;
+        }
+
+        public Class<?>[] getParamType() {
+            return paramType;
+        }
+
+        public void setParamType(Class<?>[] paramType) {
+            this.paramType = paramType;
+        }
+
+        public Parameter[] getParameters() {
+            return parameters;
+        }
+
+        public void setParameters(Parameter[] parameters) {
+            this.parameters = parameters;
+        }
+
+        public List<String> getParamsName() {
+            return paramsName;
+        }
+
+        public void setParamsName(List<String> paramsName) {
+            this.paramsName = paramsName;
+        }
+
+        public Annotation[] getAnnotations() {
+            return annotations;
+        }
+
+        public void setAnnotations(Annotation[] annotations) {
+            this.annotations = annotations;
+        }
+
         public Object run(Object... args) throws InvocationTargetException, IllegalAccessException {
             if(target==null){
                 target = applicationContext.getBean(targetName);

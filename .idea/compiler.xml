@@ -54,7 +54,7 @@
       <module name="facade_resources" target="1.5" />
       <module name="facade_sso" target="1.5" />
       <module name="iot_cloud" target="1.5" />
-      <module name="mq" target="1.7" />
+      <module name="mq" target="1.5" />
       <module name="parent" target="1.5" />
       <module name="parent_admin" target="1.5" />
       <module name="parent_agent" target="1.5" />

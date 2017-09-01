@@ -1,6 +1,7 @@
 package com.iot.nero.api_gateway.core.doc;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.gson.Gson;
 import com.iot.nero.api_gateway.common.Debug;
 import com.iot.nero.api_gateway.common.UtilJson;
 import com.iot.nero.api_gateway.core.core.ApiStore;
@@ -8,6 +9,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,18 +21,32 @@ import java.util.List;
 public class ApiDoc {
 
 
-    public void genHtml(List<ApiStore.ApiRunnable> apiRunnableList, HttpServletResponse response) {
+    public Object getApis(List<ApiStore.ApiRunnable> apiRunnableList) {
+
 
             UtilJson.JSON_MAPPER.configure(
-                    SerializationFeature.WRITE_NULL_MAP_VALUES, true);
-
-            String htmlHeader = "<div style='width:100%;'>";
-
+                    SerializationFeature.WRITE_NULL_MAP_VALUES,true);
+            String json = "";
+            List<Api> apis = new ArrayList<Api>();
+            Gson gson = new Gson();
             for(ApiStore.ApiRunnable apiRunnable:apiRunnableList){
+                Class<?>[] parameter = apiRunnable.getParamType();
+                List<String> parList = new ArrayList<String>();
+                for(Class<?> par:parameter){
+                    parList.add(par.toString());
+                }
+                String[] papa = new String[parList.size()];
+                String[] parName = new String[apiRunnable.getParamsName().size()];
 
-                    htmlHeader+="<p style='width:100%;background:blue;color:#fff;margin-top:10px;padding:10px;'> "+apiRunnable.getApiName()+"</p>";
+                apis.add(new Api(apiRunnable.getApiName(),
+                        apiRunnable.getReturnType().toString(),
+                        apiRunnable.getParamsName().toArray(parName),
+                        parList.toArray(papa),
+                        apiRunnable.getTargetMethod().toString()
+                ));
             }
-            htmlHeader+="</div>";
-            Debug.debug(htmlHeader,response);
+            json = gson.toJson(apis);
+
+            return json;
     }
 }

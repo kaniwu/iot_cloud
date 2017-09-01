@@ -11,7 +11,9 @@ import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
 import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
+import com.iot.nero.api_gateway.core.mock.Mock;
 import com.iot.nero.api_gateway.log.ApiLog;
+import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -37,6 +39,8 @@ import java.util.*;
  * Time   下午12:41
  */
 public class ApiGatewayHandler implements InitializingBean, ApplicationContextAware {
+
+
 
     private static final Logger logger = LoggerFactory.getLogger(ApiGatewayHandler.class);
 
@@ -80,19 +84,26 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
         try {
             ipTables.filter(request, response);
+            paramsValdate(request);
             if (method.subSequence(0, 3).equals("sys")) {
 
                 adminAuth.auth(params);
                 if (method.equals("sys.doc")) {
-                    result = apiStore.findApiRunnables();
+                    result = apiDoc.getApis(apiStore.findApiRunnables());
                 } else {
                     result = null;
                 }
 
             } else {
                 apiRunnable = sysParamsValdate(request);
-                Object[] args = buildParams(apiRunnable, params, request, response);
-                result = apiRunnable.run(args);
+
+                if(PropertyPlaceholder.getProperty("mock.isOpen").equals("yes")){
+                    Mock mock = new Mock();
+                    result = mock.run(apiRunnable);
+                }else{
+                    Object[] args = buildParams(apiRunnable, params, request, response);
+                    result = apiRunnable.run(args);
+                }
             }
         } catch (ApiException e) {
             response.setStatus(500);
@@ -113,6 +124,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
         } catch (IPNotAccessException e) {
+            response.setStatus(500);
+            result = handleErr(e.fillInStackTrace());
+        } catch (Exception e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
         }
@@ -142,17 +156,22 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     }
 
 
-    private ApiStore.ApiRunnable sysParamsValdate(HttpServletRequest request) throws ApiException {
+    private void paramsValdate(HttpServletRequest request) throws ApiException {
         String apiName = request.getParameter(METHOD);
         String json = request.getParameter(PARAMS);
-
-        ApiStore.ApiRunnable apiRunnable;
 
         if (apiName == null || apiName.equals("")) {
             throw new ApiException("调用失败，参数 'method' 为空");
         } else if (json == null) {
             throw new ApiException("调用失败，参数 'params' 为空");
-        } else if ((apiRunnable = apiStore.findApiRunnable(apiName)) == null) {
+        }
+    }
+
+    private ApiStore.ApiRunnable sysParamsValdate(HttpServletRequest request) throws ApiException {
+        String apiName = request.getParameter(METHOD);
+        ApiStore.ApiRunnable apiRunnable;
+        paramsValdate(request);
+        if ((apiRunnable = apiStore.findApiRunnable(apiName)) == null) {
             throw new ApiException("调用失败：指定API不存在，API：" + apiName);
         }
         return apiRunnable;
