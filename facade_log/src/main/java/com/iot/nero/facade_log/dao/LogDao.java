@@ -3,6 +3,7 @@ package com.iot.nero.facade_log.dao;
 import com.iot.nero.parent_log.entity.ClientLog;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,4 +31,7 @@ public interface LogDao {
     Integer getCount(@Param("key") String productKey,
                      @Param("type") Integer type,
                      @Param("level") Integer level);
+
+    Integer insertSysLog(@Param("type") Long type,
+                         @Param("content") String content);
 }

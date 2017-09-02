@@ -35,4 +35,11 @@ public interface ILogFacade {
     LList<List<ClientLog>> getClientLog(String productKey, Integer type, Integer level, Integer page, Integer num);
 
 
+    /**
+     * 插入系统日志
+     * @param type
+     * @param log
+     * @return
+     */
+    void SysLog(Long type,String log);
 }

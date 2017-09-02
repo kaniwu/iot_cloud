@@ -1,9 +1,12 @@
 package com.iot.nero.facade_log.facade.impl;
 
+import com.google.gson.Gson;
 import com.iot.nero.facade.ILogFacade;
 import com.iot.nero.facade_log.dao.LogDao;
+import com.iot.nero.parent_log.constant.CONSTANT;
 import com.iot.nero.parent_log.dto.LList;
 import com.iot.nero.parent_log.entity.ClientLog;
+import com.iot.nero.parent_log.entity.SystemLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Service;
@@ -85,6 +88,21 @@ public class LogFacade implements ILogFacade {
                 return null;
             }
             return null;
+        }
+    }
+
+    /**
+     *系统日志
+     * @param type
+     * @param log
+     */
+    public void SysLog(Long type,String log){
+        Gson gson = new Gson();
+        SystemLog systemLog = gson.fromJson(log, SystemLog.class);
+
+        System.out.println(systemLog.toString());
+        if(logDao.insertSysLog(systemLog.getType(),systemLog.getContent())<1){
+            System.out.println(CONSTANT.SYSTEM_LOG_INSERT_TO_DB_FAILED);
         }
     }
 }

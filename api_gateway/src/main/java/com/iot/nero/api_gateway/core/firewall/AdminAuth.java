@@ -17,7 +17,7 @@ import com.iot.nero.utils.spring.PropertyPlaceholder;
  */
 public class AdminAuth {
 
-    public void auth(String params) throws Exception {
+    public void auth(String params) throws JsonSyntaxException, AuthFailedException {
 
         //加载配置文件中用户名和密码
         Gson gson = new Gson();
@@ -31,7 +31,7 @@ public class AdminAuth {
             if (!PropertyPlaceholder.getProperty("auth.username").toString().equals(ad.getPassWord())) {
                 throw new AuthFailedException(CONSTANT.ADMIN_PASSWORD_INCORRECT);
             }
-        }catch (Exception e){
+        }catch (JsonSyntaxException e){
             throw e;
         }
     }

@@ -6,6 +6,8 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import com.google.common.collect.ImmutableMap;
+import com.iot.nero.facade_log.facade.impl.LogFacade;
+import com.iot.nero.utils.spring.PropertyPlaceholder;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
@@ -18,20 +20,26 @@ import kafka.consumer.Consumer;
  * Date   2017/7/15
  * Time   下午6:09
  */
-public class LogConsumer {
-    private static final String ZOOKEEPER = "localhost:2181";
+class LogConsumer {
+
     //groupName可以随意给，因为对于kafka里的每条消息，每个group都会完整的处理一遍
-    private static final String GROUP_NAME = "test_group";
-    private static final String TOPIC_NAME = "kafka";
+    private static final String GROUP_NAME = "log_group";
+    private static final String TOPIC_NAME = "log";
     private static final int CONSUMER_NUM = 4;
     private static final int PARTITION_NUM = 4;
 
-    public static void main(String[] args) {
+    private LogFacade logFacade;
+
+    public void listen(){
+
+
         // specify some consumer properties
         Properties props = new Properties();
-        props.put("zookeeper.connect", ZOOKEEPER);
-        props.put("zookeeper.connectiontimeout.ms", "1000000");
+        props.put("zookeeper.connect", "47.94.251.146:2181");//PropertyPlaceholder.getProperty("zookeeper.connect").toString());
+        props.put("zookeeper.connectiontimeout.ms", "100000");//PropertyPlaceholder.getProperty("zookeeper.connectiontimeout.ms").toString());
         props.put("group.id", GROUP_NAME);
+
+        logFacade = new LogFacade();
 
         // Create the connection to the cluster
         ConsumerConfig consumerConfig = new ConsumerConfig(props);
@@ -55,6 +63,7 @@ public class LogConsumer {
                     for (MessageAndMetadata<byte[], byte[]> msgAndMetadata : stream) {
                         // process message (msgAndMetadata.message())
                         System.out.println(new String(msgAndMetadata.message()));
+                        logFacade.SysLog(1L,new String(msgAndMetadata.message()));
                     }
                 }
             });

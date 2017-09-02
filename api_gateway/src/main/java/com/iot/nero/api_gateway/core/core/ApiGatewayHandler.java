@@ -2,12 +2,14 @@ package com.iot.nero.api_gateway.core.core;
 
 import com.alibaba.dubbo.common.json.ParseException;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.gson.JsonSyntaxException;
 import com.iot.nero.api_gateway.common.Debug;
 import com.iot.nero.api_gateway.common.UtilJson;
 import com.iot.nero.api_gateway.core.doc.ApiDoc;
 import com.iot.nero.api_gateway.core.exceptions.ApiException;
 import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
 import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
+import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
 import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
@@ -114,9 +116,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } catch (InvocationTargetException e) {
             response.setStatus(500);
             result = handleErr(e.getTargetException());
-        } catch (ParseException e) {
-            response.setStatus(500);
-            result = handleErr(e.fillInStackTrace());
         } catch (AuthFailedException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
@@ -126,7 +125,10 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } catch (IPNotAccessException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
-        } catch (Exception e) {
+        } catch (MockApiNotFoundException e) {
+            response.setStatus(500);
+            result = handleErr(e.fillInStackTrace());
+        } catch (JsonSyntaxException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
         }
@@ -143,6 +145,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } else {
             code = "0002";
             message = e.getMessage();
+            e.printStackTrace();
         }
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("error", code);

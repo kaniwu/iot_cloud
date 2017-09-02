@@ -25,5 +25,6 @@ public class CONSTANT {
     public static final  String MESSAGE_SEND_SUCCESS="消息发送成功";
     public static final  String CLIENT_OFFLINE_SUCCESS="设备下线成功";
 
+    public static final String SYSTEM_LOG_INSERT_TO_DB_FAILED = "系统日志存入数据库失败";
 
 }

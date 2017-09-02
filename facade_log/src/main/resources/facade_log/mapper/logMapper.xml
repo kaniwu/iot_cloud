@@ -70,4 +70,12 @@
 
         </if>
     </select>
+
+    <insert id="insertSysLog">
+        insert into sys_log
+        (l_s_type,l_s_content)
+        VALUES
+         (${type},'${content}');
+    </insert>
+
 </mapper>
