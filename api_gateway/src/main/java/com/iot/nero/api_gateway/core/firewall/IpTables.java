@@ -23,20 +23,13 @@ public class IpTables {
     public void filter(HttpServletRequest request, HttpServletResponse response) throws IOException, IPNotAccessException {
 
             String ip = NetUtil.getRealIP(request);
-
-            //Debug.debug(ip,response);
+            IpCache ipCache =new IpCache();
             //查黑名单缓存
-            if(IpCache.findIP(ip)!=null){
+            if(ipCache.findIP(ip)!=null){
                 //有，拒绝
                 throw new IPNotAccessException(IP_NOT_ACCESS);
             }
 
-            //没有，查数据库
-            if(IPDao.findIP(ip)!=null){
-                //有，拒绝并加入缓存
-                IpCache.cacheIP(ip);
-                throw new IPNotAccessException(IP_NOT_ACCESS);
-            }
             //没有，过
 
     }
