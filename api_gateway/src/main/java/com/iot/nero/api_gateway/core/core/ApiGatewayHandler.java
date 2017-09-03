@@ -85,7 +85,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         ApiStore.ApiRunnable apiRunnable = null;
 
         try {
-            ipTables.filter(request, response);
+            if(PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")){
+                ipTables.filter(request, response);
+            }
             paramsValdate(request);
             if (method.subSequence(0, 3).equals("sys")) {
                 sysParamsValid(request);
