@@ -13,6 +13,7 @@ import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
 import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
+import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 import com.iot.nero.api_gateway.core.mock.Mock;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.slf4j.Logger;
@@ -47,6 +48,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     private static final String METHOD = "method";
     private static final String PARAMS = "params";
+    private static final String SYSPARAMS = "sysParams";
 
     private ApiDoc apiDoc;
     private IpTables ipTables;
@@ -77,6 +79,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
         String method = request.getParameter(METHOD);
         String params = request.getParameter(PARAMS);
+        String sysParams = request.getParameter(SYSPARAMS);
 
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
@@ -87,9 +90,13 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             }
             paramsValdate(request);
             if (method.subSequence(0, 3).equals("sys")) {
-                adminAuth.auth(params);
+                sysParamsValid(request);
+                adminAuth.auth(sysParams);
                 if (method.equals("sys.doc")) {
                     result = apiDoc.getApis(apiStore.findApiRunnables());
+                } else if (method.equals("sys.mock")) {
+                    Mock mock = new Mock();
+                    result = mock.getMocks();
                 } else {
                     result = null;
                 }
@@ -126,9 +133,19 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } catch (MockApiNotFoundException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
+        } catch (JsonSyntaxException e) {
+            response.setStatus(500);
+            result = handleErr(e.fillInStackTrace());
         }
 
         returnResult(result, response);
+    }
+
+    private void sysParamsValid(HttpServletRequest request) throws ApiException {
+        String sysParams = request.getParameter(SYSPARAMS);
+        if(sysParams == null || "".equals(sysParams)){
+            throw new ApiException("调用失败，参数 "+SYSPARAMS+" 为空");
+        }
     }
 
     private Object handleErr(Throwable e) {
@@ -158,9 +175,10 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         String apiName = request.getParameter(METHOD);
         String json = request.getParameter(PARAMS);
 
-        if (apiName == null || apiName.equals("")) {
+
+        if (apiName == null || "".equals(apiName)) {
             throw new ApiException("调用失败，参数 'method' 为空");
-        } else if (json == null) {
+        } else if (json == null || "".equals(json)) {
             throw new ApiException("调用失败，参数 'params' 为空");
         }
     }
