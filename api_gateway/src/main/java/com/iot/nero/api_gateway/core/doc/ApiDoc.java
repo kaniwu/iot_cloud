@@ -21,18 +21,18 @@ import java.util.List;
 public class ApiDoc {
 
 
-    public Object getApis(List<ApiStore.ApiRunnable> apiRunnableList) {
+    public List<Api> getApis(List<ApiStore.ApiRunnable> apiRunnableList) {
 
 
             UtilJson.JSON_MAPPER.configure(
                     SerializationFeature.WRITE_NULL_MAP_VALUES,true);
-            String json = "";
+
             List<Api> apis = new ArrayList<Api>();
-            Gson gson = new Gson();
-            for(ApiStore.ApiRunnable apiRunnable:apiRunnableList){
+
+            for(ApiStore.ApiRunnable apiRunnable:apiRunnableList) {
                 Class<?>[] parameter = apiRunnable.getParamType();
                 List<String> parList = new ArrayList<String>();
-                for(Class<?> par:parameter){
+                for (Class<?> par : parameter) {
                     parList.add(par.toString());
                 }
                 String[] papa = new String[parList.size()];
@@ -45,8 +45,6 @@ public class ApiDoc {
                         apiRunnable.getTargetMethod().toString()
                 ));
             }
-            json = gson.toJson(apis);
-
-            return json;
+            return apis;
     }
 }

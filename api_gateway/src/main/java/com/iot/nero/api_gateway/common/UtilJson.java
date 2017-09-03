@@ -4,6 +4,7 @@ import com.alibaba.dubbo.common.json.JSON;
 import com.alibaba.dubbo.common.json.JSONObject;
 import com.alibaba.dubbo.common.json.ParseException;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.Map;
@@ -21,7 +22,8 @@ public class UtilJson {
     }
 
     public static String writeValueAsString(Object result) throws IOException {
-       return  JSON.json(result);
+        Gson gson = new Gson();
+        return gson.toJson(result);
     }
 
     public static Map<String,Object> toMap(String params) throws ParseException {
