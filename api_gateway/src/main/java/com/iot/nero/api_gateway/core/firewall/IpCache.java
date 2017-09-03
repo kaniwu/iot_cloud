@@ -13,7 +13,7 @@ import java.util.HashSet;
  */
 public class IpCache {
     private static HashSet<String> ipSet = null;
-    private static final String IP_CACHE_DIR = "D:/XAMPP/htdocs/iot_cloud/api_gateway/src/main/resources/api_gateway/config/ip_tables.txt";//PropertyPlaceholder.getProperty("ipTable.file").toString();
+    private static final String IP_CACHE_DIR = PropertyPlaceholder.getProperty("ipTable.file").toString();
 
     IpCache(){
         if(ipSet==null){
