@@ -14,7 +14,6 @@ import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
 import com.iot.nero.api_gateway.core.mock.Mock;
-import com.iot.nero.api_gateway.log.ApiLog;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +49,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     private static final String PARAMS = "params";
 
     private ApiDoc apiDoc;
-    private ApiLog apiLog;
     private IpTables ipTables;
     private AdminAuth adminAuth;
 
@@ -60,7 +58,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     public ApiGatewayHandler() {
         parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
         apiDoc = new ApiDoc();
-        apiLog = new ApiLog();
         ipTables = new IpTables();
         adminAuth = new AdminAuth();
     }
@@ -128,12 +125,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } catch (MockApiNotFoundException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
-        } catch (JsonSyntaxException e) {
-            response.setStatus(500);
-            result = handleErr(e.fillInStackTrace());
         }
 
-        Debug.debug(result, response);
+        returnResult(result, response);
     }
 
     private Object handleErr(Throwable e) {

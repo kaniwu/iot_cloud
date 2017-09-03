@@ -12,6 +12,10 @@ import java.util.Map;
 public class Mock {
     private Map<String,String> apiMockCache;
 
+
+    public Mock(){
+        init();
+    }
     @PostConstruct
     public void init(){
         apiMockCache = new HashMap<String, String>();
