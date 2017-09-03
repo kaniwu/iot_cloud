@@ -85,7 +85,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         ApiStore.ApiRunnable apiRunnable = null;
 
         try {
-            ipTables.filter(request, response);
+            if(PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")){
+                ipTables.filter(request, response);
+            }
             paramsValdate(request);
             if (method.subSequence(0, 3).equals("sys")) {
                 sysParamsValid(request);
@@ -266,7 +268,12 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         try {
             UtilJson.JSON_MAPPER.configure(
                     SerializationFeature.WRITE_NULL_MAP_VALUES, true);
-            String json = UtilJson.writeValueAsString(result);
+
+
+            Map<String, Object> returnResult = new HashMap<String, Object>();
+            returnResult.put("data",result);
+
+            String json = UtilJson.writeValueAsString(returnResult);
 
             response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html/json;charset=utf-8");

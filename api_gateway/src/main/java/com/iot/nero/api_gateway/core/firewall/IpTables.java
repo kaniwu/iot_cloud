@@ -2,7 +2,6 @@ package com.iot.nero.api_gateway.core.firewall;
 
 import com.iot.nero.api_gateway.common.NetUtil;
 import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
-import com.iot.nero.api_gateway.core.firewall.dao.IPDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
