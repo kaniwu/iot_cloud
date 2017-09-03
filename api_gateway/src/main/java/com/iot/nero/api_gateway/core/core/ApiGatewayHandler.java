@@ -2,8 +2,10 @@ package com.iot.nero.api_gateway.core.core;
 
 import com.alibaba.dubbo.common.json.ParseException;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.iot.nero.api_gateway.common.Debug;
+import com.iot.nero.api_gateway.common.NetUtil;
 import com.iot.nero.api_gateway.common.UtilJson;
 import com.iot.nero.api_gateway.core.doc.ApiDoc;
 import com.iot.nero.api_gateway.core.exceptions.ApiException;
@@ -13,6 +15,8 @@ import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
 import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
+import com.iot.nero.api_gateway.core.log.entity.ApiLog;
+import com.iot.nero.api_gateway.core.log.entity.Log;
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 import com.iot.nero.api_gateway.core.mock.Mock;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
@@ -73,18 +77,18 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     }
 
     public void handle(HttpServletRequest request, HttpServletResponse response) {
-
-        //apiLog.log(request);
-
-
+        Gson gson = new Gson();
+        Date date = new Date();
         String method = request.getParameter(METHOD);
         String params = request.getParameter(PARAMS);
         String sysParams = request.getParameter(SYSPARAMS);
 
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
-
         try {
+
+            logger.info(gson.toJson(new Log(0001,new ApiLog(NetUtil.getRealIP(request),method,params,sysParams,request.getRequestURL().toString()),date.getTime())));
+
             if(PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")){
                 ipTables.filter(request, response);
             }

@@ -16,15 +16,14 @@ public class IpCache {
     private static final String IP_CACHE_DIR = "D:/XAMPP/htdocs/iot_cloud/api_gateway/src/main/resources/api_gateway/config/ip_tables.txt";//PropertyPlaceholder.getProperty("ipTable.file").toString();
 
     IpCache(){
-       /* if(ipSet==null){
+        if(ipSet==null){
             ipSet =new HashSet<String>();
             cacheSet();
         }
-        */
     }
     public Object findIP(String ip) {
-        if(ipSet.contains(ip)) return null;
-        else return "sussess";
+        if(ipSet.contains(ip)) return "sussess";
+        else return null;
     }
 
     //读取缓存文件中的数据到集合中
@@ -96,11 +95,9 @@ public class IpCache {
                         line+=";" + ip;
                     }
                     rightIP=line;
-                    System.out.println(line);
                 }
                 bufferedReader.close();
                 read.close();
-                System.out.println(rightIP);
                 addIPIntoFile(file,rightIP);
             }
             else
@@ -113,8 +110,16 @@ public class IpCache {
             e.printStackTrace();
         }
         //更新set
-        //ipSet.add(ip);
+        ipSet.add(ip);
     }
 
+    /**
+     * 查看ipSet
+     */
+    public static void lookSet(){
+        for (String s:ipSet) {
+            System.out.println(s);
+        }
+    }
 
 }
