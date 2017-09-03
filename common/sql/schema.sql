@@ -164,6 +164,13 @@ CREATE TABLE  if NOT EXISTS app_${id}_client_log(
   l_create_time DATETIME DEFAULT current_timestamp
 )Engine = InnoDB;
 
+CREATE  TABLE  if NOT EXISTS sys_log(
+ id int(32) NOT NULL  PRIMARY KEY AUTO_INCREMENT,
+ l_s_type int(32) NOT  NULL ,
+ l_s_content VARCHAR(256) charset utf8 COLLATE utf8_general_ci;
+ l_s_create_time DATETIME DEFAULT current_timestamp
+)Engine = InnoDB;
+
 
 #监控系统与子账号系统
 create database if not exists monitor_iot;

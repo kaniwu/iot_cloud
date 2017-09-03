@@ -2,6 +2,7 @@ package com.iot.nero.api_gateway.core.core;
 
 import com.alibaba.dubbo.common.json.ParseException;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.gson.JsonSyntaxException;
 import com.iot.nero.api_gateway.common.Debug;
 import com.iot.nero.api_gateway.common.UtilJson;
 import com.iot.nero.api_gateway.core.doc.ApiDoc;
@@ -125,6 +126,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
         } catch (MockApiNotFoundException e) {
+            response.setStatus(500);
+            result = handleErr(e.fillInStackTrace());
+        } catch (JsonSyntaxException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
         }
