@@ -1,4 +1,6 @@
 package com.iot.nero.api_gateway.core.firewall;
+import com.alibaba.com.caucho.hessian.io.InputStreamSerializer;
+import com.iot.nero.api_gateway.common.IOUtils;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 
 import java.io.*;
@@ -15,22 +17,21 @@ public class IpCache {
     private HashSet<String> ipSet = null;
     private static final String IP_CACHE_DIR = PropertyPlaceholder.getProperty("ipTable.file").toString();
 
-    public IpCache(){
-        if(ipSet==null){
-            ipSet =new HashSet<String>();
-            cacheSet();
-        }
+    public IpCache() throws IOException {
+
+        ipSet =new HashSet<String>();
+        cacheSet();
     }
     public Object findIP(String ip) {
-        if(ipSet.contains(ip)) return "sussess";
+        if(ipSet.contains(ip)) return "拒绝访问";
         else return null;
     }
 
-    //读取缓存文件中的数据到集合中
-    private void cacheSet(){
+    private void cacheSet() throws IOException {
        String ips[] =readCacheFile(IP_CACHE_DIR);
        for(int i=0;i<ips.length;i++){
-         ipSet.add(ips[i]);
+           System.out.println(ips[i]);
+            ipSet.add(ips[i]);
        }
     }
 
@@ -39,80 +40,27 @@ public class IpCache {
      * @param dir
      * @return
      */
-    private String [] readCacheFile(String dir){
+    private String [] readCacheFile(String dir) throws IOException {
         String line="";
+        InputStream inputStream = null;
+        InputStreamReader inputStreamReader  = null;
+        BufferedReader bufferedReader = null;
         try {
-            File file =new File(dir);
-            if (file.isFile() && file.exists())
-            { // 判断文件是否存在
-                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
-                BufferedReader bufferedReader = new BufferedReader(read);
-                line = bufferedReader.readLine();
-                bufferedReader.close();
-                read.close();
-            }
-            else
-            {
-                System.out.println("找不到指定的文件");
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        String [] ips =line.split(";");
-        return ips;
-    }
+            inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
+            inputStreamReader = new InputStreamReader(inputStream);
+            bufferedReader = new BufferedReader(inputStreamReader);
+            line = bufferedReader.readLine();
 
-    /**
-     * 添加新的ip到缓存文件
-     */
-    public void addIPIntoFile(File file,String ip) throws IOException{
-        BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-        out.write(ip);
-        out.close();
-    }
-
-    /**
-     * 添加新的ip到黑名单，并更新黑名单缓存
-     * @param ip
-     */
-    public void createBlankIP(String ip){
-        //添加ip到缓存文件中
-        try {
-            File file =new File(IP_CACHE_DIR);
-            if (file.isFile() && file.exists())
-            { // 判断文件是否存在
-                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
-                BufferedReader bufferedReader = new BufferedReader(read);
-                String line;
-                String rightIP="";
-                while((line=bufferedReader.readLine())!=null){
-                    if(line==""){
-                        line+=ip;
-                    }
-                    else {
-                        line+=";" + ip;
-                    }
-                    rightIP=line;
-                }
-                bufferedReader.close();
-                read.close();
-                addIPIntoFile(file,rightIP);
-            }
-            else
-            {
-                System.out.println("找不到指定的文件");
-            }
+            String[] ips = line.split(";");
+            return ips;
+        }catch (IOException e){
+            throw e;
+        }finally {
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        //更新set
-        ipSet.add(ip);
     }
-
 
     /**
      * 返回ipSet

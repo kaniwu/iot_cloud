@@ -12,7 +12,6 @@ import com.iot.nero.api_gateway.core.exceptions.ApiException;
 import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
 import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
 import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
-import com.iot.nero.api_gateway.core.firewall.IpCache;
 import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
@@ -53,7 +52,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     private static final String METHOD = "method";
     private static final String PARAMS = "params";
-    private static final String SYSPARAMS = "sysParams";
+    private static final String SYS_PARAMS = "sysParams";
 
     private ApiDoc apiDoc;
     private IpTables ipTables;
@@ -82,7 +81,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         Date date = new Date();
         String method = request.getParameter(METHOD);
         String params = request.getParameter(PARAMS);
-        String sysParams = request.getParameter(SYSPARAMS);
+        String sysParams = request.getParameter(SYS_PARAMS);
 
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
@@ -91,7 +90,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             logger.info(gson.toJson(new Log(0001,new ApiLog(NetUtil.getRealIP(request),method,params,sysParams,request.getRequestURL().toString()),date.getTime())));
 
             if(PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")){
-                ipTables.filter(request, response);
+                 ipTables.filter(request, response);
             }
             paramsValdate(request);
             if (method.subSequence(0, 3).equals("sys")) {
@@ -102,11 +101,11 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
                 } else if (method.equals("sys.mock")) {
                     Mock mock = new Mock();
                     result = mock.getMocks();
-                }else if (method.equals("sys.ipTable")) {
-                    IpCache ipCache = new IpCache();
-                    result = ipCache.getIPSet();
-                }else {
-                    result = null;
+                } else if (method.equals("sys.ipTable")) {
+                    IpTables ipTables = new IpTables();
+                    result = ipTables.getIpTables();
+                } else {
+                    result = "不存在系统接口: "+method;
                 }
 
             } else {
@@ -150,9 +149,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     }
 
     private void sysParamsValid(HttpServletRequest request) throws ApiException {
-        String sysParams = request.getParameter(SYSPARAMS);
+        String sysParams = request.getParameter(SYS_PARAMS);
         if(sysParams == null || "".equals(sysParams)){
-            throw new ApiException("调用失败，参数 "+SYSPARAMS+" 为空");
+            throw new ApiException("调用失败，参数 "+SYS_PARAMS+" 为空");
         }
     }
 
