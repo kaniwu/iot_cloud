@@ -27,7 +27,7 @@ public class IpTables {
             //查黑名单缓存
             if(ipCache.findIP(ip)!=null){
                 //有，拒绝
-                throw new IPNotAccessException(IP_NOT_ACCESS);
+                //throw new IPNotAccessException(IP_NOT_ACCESS);
             }
 
             //没有，过

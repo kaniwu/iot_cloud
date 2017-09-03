@@ -1,27 +1,47 @@
 package com.iot.nero.api_gateway.core.mock;
 
+import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.core.core.ApiStore;
 import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
+import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
+import javafx.beans.property.Property;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Mock {
-    private Map<String,String> apiMockCache;
+    private Map<String,ApiMock> apiMockCache;
 
-    public Mock(){
+    public Mock() throws IOException {
         init();
     }
     @PostConstruct
-    public void init(){
-        apiMockCache = new HashMap<String, String>();
+    public void init() throws IOException {
+        apiMockCache = new HashMap<String, ApiMock>();
+        File file = new File(PropertyPlaceholder.getProperty("mock.file").toString());
+
+        BufferedReader bufr = new BufferedReader(new FileReader(file));
+
+        String line;
+        String[] apiMember;
+        ApiMock apiMock;
+
+        while((line = bufr.readLine())!=null){
+            apiMember = line.split("#");
+            apiMock = new ApiMock(apiMember[0], apiMember[1]);
+            if(apiMockCache.get(apiMember[0])==null){
+                apiMockCache.put(apiMember[0], apiMock);
+            }
+        }
     }
 
 
-    public Object run(ApiStore.ApiRunnable apiRunnable) throws IOException, MockApiNotFoundException {
+    public Object run(ApiStore.ApiRunnable apiRunnable) throws MockApiNotFoundException {
         Object result;
         Class<?> returnType = apiRunnable.getReturnType();
         if(returnType.getName().equals(String.class.getName())){
@@ -34,6 +54,8 @@ public class Mock {
             result = new Boolean(false);
         }else if(returnType.getName().equals(Long.class.getName())){
             result = new Long(23333333);
+        }else if(returnType.getName().equals(Character.class.getName())){
+            result = 'd';
         }else {
             //如果是其他类型，请自行构造
 
@@ -42,27 +64,14 @@ public class Mock {
             if((result = apiMockCache.get(apiRunnable.getApiName()))!=null){
                 return result;
             }else{
-                File file = new File(PropertyPlaceholder.getProperty("mock.file").toString());
-
-                FileReader fileReader = new FileReader(file);
-
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-                String line;
-                Boolean isApiFound = false;
-                while((line = bufferedReader.readLine())!=null){
-                    String[] api_mapper = line.split("#");
-                    if(apiRunnable.getApiName().equals(api_mapper[0])){
-                        isApiFound = true;
-                        return api_mapper[1];
-                    }
-                    apiMockCache.put(api_mapper[0],api_mapper[1]);
-                }
-                if(!isApiFound){
                     throw new MockApiNotFoundException("API: "+ apiRunnable.getApiName() +"未找到，请在"+PropertyPlaceholder.getProperty("mock.file").toString()+"中添加！");
                 }
             }
-        }
         return result;
+    }
+
+    public Map<String,ApiMock> getMocks() {
+
+        return this.apiMockCache;
     }
 }
