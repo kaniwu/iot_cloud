@@ -12,10 +12,10 @@ import java.util.HashSet;
  * Time   上午11:38
  */
 public class IpCache {
-    private static HashSet<String> ipSet = null;
+    private HashSet<String> ipSet = null;
     private static final String IP_CACHE_DIR = PropertyPlaceholder.getProperty("ipTable.file").toString();
 
-    IpCache(){
+    public IpCache(){
         if(ipSet==null){
             ipSet =new HashSet<String>();
             cacheSet();
@@ -113,13 +113,11 @@ public class IpCache {
         ipSet.add(ip);
     }
 
-    /**
-     * 查看ipSet
-     */
-    public static void lookSet(){
-        for (String s:ipSet) {
-            System.out.println(s);
-        }
-    }
 
+    /**
+     * 返回ipSet
+     */
+     public HashSet<String> getIPSet(){
+        return ipSet;
+     }
 }
