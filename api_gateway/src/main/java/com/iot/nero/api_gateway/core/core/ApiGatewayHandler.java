@@ -12,6 +12,7 @@ import com.iot.nero.api_gateway.core.exceptions.ApiException;
 import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
 import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
 import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
+import com.iot.nero.api_gateway.core.firewall.IpCache;
 import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
@@ -101,7 +102,10 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
                 } else if (method.equals("sys.mock")) {
                     Mock mock = new Mock();
                     result = mock.getMocks();
-                } else {
+                }else if (method.equals("sys.ipTable")) {
+                    IpCache ipCache = new IpCache();
+                    result = ipCache.getIPSet();
+                }else {
                     result = null;
                 }
 
