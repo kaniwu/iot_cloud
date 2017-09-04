@@ -2,12 +2,12 @@ package com.iot.nero.api_gateway.core.firewall;
 
 import com.iot.nero.api_gateway.common.NetUtil;
 import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
-import com.iot.nero.api_gateway.core.firewall.dao.IPDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashSet;
 
 import static com.iot.nero.api_gateway.core.CONSTANT.IP_NOT_ACCESS;
 
@@ -19,18 +19,28 @@ import static com.iot.nero.api_gateway.core.CONSTANT.IP_NOT_ACCESS;
  */
 public class IpTables {
 
+    public IpTables() {
+
+    }
+
+    private IpCache ipCache;
 
     public void filter(HttpServletRequest request, HttpServletResponse response) throws IOException, IPNotAccessException {
 
             String ip = NetUtil.getRealIP(request);
-            IpCache ipCache =new IpCache();
+            ipCache =new IpCache();
             //查黑名单缓存
             if(ipCache.findIP(ip)!=null){
                 //有，拒绝
-                //throw new IPNotAccessException(IP_NOT_ACCESS);
+                throw new IPNotAccessException(IP_NOT_ACCESS);
             }
 
             //没有，过
 
+    }
+
+    public HashSet<String> getIpTables() throws IOException {
+        ipCache =new IpCache();
+        return ipCache.getIPSet();
     }
 }

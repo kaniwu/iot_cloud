@@ -96,13 +96,10 @@ public class LogFacade implements ILogFacade {
      * @param type
      * @param log
      */
-    public void SysLog(Long type,String log){
+    public Integer SysLog(Long type,String log){
         Gson gson = new Gson();
         SystemLog systemLog = gson.fromJson(log, SystemLog.class);
-
         System.out.println(systemLog.toString());
-        if(logDao.insertSysLog(systemLog.getType(),systemLog.getContent())<1){
-            System.out.println(CONSTANT.SYSTEM_LOG_INSERT_TO_DB_FAILED);
-        }
+        return logDao.insertSysLog(systemLog.getType(),systemLog.getContent());
     }
 }

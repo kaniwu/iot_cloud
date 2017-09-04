@@ -1,4 +1,8 @@
 package com.iot.nero.api_gateway.core.firewall;
+import com.alibaba.com.caucho.hessian.io.InputStreamSerializer;
+import com.iot.nero.api_gateway.common.IOUtils;
+import com.iot.nero.utils.spring.PropertyPlaceholder;
+
 import java.io.*;
 import java.util.HashSet;
 
@@ -10,58 +14,58 @@ import java.util.HashSet;
  * Time   上午11:38
  */
 public class IpCache {
-    private static HashSet<String> ipSet = null;
-    private static final String IP_CACHE_DIR ="";
+    private HashSet<String> ipSet = null;
+    private static final String IP_CACHE_DIR = PropertyPlaceholder.getProperty("ipTable.file").toString();
 
-    IpCache(){
-        if(ipSet==null){
-            ipSet =new HashSet<String>();
-            cacheSet();
-        }
+    public IpCache() throws IOException {
+
+        ipSet =new HashSet<String>();
+        cacheSet();
     }
     public Object findIP(String ip) {
-        if(ipSet.contains(ip)) return null;
-        else return "sussess";
+        if(ipSet.contains(ip)) return "拒绝访问";
+        else return null;
     }
 
-    //读取缓存文件中的数据到集合中
-    private void cacheSet(){
+    private void cacheSet() throws IOException {
        String ips[] =readCacheFile(IP_CACHE_DIR);
        for(int i=0;i<ips.length;i++){
-           ipSet.add(ips[i]);
+           System.out.println(ips[i]);
+            ipSet.add(ips[i]);
        }
     }
-    //读取缓存文件
-    private String [] readCacheFile(String dir){
+
+    /**
+     *读取缓存文件
+     * @param dir
+     * @return
+     */
+    private String [] readCacheFile(String dir) throws IOException {
         String line="";
+        InputStream inputStream = null;
+        InputStreamReader inputStreamReader  = null;
+        BufferedReader bufferedReader = null;
         try {
-            File file =new File(dir);
-            if (file.isFile() && file.exists())
-            { // 判断文件是否存在
-                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
-                BufferedReader bufferedReader = new BufferedReader(read);
-                line = bufferedReader.readLine();
-                bufferedReader.close();
-                read.close();
-            }
-            else
-            {
-                System.out.println("找不到指定的文件");
-            }
+            inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
+            inputStreamReader = new InputStreamReader(inputStream);
+            bufferedReader = new BufferedReader(inputStreamReader);
+            line = bufferedReader.readLine();
+
+            String[] ips = line.split(";");
+            return ips;
+        }catch (IOException e){
+            throw e;
+        }finally {
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        String ips[] =line.split(";");
-        return ips;
     }
 
-    public void createBlankIP(String ip){
-        //连接数据库，将IP加入数据库
-        //加入缓存
-        //更新set
-    }
-
-
+    /**
+     * 返回ipSet
+     */
+     public HashSet<String> getIPSet(){
+        return ipSet;
+     }
 }

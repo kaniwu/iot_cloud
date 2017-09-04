@@ -1,5 +1,6 @@
 package com.iot.nero.api_gateway.core.mock;
 
+import com.iot.nero.api_gateway.common.IOUtils;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.core.core.ApiStore;
 import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
@@ -8,6 +9,7 @@ import com.iot.nero.utils.spring.PropertyPlaceholder;
 import javafx.beans.property.Property;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,28 +17,41 @@ import java.util.List;
 import java.util.Map;
 
 public class Mock {
+
     private Map<String,ApiMock> apiMockCache;
+    private static final String MOCK_FILR_DIR = PropertyPlaceholder.getProperty("mock.file").toString();
+
 
     public Mock() throws IOException {
+        apiMockCache = new HashMap<String, ApiMock>();
         init();
     }
-    @PostConstruct
+
+
     public void init() throws IOException {
-        apiMockCache = new HashMap<String, ApiMock>();
-        File file = new File(PropertyPlaceholder.getProperty("mock.file").toString());
-
-        BufferedReader bufr = new BufferedReader(new FileReader(file));
-
         String line;
         String[] apiMember;
-        ApiMock apiMock;
 
-        while((line = bufr.readLine())!=null){
-            apiMember = line.split("#");
-            apiMock = new ApiMock(apiMember[0], apiMember[1]);
-            if(apiMockCache.get(apiMember[0])==null){
-                apiMockCache.put(apiMember[0], apiMock);
+        InputStream inputStream = null;
+        InputStreamReader inputStreamReader  = null;
+        BufferedReader bufferedReader = null;
+        try {
+            inputStream = this.getClass().getResourceAsStream(MOCK_FILR_DIR);
+            inputStreamReader = new InputStreamReader(inputStream);
+            bufferedReader = new BufferedReader(inputStreamReader);
+
+            while ((line = bufferedReader.readLine()) != null) {
+                apiMember = line.split("#");
+                if (apiMockCache.get(apiMember[0]) == null) {
+                    apiMockCache.put(apiMember[0], new ApiMock(apiMember[0], apiMember[1]));
+                }
             }
+        }catch (IOException e){
+            throw e;
+        }finally {
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
         }
     }
 

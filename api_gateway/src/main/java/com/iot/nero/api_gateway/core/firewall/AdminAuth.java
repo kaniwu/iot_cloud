@@ -18,6 +18,7 @@ import com.iot.nero.utils.spring.PropertyPlaceholder;
 public class AdminAuth {
 
 
+
     public void auth(String params) throws JsonSyntaxException, AuthFailedException {
 
         //加载配置文件中用户名和密码

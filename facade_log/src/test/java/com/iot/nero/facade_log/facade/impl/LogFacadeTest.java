@@ -18,7 +18,10 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:facade_log/*/*.xml")
 public class LogFacadeTest {
-
+    @Test
+    public void sysLog() throws Exception {
+        System.out.println(logFacade.SysLog(1l,"{type:001,content:\"api\"}"));
+    }
 
 
     @Autowired private LogFacade logFacade;

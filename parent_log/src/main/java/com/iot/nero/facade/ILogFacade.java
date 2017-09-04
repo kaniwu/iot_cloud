@@ -41,5 +41,5 @@ public interface ILogFacade {
      * @param log
      * @return
      */
-    void SysLog(Long type,String log);
+    Integer SysLog(Long type,String log);
 }

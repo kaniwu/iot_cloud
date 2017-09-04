@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import com.google.common.collect.ImmutableMap;
 import com.iot.nero.facade_log.facade.impl.LogFacade;
+import com.iot.nero.parent_log.constant.CONSTANT;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.KafkaStream;
@@ -30,6 +31,10 @@ class LogConsumer {
 
     private LogFacade logFacade;
 
+    public LogConsumer(LogFacade logFacade) {
+        this.logFacade = logFacade;
+    }
+
     public void listen(){
 
 
@@ -39,11 +44,9 @@ class LogConsumer {
         props.put("zookeeper.connectiontimeout.ms", "100000");//PropertyPlaceholder.getProperty("zookeeper.connectiontimeout.ms").toString());
         props.put("group.id", GROUP_NAME);
 
-        logFacade = new LogFacade();
-
         // Create the connection to the cluster
         ConsumerConfig consumerConfig = new ConsumerConfig(props);
-        ConsumerConnector consumerConnector =
+        final ConsumerConnector consumerConnector =
                 Consumer.createJavaConsumerConnector(consumerConfig);
 
         // create 4 partitions of the stream for topic “test”, to allow 4
@@ -63,7 +66,13 @@ class LogConsumer {
                     for (MessageAndMetadata<byte[], byte[]> msgAndMetadata : stream) {
                         // process message (msgAndMetadata.message())
                         System.out.println(new String(msgAndMetadata.message()));
-                        logFacade.SysLog(1L,new String(msgAndMetadata.message()));
+
+                        //System.out.println(logFacade.SysLog(1l,"{type:001,content:\"api\"}"));
+                        if(logFacade.SysLog(1L,new String(msgAndMetadata.message()))>=1) {
+                            consumerConnector.commitOffsets();
+                        }else{
+                            System.out.println(CONSTANT.SYSTEM_LOG_INSERT_TO_DB_FAILED);
+                        }
                     }
                 }
             });

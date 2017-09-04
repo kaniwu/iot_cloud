@@ -1,0 +1,36 @@
+[
+  {
+    "text": "控制台",
+    "heading": "true"
+  },
+  {
+    "text": "概览",
+    "sref": "app.dashboard",
+    "icon": "icon-home",
+    "label": "label label-info"
+  },
+  {
+    "text": "API文档",
+    "sref": "app.apinote",
+    "icon": "icon-support",
+    "label": "label label-info"
+  },
+  {
+    "text": "MOCK",
+    "sref": "app.mock",
+    "icon": "icon-shuffle",
+    "label": "label label-info"
+  },
+  {
+    "text": "黑名单",
+    "sref": "app.blacklist",
+    "icon": "icon-list",
+    "label": "label label-info"
+  },
+  {
+    "text": "日志",
+    "sref": "app.note",
+    "icon": "icon-note",
+    "label": "label label-info"
+  }
+]
