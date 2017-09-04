@@ -90,18 +90,23 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         try {
 
             //初始化限流类
-            DataTrafficManage tokenBucket = DataTrafficManage.newBuilder().avgFlowRate(1024*10).maxFlowRate(1024*1024).build();
+            DataTrafficManage tokenBucket = DataTrafficManage.newBuilder().avgFlowRate(20).maxFlowRate(1024).build();
 
-            int size = request.getContentLength();
-            System.out.println(size);
-            InputStream is = request.getInputStream();
-            byte[] reqBodyBytes = IOUtils.readBytes(is, size);
+//            int size = request.getContentLength();
+////            System.out.println(size);
+//            InputStream is = request.getInputStream();
+//            byte[] reqBodyBytes = IOUtils.readBytes(is, size);
             boolean tokens = tokenBucket.getTokens("asdas".getBytes());
-            System.out.println(reqBodyBytes.toString());
+//            System.out.println(reqBodyBytes.toString());
 
+
+            Debug.debug(tokenBucket.getTokenQueue(),response);
+            System.out.println("token is "+tokens);
             if (!tokens) {
                throw new FlowOverException(CONSTANT.FLOW_OVER);
             }
+
+
             logger.info(gson.toJson(new Log(0001,new ApiLog(NetUtil.getRealIP(request),method,params,sysParams,request.getRequestURL().toString()),date.getTime())));
 
             if(PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")){
