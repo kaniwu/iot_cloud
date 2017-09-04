@@ -12,4 +12,7 @@ public class CONSTANT {
     public   static final  String ADMIN_PASSWORD_INCORRECT = "管理员密码错误";
 
     public   static final  String IP_NOT_ACCESS = "IP已经被禁止 [大胆刁民，叫你正视本王！]";
+
+    public   static final  String FLOW_OVER = "拒绝访问";
+
 }

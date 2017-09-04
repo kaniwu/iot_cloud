@@ -18,7 +18,7 @@ import com.google.common.base.Preconditions;
 public class DataTrafficManage {
 
     // 默认桶大小个数 即最大瞬间流量是64M
-    private static final int DEFAULT_BUCKET_SIZE = 1024 * 1024 * 64;
+    private static final int DEFAULT_BUCKET_SIZE = 1024 * 1024*64;
 
     // 一个桶的单位是1字节
     private int everyTokenSize = 1;
