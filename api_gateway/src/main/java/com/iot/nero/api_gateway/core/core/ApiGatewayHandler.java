@@ -70,7 +70,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     public ApiGatewayHandler() {
         parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
-        tokenBucket = DataTrafficManage.newBuilder().avgFlowRate(Integer.valueOf(TRAFFIC_AVG)).maxFlowRate(Integer.valueOf(TRAFFIC_MAX)).build();
+        tokenBucket  = DataTrafficManage.newBuilder().avgFlowRate(Integer.valueOf(TRAFFIC_AVG)).maxFlowRate(Integer.valueOf(TRAFFIC_MAX)).build();
         apiDoc = new ApiDoc();
         ipTables = new IpTables();
         adminAuth = new AdminAuth();

@@ -4,7 +4,7 @@
     <list default="true" id="2ede5429-25db-474d-8068-54f05bd27919" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/trafficmanage/DataTrafficManage.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/trafficmanage/DataTrafficManage.java" />
     </list>
     <ignored path="$PROJECT_DIR$/api_gateway/target/" />
     <ignored path="$PROJECT_DIR$/common/target/" />
@@ -56,6 +56,7 @@
     <favorites_list name="iot_cloud" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="ApiGatewayHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java">
@@ -66,6 +67,27 @@
                 <element signature="imports" expanded="true" />
                 <element signature="e#7877#7893#0" expanded="true" />
                 <element signature="e#12260#12276#0" expanded="true" />
+=======
+    <leaf>
+      <file leaf-file-name="DataTrafficManage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/trafficmanage/DataTrafficManage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3498">
+              <caret line="176" column="5" lean-forward="false" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApiGatewayHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="72" column="20" lean-forward="false" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#12261#12277#0" expanded="true" />
+>>>>>>> iot_cloud/master
               </folding>
             </state>
           </provider>
@@ -229,6 +251,16 @@
         <option value="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/ip_tables.txt" />
         <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/mock/Mock.java" />
         <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/common/src/main/java/com/iot/nero/filter/CORSFilter.java" />
+        <option value="$PROJECT_DIR$/api_gateway/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiHttpServletRequest.java" />
+        <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/common/IOUtils.java" />
+        <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/CONSTANT.java" />
+        <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/exceptions/FlowOverException.java" />
+        <option value="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties" />
+>>>>>>> iot_cloud/master
         <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/trafficmanage/DataTrafficManage.java" />
         <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" />
       </list>
@@ -1214,14 +1246,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1504439315780</updated>
+<<<<<<< HEAD
       <workItem from="1504439322018" duration="9131000" />
       <workItem from="1504462464128" duration="124000" />
       <workItem from="1504462598603" duration="10416000" />
+=======
+      <workItem from="1504439322018" duration="15160000" />
+>>>>>>> iot_cloud/master
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="19671000" />
+=======
+    <option name="totallyTimeSpent" value="15160000" />
+>>>>>>> iot_cloud/master
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1440" height="805" extended-state="6" />
@@ -1607,24 +1647,37 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1660">
           <caret line="744" column="0" lean-forward="false" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="21" />
+>>>>>>> iot_cloud/master
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties">
+    <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/trafficmanage/DataTrafficManage.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="135">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+=======
+        <state relative-caret-position="3498">
+          <caret line="176" column="5" lean-forward="false" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="5" />
+>>>>>>> iot_cloud/master
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1080">
           <caret line="72" column="20" lean-forward="false" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
           <folding>
@@ -1661,6 +1714,13 @@
             <element signature="e#4848#4849#0" expanded="true" />
             <element signature="e#4894#4895#0" expanded="true" />
             <element signature="e#5788#5797#0" expanded="true" />
+=======
+        <state relative-caret-position="264">
+          <caret line="72" column="20" lean-forward="false" selection-start-line="72" selection-start-column="20" selection-end-line="72" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12261#12277#0" expanded="true" />
+>>>>>>> iot_cloud/master
           </folding>
         </state>
       </provider>
