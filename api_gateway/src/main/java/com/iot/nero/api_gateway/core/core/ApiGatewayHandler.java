@@ -5,13 +5,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.iot.nero.api_gateway.common.Debug;
+import com.iot.nero.api_gateway.common.IOUtils;
 import com.iot.nero.api_gateway.common.NetUtil;
 import com.iot.nero.api_gateway.common.UtilJson;
+import com.iot.nero.api_gateway.core.CONSTANT;
 import com.iot.nero.api_gateway.core.doc.ApiDoc;
-import com.iot.nero.api_gateway.core.exceptions.ApiException;
-import com.iot.nero.api_gateway.core.exceptions.AuthFailedException;
-import com.iot.nero.api_gateway.core.exceptions.IPNotAccessException;
-import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
+import com.iot.nero.api_gateway.core.exceptions.*;
 import com.iot.nero.api_gateway.core.firewall.entity.Admin;
 import com.iot.nero.api_gateway.core.firewall.AdminAuth;
 import com.iot.nero.api_gateway.core.firewall.IpTables;
@@ -19,6 +18,7 @@ import com.iot.nero.api_gateway.core.log.entity.ApiLog;
 import com.iot.nero.api_gateway.core.log.entity.Log;
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 import com.iot.nero.api_gateway.core.mock.Mock;
+import com.iot.nero.api_gateway.core.trafficmanage.DataTrafficManage;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +28,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
+import sun.security.util.Length;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -87,6 +89,19 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         ApiStore.ApiRunnable apiRunnable = null;
         try {
 
+            //初始化限流类
+            DataTrafficManage tokenBucket = DataTrafficManage.newBuilder().avgFlowRate(1024*10).maxFlowRate(1024*1024).build();
+
+            int size = request.getContentLength();
+            System.out.println(size);
+            InputStream is = request.getInputStream();
+            byte[] reqBodyBytes = IOUtils.readBytes(is, size);
+            boolean tokens = tokenBucket.getTokens("asdas".getBytes());
+            System.out.println(reqBodyBytes.toString());
+
+            if (!tokens) {
+               throw new FlowOverException(CONSTANT.FLOW_OVER);
+            }
             logger.info(gson.toJson(new Log(0001,new ApiLog(NetUtil.getRealIP(request),method,params,sysParams,request.getRequestURL().toString()),date.getTime())));
 
             if(PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")){
@@ -143,6 +158,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } catch (JsonSyntaxException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
+        } catch (FlowOverException e) {
+            response.setStatus(500);
+            result = handleErr(e.fillInStackTrace());
         }
 
         returnResult(result, response);
@@ -161,8 +179,16 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         if (e instanceof ApiException) {
             code = "0001";
             message = e.getMessage();
-        } else {
+        }else if (e instanceof  FlowOverException) {
             code = "0002";
+            message = e.getMessage();
+            e.printStackTrace();
+        }else if (e instanceof  IPNotAccessException) {
+            code = "0003";
+            message = e.getMessage();
+            e.printStackTrace();
+        }else {
+            code = "0004";
             message = e.getMessage();
             e.printStackTrace();
         }
