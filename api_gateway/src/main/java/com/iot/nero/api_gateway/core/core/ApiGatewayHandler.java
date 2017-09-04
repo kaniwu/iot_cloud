@@ -19,6 +19,7 @@ import com.iot.nero.api_gateway.core.log.entity.ApiLog;
 import com.iot.nero.api_gateway.core.log.entity.Log;
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 import com.iot.nero.api_gateway.core.mock.Mock;
+import com.iot.nero.api_gateway.core.trafficmanage.DataTrafficManage;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,7 +87,15 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         Object result;
         ApiStore.ApiRunnable apiRunnable = null;
         try {
-
+            //初始化限流类
+            DataTrafficManage tokenBucket = DataTrafficManage.newBuilder().avgFlowRate(512).maxFlowRate(1024).build();
+            String in_b = "dasdasdadasdasda";
+            boolean tokens = tokenBucket.getTokens(in_b.getBytes());
+            if (tokens){
+                System.out.println("yes");
+            }else {
+                System.out.println("no");
+            }
             logger.info(gson.toJson(new Log(0001,new ApiLog(NetUtil.getRealIP(request),method,params,sysParams,request.getRequestURL().toString()),date.getTime())));
 
             if(PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")){
