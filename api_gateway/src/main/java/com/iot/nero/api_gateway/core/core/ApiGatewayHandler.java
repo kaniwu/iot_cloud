@@ -49,12 +49,15 @@ import java.util.*;
 public class ApiGatewayHandler implements InitializingBean, ApplicationContextAware {
 
 
-
     private static final Logger logger = LoggerFactory.getLogger(ApiGatewayHandler.class);
 
     private static final String METHOD = "method";
     private static final String PARAMS = "params";
     private static final String SYS_PARAMS = "sysParams";
+
+    private static final String TRAFFIC_OPEN = PropertyPlaceholder.getProperty("trafficManager.isOpen").toString();
+    private static final String TRAFFIC_AVG = PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString();
+    private static final String TRAFFIC_MAX = PropertyPlaceholder.getProperty("trafficManager.maxPool").toString();
 
     private ApiDoc apiDoc;
     private IpTables ipTables;
@@ -63,8 +66,11 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     ApiStore apiStore;
     final ParameterNameDiscoverer parameterNameDiscoverer;
 
+    DataTrafficManage tokenBucket;
+
     public ApiGatewayHandler() {
         parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
+        tokenBucket = DataTrafficManage.newBuilder().avgFlowRate(Integer.valueOf(TRAFFIC_AVG)).maxFlowRate(Integer.valueOf(TRAFFIC_MAX)).build();
         apiDoc = new ApiDoc();
         ipTables = new IpTables();
         adminAuth = new AdminAuth();
@@ -89,28 +95,18 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         ApiStore.ApiRunnable apiRunnable = null;
         try {
 
-            //初始化限流类
-            DataTrafficManage tokenBucket = DataTrafficManage.newBuilder().avgFlowRate(20).maxFlowRate(1024).build();
 
-//            int size = request.getContentLength();
-////            System.out.println(size);
-//            InputStream is = request.getInputStream();
-//            byte[] reqBodyBytes = IOUtils.readBytes(is, size);
-            boolean tokens = tokenBucket.getTokens("asdas".getBytes());
-//            System.out.println(reqBodyBytes.toString());
-
-
-            Debug.debug(tokenBucket.getTokenQueue(),response);
-            System.out.println("token is "+tokens);
-            if (!tokens) {
-               throw new FlowOverException(CONSTANT.FLOW_OVER);
+            if ("yes".equals(TRAFFIC_OPEN)) {
+                boolean tokens = tokenBucket.getTokens("a".getBytes());
+                if (!tokens) {
+                    throw new FlowOverException(CONSTANT.FLOW_OVER);
+                }
             }
 
+            logger.info(gson.toJson(new Log(0001, new ApiLog(NetUtil.getRealIP(request), method, params, sysParams, request.getRequestURL().toString()), date.getTime())));
 
-            logger.info(gson.toJson(new Log(0001,new ApiLog(NetUtil.getRealIP(request),method,params,sysParams,request.getRequestURL().toString()),date.getTime())));
-
-            if(PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")){
-                 ipTables.filter(request, response);
+            if (PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")) {
+                ipTables.filter(request, response);
             }
             paramsValdate(request);
             if (method.subSequence(0, 3).equals("sys")) {
@@ -125,16 +121,16 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
                     IpTables ipTables = new IpTables();
                     result = ipTables.getIpTables();
                 } else {
-                    result = "不存在系统接口: "+method;
+                    result = "不存在系统接口: " + method;
                 }
 
             } else {
                 apiRunnable = sysParamsValdate(request);
 
-                if(PropertyPlaceholder.getProperty("mock.isOpen").equals("yes")){
+                if (PropertyPlaceholder.getProperty("mock.isOpen").equals("yes")) {
                     Mock mock = new Mock();
                     result = mock.run(apiRunnable);
-                }else{
+                } else {
                     Object[] args = buildParams(apiRunnable, params, request, response);
                     result = apiRunnable.run(args);
                 }
@@ -173,8 +169,8 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
     private void sysParamsValid(HttpServletRequest request) throws ApiException {
         String sysParams = request.getParameter(SYS_PARAMS);
-        if(sysParams == null || "".equals(sysParams)){
-            throw new ApiException("调用失败，参数 "+SYS_PARAMS+" 为空");
+        if (sysParams == null || "".equals(sysParams)) {
+            throw new ApiException("调用失败，参数 " + SYS_PARAMS + " 为空");
         }
     }
 
@@ -184,15 +180,15 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         if (e instanceof ApiException) {
             code = "0001";
             message = e.getMessage();
-        }else if (e instanceof  FlowOverException) {
+        } else if (e instanceof FlowOverException) {
             code = "0002";
             message = e.getMessage();
             e.printStackTrace();
-        }else if (e instanceof  IPNotAccessException) {
+        } else if (e instanceof IPNotAccessException) {
             code = "0003";
             message = e.getMessage();
             e.printStackTrace();
-        }else {
+        } else {
             code = "0004";
             message = e.getMessage();
             e.printStackTrace();
@@ -309,7 +305,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
 
             Map<String, Object> returnResult = new HashMap<String, Object>();
-            returnResult.put("data",result);
+            returnResult.put("data", result);
 
             String json = UtilJson.writeValueAsString(returnResult);
 
