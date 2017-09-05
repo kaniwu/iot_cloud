@@ -1,13 +1,20 @@
 package com.iot.nero.api_gateway.service.impl;
-
 import com.iot.nero.api_gateway.core.core.ApiMapping;
+
 
 import com.iot.nero.api_gateway.core.firewall.IpCache;
 import com.iot.nero.api_gateway.service.IIpTablesService;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Author neroyang
@@ -17,25 +24,62 @@ import java.util.List;
  */
 public class IpTablesService implements IIpTablesService {
 
+
+
     private IpCache ipCache;
+
+    ServletContext servletContext;
+    WebApplicationContext webApplicationContext;
 
     @ApiMapping("sys.ipTables.set")
     public boolean setIpTableStatus(String isOpen) {
-        return false;
+        isOpen=isOpen.trim();
+        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+        servletContext = webApplicationContext.getServletContext();
+        String path =servletContext.getRealPath("/api_gateway/config/config.properties");
+        File file = new File(path);
+        Properties prop = new Properties();// 属性集合对象
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            prop.load(fis);// 将属性文件流装载到Properties对象中
+            fis.close();// 关闭流
+        }catch(IOException e) {
+            return false;
+        }
+        System.out.println(prop.getProperty("ipTable.isOpen"));
+        if(prop.getProperty("ipTable.isOpen").equals(isOpen)){
+            return true;
+        }else{
+            prop.setProperty("ipTable.isOpen", isOpen);
+            // 文件输出流
+            try {
+                FileOutputStream fos = new FileOutputStream(file);
+                // 将Properties集合保存到流中
+                prop.store(fos, "firewall:"+isOpen);
+                fos.close();// 关闭流
+            }catch (IOException e) {
+                return false;
+            }
+            return true;
+        }
     }
 
     @ApiMapping("sys.ipTables.list")
-    public List<String> getIP() {
+    public List<String> getIP() throws IOException {
+        ipCache = new IpCache();
         return new ArrayList<String>(ipCache.getIPSet());
     }
 
     @ApiMapping("sys.ipTables.add")
     public boolean addIP(String ip) throws IOException{
+        ipCache = new IpCache();
         return ipCache.createBlankIP(ip);
     }
 
     @ApiMapping("sys.ipTables.del")
     public boolean delIP(String ip) throws IOException {
+
+        ipCache = new IpCache();
         return ipCache.deleteIP(ip);
     }
 }

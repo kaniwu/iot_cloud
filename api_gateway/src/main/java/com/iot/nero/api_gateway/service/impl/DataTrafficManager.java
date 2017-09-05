@@ -3,7 +3,8 @@ package com.iot.nero.api_gateway.service.impl;
 import com.iot.nero.api_gateway.common.ConfigUtil;
 import com.iot.nero.api_gateway.core.core.ApiGatewayHandler;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
-import com.iot.nero.api_gateway.service.IDataTrafficManager;
+
+import com.iot.nero.api_gateway.service.IDataTrafficManagerService;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
@@ -19,7 +20,7 @@ import java.util.Properties;
  * Date   2017/9/5
  * Time   下午3:06
  */
-public class DataTrafficManager implements IDataTrafficManager {
+public class DataTrafficManager implements IDataTrafficManagerService {
 
     Map<String, String> configMap;
 

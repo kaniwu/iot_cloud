@@ -14,8 +14,8 @@ import javax.servlet.ServletContext;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
+import java.util.Properties;
 /**
  * Author neroyang
  * Email  nerosoft@outlook.com
@@ -44,6 +44,7 @@ public class MockService implements IMockService {
     }
 
     @ApiMapping("sys.mock.list")
+
     public Map<String, ApiMock> getMocks() throws IOException {
         Mock mock = new Mock();
         return mock.getMocks();
