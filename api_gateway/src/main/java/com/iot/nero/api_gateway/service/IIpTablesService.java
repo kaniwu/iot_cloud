@@ -1,4 +1,4 @@
-package com.iot.nero.api_gateway.core.firewall.service;
+package com.iot.nero.api_gateway.service;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,6 +10,8 @@ import java.util.List;
  * Time   下午2:54
  */
 public interface IIpTablesService {
+
+    boolean setIpTableStatus(String isOpen);
 
     List<String> getIP();
 

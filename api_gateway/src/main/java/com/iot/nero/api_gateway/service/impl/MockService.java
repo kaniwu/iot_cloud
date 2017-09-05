@@ -1,8 +1,8 @@
-package com.iot.nero.api_gateway.core.mock.service.impl;
+package com.iot.nero.api_gateway.service.impl;
 
 import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
-import com.iot.nero.api_gateway.core.mock.service.IMockService;
+import com.iot.nero.api_gateway.service.IMockService;
 
 import java.util.List;
 
@@ -13,6 +13,11 @@ import java.util.List;
  * Time   下午1:09
  */
 public class MockService implements IMockService {
+
+    @ApiMapping("sys.mock.set")
+    public Boolean setMockStatus(String isOpen) {
+        return null;
+    }
 
     @ApiMapping("sys.mock.list")
     public List<ApiMock> getMocks() {
