@@ -1,3 +1,3 @@
-网站名1:www.baidu.com
-网站名2:www.qq.com
-网站名3:www.bb.com
+name1:www.baidu.com
+name2:www.qq.com
+name3:www.bb.com

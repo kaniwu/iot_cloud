@@ -36,7 +36,9 @@ public class IpTablesService implements IIpTablesService {
         isOpen = isOpen.trim();
         webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();
-        String path = servletContext.getRealPath("/api_gateway/config/config.properties");
+
+        String path =servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/config.properties");
+
         File file = new File(path);
         Properties prop = new Properties();// 属性集合对象
         try {
