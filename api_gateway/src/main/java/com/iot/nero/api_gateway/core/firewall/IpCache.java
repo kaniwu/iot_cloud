@@ -16,7 +16,7 @@ import java.util.HashSet;
  */
 public class IpCache {
     private HashSet<String> ipSet = null;
-    private static final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
+         private static final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
 
     public IpCache() throws IOException {
         ipSet =new HashSet<String>();

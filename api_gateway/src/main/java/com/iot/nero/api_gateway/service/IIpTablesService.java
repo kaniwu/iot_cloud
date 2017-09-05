@@ -13,7 +13,7 @@ public interface IIpTablesService {
 
     boolean setIpTableStatus(String isOpen);
 
-    List<String> getIP();
+    List<String> getIP() throws IOException;
 
     boolean addIP(String ip) throws IOException;
 
