@@ -22,7 +22,7 @@
 
   <filter>
     <filter-name>cors</filter-name>
-    <filter-class>com.iot.nero.filter.CORSFilter</filter-class>
+    <filter-class>com.iot.nero.api_gateway.core.firewall.filter.CORSFilter</filter-class>
   </filter>
 
   <filter-mapping>
