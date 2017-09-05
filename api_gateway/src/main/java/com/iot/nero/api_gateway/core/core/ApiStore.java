@@ -25,7 +25,7 @@ public class ApiStore {
 
         private ApplicationContext applicationContext;
         private static HashMap<String,ApiRunnable> apiRunnableHashMap = new HashMap<String, ApiRunnable>();
-    final ParameterNameDiscoverer parameterNameDiscoverer;
+        final ParameterNameDiscoverer parameterNameDiscoverer;
 
     public ApiStore(ApplicationContext applicationContext,ParameterNameDiscoverer parameterNameDiscoverer) {
         Assert.notNull(applicationContext);

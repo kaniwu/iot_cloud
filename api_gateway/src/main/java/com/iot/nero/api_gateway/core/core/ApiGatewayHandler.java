@@ -95,7 +95,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         ApiStore.ApiRunnable apiRunnable = null;
         try {
 
-
             if ("yes".equals(TRAFFIC_OPEN)) {
                 boolean tokens = tokenBucket.getTokens("a".getBytes());
                 if (!tokens) {
@@ -121,7 +120,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
                     IpTables ipTables = new IpTables();
                     result = ipTables.getIpTables();
                 } else {
-                    result = "不存在系统接口: " + method;
+                    apiRunnable = sysParamsValdate(request);
+                    Object[] args = buildParams(apiRunnable, params, request, response);
+                    result = apiRunnable.run(args);
                 }
 
             } else {
@@ -317,7 +318,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             if (json != null) {
                 response.getWriter().write(json);
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
