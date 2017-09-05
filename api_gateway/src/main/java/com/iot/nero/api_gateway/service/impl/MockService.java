@@ -12,6 +12,7 @@ import javax.servlet.ServletContext;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Author neroyang
@@ -27,10 +28,40 @@ public class MockService implements IMockService {
     private ServletContext servletContext;
     private String savePath;
 
+    @ApiMapping("sys.mock.set")
+    public Boolean setMockStatus(String isOpen) throws IOException {
+
+        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+        servletContext = webApplicationContext.getServletContext();
+        savePath = servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/config.properties");
+
+        Properties properties = new Properties();
+        InputStream inputStream = new FileInputStream(savePath);
+        OutputStream outputStream = new FileOutputStream(savePath);
+
+        properties.load(inputStream);
+        properties.setProperty("auth.username", PropertyPlaceholder.getProperty("auth.username").toString());
+        properties.setProperty("auth.password", PropertyPlaceholder.getProperty("auth.password").toString());
+        properties.setProperty("mock.isOpen", isOpen);
+        properties.setProperty("mock.file", PropertyPlaceholder.getProperty("mock.file").toString());
+        properties.setProperty("ipTable.isOpen", PropertyPlaceholder.getProperty("ipTable.isOpen").toString());
+        properties.setProperty("ipTable.file", PropertyPlaceholder.getProperty("ipTable.file").toString());
+        properties.setProperty("trafficManager.isOpen", PropertyPlaceholder.getProperty("trafficManager.isOpen").toString());
+        properties.setProperty("trafficManager.maxPool", PropertyPlaceholder.getProperty("trafficManager.maxPool").toString());
+        properties.setProperty("trafficManager.avgFlow", PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString());
+        properties.store(outputStream, "mockState change to "+isOpen);
+
+        return true;
+    }
+
     @ApiMapping("sys.mock.list")
     public Map<String, ApiMock> getMocks() throws IOException {
         Mock mock = new Mock();
         return mock.getMocks();
+    }
+
+    public Boolean addMock(ApiMock apiMock) {
+        return null;
     }
 
     @ApiMapping("sys.mock.add")
@@ -108,8 +139,5 @@ public class MockService implements IMockService {
         return false;
     }
 
-    @ApiMapping("sys.mock.set")
-    public Boolean setMockState(String mockState) {
-        return null;
-    }
+
 }

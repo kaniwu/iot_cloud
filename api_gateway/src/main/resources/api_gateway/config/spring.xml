@@ -52,4 +52,12 @@
           class="com.iot.nero.api_gateway.service.impl.MockService">
     </bean>
 
+    <bean id="IIpTablesService"
+          class="com.iot.nero.api_gateway.service.impl.IpTablesService">
+    </bean>
+    <bean id="IDataTrafficManager"
+          class="com.iot.nero.api_gateway.service.impl.DataTrafficManager">
+
+    </bean>
+
 </beans>

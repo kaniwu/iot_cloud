@@ -14,12 +14,12 @@ import java.util.Map;
  */
 public interface IMockService {
 
+    Boolean setMockStatus(String isOpen) throws IOException;
+
     Map<String, ApiMock> getMocks() throws IOException;
 
-    Boolean addMock(String apiName, String apiReturn) throws IOException;
+    Boolean addMock(String apiName, String apiReturn) throws  IOException;
 
     Boolean delMock(String mockName) throws IOException;
-
-    Boolean setMockState(String mockState);
 
 }
