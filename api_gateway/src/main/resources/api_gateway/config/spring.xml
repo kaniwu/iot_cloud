@@ -52,4 +52,8 @@
           class="com.iot.nero.api_gateway.core.mock.service.impl.MockService">
     </bean>
 
+    <bean id="IIpTablesService"
+          class="com.iot.nero.api_gateway.core.firewall.service.impl.IpTablesService">
+    </bean>
+
 </beans>
