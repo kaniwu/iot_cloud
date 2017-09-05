@@ -248,11 +248,11 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         String apiName = request.getParameter(METHOD);
         String json = request.getParameter(PARAMS);
 
-
         if (apiName == null || "".equals(apiName)) {
             throw new ApiException("调用失败，参数 'method' 为空");
         } else if (json == null || "".equals(json)) {
-            throw new ApiException("调用失败，参数 'params' 为空");
+            throw new ApiException("调用失败，" +
+                    "参数 'params' 为空");
         }
     }
 
