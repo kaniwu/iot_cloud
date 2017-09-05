@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class ConfigUtil {
 
-    private WebApplicationContext webApplicationContext;
-    private ServletContext servletContext;
-    private String savePath;
+    private static WebApplicationContext webApplicationContext;
+    private static ServletContext servletContext;
+    private static String savePath;
 
-    public Map<String, String> configToMap() throws IOException {
+    public static Map<String, String> configToMap() throws IOException {
 
         webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();
@@ -42,7 +42,7 @@ public class ConfigUtil {
     return configMap;
     }
 
-    public Boolean mapToConfig(Map<String, String> configMap) throws IOException {
+    public static Boolean mapToConfig(Map<String, String> configMap) throws IOException {
 
         webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();

@@ -55,9 +55,43 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     private static final String PARAMS = "params";
     private static final String SYS_PARAMS = "sysParams";
 
-    private static final String TRAFFIC_OPEN = PropertyPlaceholder.getProperty("trafficManager.isOpen").toString();
-    private static final String TRAFFIC_AVG = PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString();
-    private static final String TRAFFIC_MAX = PropertyPlaceholder.getProperty("trafficManager.maxPool").toString();
+    private static String TRAFFIC_OPEN = PropertyPlaceholder.getProperty("trafficManager.isOpen").toString();
+    private static String TRAFFIC_AVG = PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString();
+    private static String TRAFFIC_MAX = PropertyPlaceholder.getProperty("trafficManager.maxPool").toString();
+
+    public static void setTrafficOpen(String trafficOpen) {
+        TRAFFIC_OPEN = trafficOpen;
+    }
+
+    public static void setTrafficAvg(String trafficAvg) {
+        TRAFFIC_AVG = trafficAvg;
+    }
+
+    public static void setTrafficMax(String trafficMax) {
+        TRAFFIC_MAX = trafficMax;
+    }
+
+    public static void setMockOpen(String mockOpen) {
+        MOCK_OPEN = mockOpen;
+    }
+
+    private static String MOCK_OPEN = PropertyPlaceholder.getProperty("mock.isOpen").toString();
+
+    public static String getTrafficOpen() {
+        return TRAFFIC_OPEN;
+    }
+
+    public static String getTrafficAvg() {
+        return TRAFFIC_AVG;
+    }
+
+    public static String getTrafficMax() {
+        return TRAFFIC_MAX;
+    }
+
+    public static String getMockOpen() {
+        return MOCK_OPEN;
+    }
 
     private ApiDoc apiDoc;
     private IpTables ipTables;
@@ -123,7 +157,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             } else {
                 apiRunnable = sysParamsValdate(request);
 
-                if (PropertyPlaceholder.getProperty("mock.isOpen").equals("yes")) {
+                if (MOCK_OPEN.equals("yes")) {
                     Mock mock = new Mock();
                     result = mock.run(apiRunnable);
                 } else {
@@ -301,6 +335,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
 
             Map<String, Object> returnResult = new HashMap<String, Object>();
+            returnResult.put("code", 1000);
             returnResult.put("data", result);
 
             String json = UtilJson.writeValueAsString(returnResult);
