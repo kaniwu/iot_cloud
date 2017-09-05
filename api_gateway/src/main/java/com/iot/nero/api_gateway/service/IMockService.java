@@ -2,6 +2,7 @@ package com.iot.nero.api_gateway.service;
 
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -13,12 +14,13 @@ import java.util.Map;
  */
 public interface IMockService {
 
-    Boolean setMockStatus(String isOpen);
+    Boolean setMockStatus(String isOpen) throws IOException;
 
-    Map<String,ApiMock> getMocks();
 
-    Boolean addMock(ApiMock apiMock);
+    Map<String, ApiMock> getMocks() throws IOException;
 
-    Boolean delMock(String mockName);
+    Boolean addMock(String apiName, String apiReturn) throws  IOException;
+
+    Boolean delMock(String mockName) throws IOException;
 
 }

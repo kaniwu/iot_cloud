@@ -1,5 +1,8 @@
 package com.iot.nero.api_gateway.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * Author neroyang
  * Email  nerosoft@outlook.com
@@ -8,10 +11,10 @@ package com.iot.nero.api_gateway.service;
  */
 public interface IDataTrafficManagerService {
 
-    boolean setTrafficManagerStatus(String isOpen);
+    boolean setTrafficManagerStatus(String isOpen) throws IOException;
 
-    boolean setMaxTraffic(Integer maxPool);
+    boolean setMaxTraffic(Integer maxPool) throws IOException;
 
-    boolean setAvgTraffic(Integer avgPool);
+    boolean setAvgTraffic(Integer avgPool) throws IOException;
 
 }

@@ -24,9 +24,9 @@ public class IpCache {
     private WebApplicationContext webApplicationContext;
     private String path;
     public IpCache() throws IOException {
-//        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-//        servletContext = webApplicationContext.getServletContext();
-//        path =servletContext.getRealPath(IP_CACHE_DIR);
+        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+        servletContext = webApplicationContext.getServletContext();
+        path = servletContext.getRealPath("/WEB-INF/classes"+IP_CACHE_DIR);
         ipSet =new HashSet<String>();
         cacheSet();
     }
@@ -52,15 +52,10 @@ public class IpCache {
     private String [] readCacheFile(String dir) throws IOException {
         String line="";
         String[] ips;
-        //InputStreamReader inputStreamReader  = null;
-        //BufferedReader bufferedReader = null;
         InputStream inputStream = null;
         InputStreamReader inputStreamReader  = null;
         BufferedReader bufferedReader = null;
         try {
-//            inputStreamReader = new InputStreamReader(new FileInputStream(new File(dir)));
-//            bufferedReader = new BufferedReader(inputStreamReader);
-//            line = bufferedReader.readLine();
             inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
             inputStreamReader = new InputStreamReader(inputStream);
             bufferedReader = new BufferedReader(inputStreamReader);
@@ -86,29 +81,34 @@ public class IpCache {
     /**
      * 更新缓存文件ip列表
      */
-    /*public void updateIpInCacheFile(File file,String ip) throws IOException{
+    public void updateIpInCacheFile(File file,String ip) throws IOException{
         BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
         out.write(ip);
         out.close();
-    }*/
+    }
 
     /**
      * 添加新的ip到黑名单，并更新黑名单缓存
      * @param ip
      */
-    /*public boolean createBlankIP(String ip) throws IOException{
+    public boolean createBlankIP(String ip) throws IOException{
         ip=ip.trim();
         try {
             if(!ipSet.contains(ip)){
                 File file =new File(this.path);
+                InputStream inputStream = null;
+                InputStreamReader inputStreamReader  = null;
+                BufferedReader bufferedReader = null;
                 if (file.isFile() && file.exists())
                 // 判断文件是否存在
                 {
-                    InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file));
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
+                    inputStreamReader = new InputStreamReader(inputStream);
+                    bufferedReader = new BufferedReader(inputStreamReader);
                     String line=bufferedReader.readLine();
                     if(line!=null) line+=";" + ip;
                     else line=ip;
+                    System.out.println("line:"+line);
                     bufferedReader.close();
                     inputStreamReader.close();
                     updateIpInCacheFile(file,line);
@@ -124,12 +124,12 @@ public class IpCache {
         {
             throw e;
         }
-    }*/
+    }
 
     /**
      *将ip从黑名单移除
      */
-    /*public boolean deleteIP(String ip) throws IOException{
+    public boolean deleteIP(String ip) throws IOException{
         ip=ip.trim();
         try{
             if(ipSet.contains(ip)){
@@ -143,7 +143,7 @@ public class IpCache {
             throw e;
         }
 
-    }*/
+    }
 
     /**
      *连接set
