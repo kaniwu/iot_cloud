@@ -81,7 +81,7 @@ public class IpCache {
      * 添加新的ip到黑名单，并更新黑名单缓存
      * @param ip
      */
-    public void createBlankIP(String ip) throws IOException{
+    public boolean createBlankIP(String ip) throws IOException{
         ip=ip.trim();
         try {
             if(!ipSet.contains(ip)){
@@ -98,7 +98,12 @@ public class IpCache {
                     inputStreamReader.close();
                     updateIpInCacheFile(file,line);
                     ipSet.add(ip);
+                    return true;
+                }else {
+                    return false;
                 }
+            }else {
+                return false;
             }
         }catch (IOException e)
         {
@@ -109,12 +114,15 @@ public class IpCache {
     /**
      *将ip从黑名单移除
      */
-    public void deleteIP(String ip) throws IOException{
+    public boolean deleteIP(String ip) throws IOException{
         ip=ip.trim();
         try{
             if(ipSet.contains(ip)){
                 ipSet.remove(ip);
                 updateIpInCacheFile(new File(IP_CACHE_DIR),stringSet());
+                return true;
+            }else {
+                return false;
             }
         }catch(IOException e){
             throw e;
