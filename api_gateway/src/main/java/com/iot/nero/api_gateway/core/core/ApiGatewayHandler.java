@@ -113,9 +113,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
                 adminAuth.auth(sysParams);
                 if (method.equals("sys.doc")) {
                     result = apiDoc.getApis(apiStore.findApiRunnables());
-                } else if (method.equals("sys.mock")) {
-                    Mock mock = new Mock();
-                    result = mock.getMocks();
                 } else if (method.equals("sys.ipTable")) {
                     IpTables ipTables = new IpTables();
                     result = ipTables.getIpTables();

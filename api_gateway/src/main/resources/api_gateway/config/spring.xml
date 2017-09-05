@@ -49,7 +49,7 @@
     </bean>
 
     <bean id="IMockService"
-          class="com.iot.nero.api_gateway.core.mock.service.impl.MockService">
+          class="com.iot.nero.api_gateway.service.impl.MockService">
     </bean>
 
 </beans>
