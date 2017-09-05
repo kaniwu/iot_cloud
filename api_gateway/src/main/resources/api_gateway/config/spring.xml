@@ -32,15 +32,6 @@
 
     <context:component-scan base-package="com.iot.nero.api_gateway.demo.service.impl"/>
 
-    <!--<bean class="api_gateway.config.">-->
-        <!--<property name="username" value="root"/>-->
-        <!--<property name="password" value="root"/>-->
-    <!--</bean>-->
-
-    <!--<bean class="api_gateway.config.">-->
-        <!--<property name="username" value="root"/>-->
-        <!--<property name="password" value="root"/>-->
-    <!--</bean>-->
 
     <bean class="com.iot.nero.api_gateway.core.core.ApiGatewayHandler"></bean>
 
@@ -57,6 +48,7 @@
     </bean>
     <bean id="IDataTrafficManager"
           class="com.iot.nero.api_gateway.service.impl.DataTrafficManager">
+
     </bean>
 
 </beans>

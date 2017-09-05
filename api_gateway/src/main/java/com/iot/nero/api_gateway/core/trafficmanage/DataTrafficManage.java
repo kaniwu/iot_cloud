@@ -68,7 +68,7 @@ public class DataTrafficManage {
             //向队列中加入每个请求
             tokenQueue.offer(Byte.valueOf(A_CHAR));
         }
-        System.out.println("size is "+tokenQueue.size());
+        //System.out.println("size is "+tokenQueue.size());
     }
 
     public DataTrafficManage build() {
