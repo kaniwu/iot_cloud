@@ -48,4 +48,8 @@
           class="com.iot.nero.api_gateway.demo.service.impl.HelloWorld">
     </bean>
 
+    <bean id="IMockService"
+          class="com.iot.nero.api_gateway.core.mock.service.impl.MockService">
+    </bean>
+
 </beans>

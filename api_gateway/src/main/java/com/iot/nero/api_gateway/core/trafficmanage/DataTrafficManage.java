@@ -2,11 +2,6 @@ package com.iot.nero.api_gateway.core.trafficmanage;
 /**
  * Created by wujindong on 2017/9/4.
  */
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -48,6 +43,14 @@ public class DataTrafficManage {
     public DataTrafficManage() {
     }
 
+    public ArrayBlockingQueue<Byte> getTokenQueue() {
+        return tokenQueue;
+    }
+
+    public void setTokenQueue(ArrayBlockingQueue<Byte> tokenQueue) {
+        this.tokenQueue = tokenQueue;
+    }
+
     public DataTrafficManage(int maxFlowRate, int avgFlowRate) {
         this.maxFlowRate = maxFlowRate;
         this.avgFlowRate = avgFlowRate;
@@ -60,12 +63,12 @@ public class DataTrafficManage {
     }
 
     public void addTokens(Integer tokenNum) {
-
 // 若是桶已经满了，就不再家如新的令牌
         for (int i = 0; i < tokenNum; i++) {
             //向队列中加入每个请求
             tokenQueue.offer(Byte.valueOf(A_CHAR));
         }
+        System.out.println("size is "+tokenQueue.size());
     }
 
     public DataTrafficManage build() {
@@ -89,6 +92,7 @@ public class DataTrafficManage {
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
+            System.out.println("QueueSize is "+tokenQueue.size());
             boolean result = needTokenNum <= tokenQueue.size(); // 是否存在足够的桶数量
             if (!result) {
                 return false;
@@ -102,7 +106,8 @@ public class DataTrafficManage {
                     tokenCount++;
                 }
             }
-
+            System.out.println("tokenCount is "+tokenCount);
+            System.out.println("needTokenNum is "+needTokenNum);
             return tokenCount == needTokenNum;
         } finally {
             lock.unlock();
@@ -114,6 +119,7 @@ public class DataTrafficManage {
 // 初始化桶队列大小
         if (maxFlowRate != 0) {
             tokenQueue = new ArrayBlockingQueue<Byte>(maxFlowRate);
+            System.out.println("tok size is "+tokenQueue.size());
         }
 
 // 初始化令牌生产者
@@ -175,59 +181,5 @@ public class DataTrafficManage {
         this.avgFlowRate = avgFlowRate;
         return this;
     }
-
-    private String stringCopy(String data, int copyNum) {
-
-        StringBuilder sbuilder = new StringBuilder(data.length() * copyNum);
-
-        for (int i = 0; i < copyNum; i++) {
-            sbuilder.append(data);
-        }
-
-        return sbuilder.toString();
-
-    }
-
-    public static void main(String[] args) throws IOException, InterruptedException {
-
-        tokenTest();
-    }
-
-    private static void arrayTest() {
-        ArrayBlockingQueue<Integer> tokenQueue = new ArrayBlockingQueue<Integer>(10);
-        tokenQueue.offer(1);
-        tokenQueue.offer(1);
-        tokenQueue.offer(1);
-        System.out.println(tokenQueue.size());
-        System.out.println(tokenQueue.remainingCapacity());
-    }
-
-    private static void tokenTest() throws InterruptedException, IOException {
-        //初始化限流类
-        DataTrafficManage tokenBucket = DataTrafficManage.newBuilder().avgFlowRate(512).maxFlowRate(1024).build();
-
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/Users/wujindong/test/abc")));
-        String data = "xxxx";// 四个字节
-        for (int i = 1; i <= 1000; i++) {
-
-            Random random = new Random();
-            int i1 = random.nextInt(100);
-            boolean tokens = tokenBucket.getTokens(tokenBucket.stringCopy(data, i1).getBytes());
-            TimeUnit.MILLISECONDS.sleep(100);
-            if (tokens) {
-                bufferedWriter.write("token pass --- index:" + i1);
-                System.out.println("token pass --- index:" + i1);
-            } else {
-                bufferedWriter.write("token rejuect --- index" + i1);
-                System.out.println("token rejuect --- index" + i1);
-            }
-
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-        }
-
-        bufferedWriter.close();
-    }
-
 }
 

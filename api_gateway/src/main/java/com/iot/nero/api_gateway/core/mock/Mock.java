@@ -71,6 +71,8 @@ public class Mock {
             result = new Long(23333333);
         }else if(returnType.getName().equals(Character.class.getName())){
             result = 'd';
+        }else if(returnType.getName().equals(Float.class.getName())) {
+            result = new Float(2.33);
         }else {
             //如果是其他类型，请自行构造
 
