@@ -1,7 +1,7 @@
-package com.iot.nero.api_gateway.core.firewall.service.impl;
+package com.iot.nero.api_gateway.service.impl;
 
 import com.iot.nero.api_gateway.core.core.ApiMapping;
-import com.iot.nero.api_gateway.core.firewall.service.IIpTablesService;
+import com.iot.nero.api_gateway.service.IIpTablesService;
 
 import java.util.List;
 
@@ -12,6 +12,12 @@ import java.util.List;
  * Time   下午2:56
  */
 public class IpTablesService implements IIpTablesService {
+
+    @ApiMapping("sys.ipTables.set")
+    public boolean setIpTableStatus(String isOpen) {
+        return false;
+    }
+
     @ApiMapping("sys.ipTables.list")
     public List<String> getIP() {
         return null;

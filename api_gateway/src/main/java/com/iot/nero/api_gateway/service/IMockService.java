@@ -1,4 +1,4 @@
-package com.iot.nero.api_gateway.core.mock.service;
+package com.iot.nero.api_gateway.service;
 
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 
@@ -11,6 +11,8 @@ import java.util.List;
  * Time   下午1:09
  */
 public interface IMockService {
+
+    Boolean setMockStatus(String isOpen);
 
     List<ApiMock> getMocks();
 
