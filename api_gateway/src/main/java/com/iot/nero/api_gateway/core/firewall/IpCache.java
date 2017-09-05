@@ -3,7 +3,10 @@ import com.alibaba.com.caucho.hessian.io.InputStreamSerializer;
 import com.iot.nero.api_gateway.common.IOUtils;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.ServletContext;
 import java.io.*;
 import java.util.HashSet;
 
@@ -16,9 +19,14 @@ import java.util.HashSet;
  */
 public class IpCache {
     private HashSet<String> ipSet = null;
-         private static final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
-
+    private static final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
+    private ServletContext servletContext;
+    private WebApplicationContext webApplicationContext;
+    private String path;
     public IpCache() throws IOException {
+//        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+//        servletContext = webApplicationContext.getServletContext();
+//        path =servletContext.getRealPath(IP_CACHE_DIR);
         ipSet =new HashSet<String>();
         cacheSet();
     }
@@ -44,10 +52,17 @@ public class IpCache {
     private String [] readCacheFile(String dir) throws IOException {
         String line="";
         String[] ips;
+        //InputStreamReader inputStreamReader  = null;
+        //BufferedReader bufferedReader = null;
+        InputStream inputStream = null;
         InputStreamReader inputStreamReader  = null;
         BufferedReader bufferedReader = null;
         try {
-            inputStreamReader = new InputStreamReader(new FileInputStream(new File(dir)));
+//            inputStreamReader = new InputStreamReader(new FileInputStream(new File(dir)));
+//            bufferedReader = new BufferedReader(inputStreamReader);
+//            line = bufferedReader.readLine();
+            inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
+            inputStreamReader = new InputStreamReader(inputStream);
             bufferedReader = new BufferedReader(inputStreamReader);
             line = bufferedReader.readLine();
             if(line==null) ips=null;
@@ -71,21 +86,21 @@ public class IpCache {
     /**
      * 更新缓存文件ip列表
      */
-    public void updateIpInCacheFile(File file,String ip) throws IOException{
+    /*public void updateIpInCacheFile(File file,String ip) throws IOException{
         BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
         out.write(ip);
         out.close();
-    }
+    }*/
 
     /**
      * 添加新的ip到黑名单，并更新黑名单缓存
      * @param ip
      */
-    public boolean createBlankIP(String ip) throws IOException{
+    /*public boolean createBlankIP(String ip) throws IOException{
         ip=ip.trim();
         try {
             if(!ipSet.contains(ip)){
-                File file =new File(IP_CACHE_DIR);
+                File file =new File(this.path);
                 if (file.isFile() && file.exists())
                 // 判断文件是否存在
                 {
@@ -109,17 +124,17 @@ public class IpCache {
         {
             throw e;
         }
-    }
+    }*/
 
     /**
      *将ip从黑名单移除
      */
-    public boolean deleteIP(String ip) throws IOException{
+    /*public boolean deleteIP(String ip) throws IOException{
         ip=ip.trim();
         try{
             if(ipSet.contains(ip)){
                 ipSet.remove(ip);
-                updateIpInCacheFile(new File(IP_CACHE_DIR),stringSet());
+                updateIpInCacheFile(new File(this.path),stringSet());
                 return true;
             }else {
                 return false;
@@ -128,7 +143,7 @@ public class IpCache {
             throw e;
         }
 
-    }
+    }*/
 
     /**
      *连接set

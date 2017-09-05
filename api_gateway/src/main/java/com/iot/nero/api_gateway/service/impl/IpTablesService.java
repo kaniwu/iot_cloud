@@ -22,6 +22,8 @@ import java.util.Properties;
 public class IpTablesService implements IIpTablesService {
     ServletContext servletContext;
     WebApplicationContext webApplicationContext;
+
+
     @ApiMapping("sys.ipTables.set")
     public boolean setIpTableStatus(String isOpen) {
         isOpen=isOpen.trim();
@@ -64,12 +66,14 @@ public class IpTablesService implements IIpTablesService {
     @ApiMapping("sys.ipTables.add")
     public boolean addIP(String ip) throws IOException{
         IpCache ipCache = new IpCache();
-        return ipCache.createBlankIP(ip);
+        return true;
+        //return ipCache.createBlankIP(ip);
     }
 
     @ApiMapping("sys.ipTables.del")
     public boolean delIP(String ip) throws IOException {
         IpCache ipCache = new IpCache();
-        return ipCache.deleteIP(ip);
+        return true;
+        //return ipCache.deleteIP(ip);
     }
 }
