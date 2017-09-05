@@ -22,22 +22,26 @@ import java.util.Set;
 @Component
 public class CORSFilter implements Filter {
     private static final String CROS_FILE_DIR = PropertyPlaceholder.getProperty("crosFilter.file").toString();
-    private Map<String,String> crosMap = new HashMap<String, String>();
-    public void init(FilterConfig filterConfig) throws ServletException {
-            File f = new File(CROS_FILE_DIR);
-            BufferedReader br = null;
-            String line;
-            try {
-                br = new BufferedReader(new FileReader(f));
-                while ((line = br.readLine()) != null) {
-                    String key = line.split(":")[0];
-                    String value = line.split(":")[1];
-                    crosMap.put(key,value);
-                }
-                br.close();
-            }catch (Exception e){
-                e.printStackTrace();
+    private static Map<String,String> crosMap = new HashMap<String, String>();
+
+    public static void loadOriginMap(){
+        File f = new File(CROS_FILE_DIR);
+        BufferedReader br = null;
+        String line;
+        try {
+            br = new BufferedReader(new FileReader(f));
+            while ((line = br.readLine()) != null) {
+                String key = line.split(":")[0];
+                String value = line.split(":")[1];
+                crosMap.put(key,value);
             }
+            br.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void init(FilterConfig filterConfig) throws ServletException {
+            loadOriginMap();
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
