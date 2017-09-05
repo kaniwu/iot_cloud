@@ -1,5 +1,6 @@
 package com.iot.nero.api_gateway.service.impl;
 
+import com.iot.nero.api_gateway.common.ConfigUtil;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.service.IDataTrafficManager;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
@@ -8,6 +9,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.ServletContext;
 import java.io.*;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -18,85 +20,40 @@ import java.util.Properties;
  */
 public class DataTrafficManager implements IDataTrafficManager {
 
-    private WebApplicationContext webApplicationContext;
-    private ServletContext servletContext;
-    private String savePath;
+    private ConfigUtil configUtil;
+    Map<String, String> configMap;
 
     @ApiMapping("sys.traffic.set")
     public boolean setTrafficManagerStatus(String isOpen) throws IOException {
 
-        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-        servletContext = webApplicationContext.getServletContext();
-        savePath = servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/config.properties");
+        configUtil = new ConfigUtil();
+        configMap = configUtil.configToMap();
 
-        Properties properties = new Properties();
-        InputStream inputStream = new FileInputStream(savePath);
-        OutputStream outputStream = new FileOutputStream(savePath);
+        configMap.replace("trafficManager.isOpen ", configMap.get("trafficManager.isOpen "),isOpen);
 
-        properties.load(inputStream);
-        properties.setProperty("auth.username", PropertyPlaceholder.getProperty("auth.username").toString());
-        properties.setProperty("auth.password", PropertyPlaceholder.getProperty("auth.password").toString());
-        properties.setProperty("mock.isOpen", PropertyPlaceholder.getProperty("mock.isOpen").toString());
-        properties.setProperty("mock.file", PropertyPlaceholder.getProperty("mock.file").toString());
-        properties.setProperty("ipTable.isOpen", PropertyPlaceholder.getProperty("ipTable.isOpen").toString());
-        properties.setProperty("ipTable.file", PropertyPlaceholder.getProperty("ipTable.file").toString());
-        properties.setProperty("trafficManager.isOpen", isOpen);
-        properties.setProperty("trafficManager.maxPool", PropertyPlaceholder.getProperty("trafficManager.maxPool").toString());
-        properties.setProperty("trafficManager.avgFlow", PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString());
-        properties.store(outputStream, "trafficManager change to "+isOpen);
-
-        return true;
+        return configUtil.mapToConfig(configMap);
     }
 
     @ApiMapping("sys.traffic.max")
     public boolean setMaxTraffic(Integer maxPool) throws IOException {
 
-        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-        servletContext = webApplicationContext.getServletContext();
-        savePath = servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/config.properties");
+        configUtil = new ConfigUtil();
+        configMap = configUtil.configToMap();
 
-        Properties properties = new Properties();
-        InputStream inputStream = new FileInputStream(savePath);
-        OutputStream outputStream = new FileOutputStream(savePath);
+        configMap.replace("trafficManager.maxPool ", configMap.get("trafficManager.maxPool "),maxPool.toString());
 
-        properties.load(inputStream);
-        properties.setProperty("auth.username", PropertyPlaceholder.getProperty("auth.username").toString());
-        properties.setProperty("auth.password", PropertyPlaceholder.getProperty("auth.password").toString());
-        properties.setProperty("mock.isOpen", PropertyPlaceholder.getProperty("mock.isOpen").toString());
-        properties.setProperty("mock.file", PropertyPlaceholder.getProperty("mock.file").toString());
-        properties.setProperty("ipTable.isOpen", PropertyPlaceholder.getProperty("ipTable.isOpen").toString());
-        properties.setProperty("ipTable.file", PropertyPlaceholder.getProperty("ipTable.file").toString());
-        properties.setProperty("trafficManager.isOpen", PropertyPlaceholder.getProperty("trafficManager.isOpen").toString());
-        properties.setProperty("trafficManager.maxPool", maxPool.toString());
-        properties.setProperty("trafficManager.avgFlow", PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString());
-        properties.store(outputStream, "trafficManager.maxPool change to "+maxPool);
-
-        return true;
+        return configUtil.mapToConfig(configMap);
     }
 
     @ApiMapping("sys.traffic.avg")
     public boolean setAvgTraffic(Integer avgPool) throws IOException {
 
-        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-        servletContext = webApplicationContext.getServletContext();
-        savePath = servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/config.properties");
+        configUtil = new ConfigUtil();
+        configMap = configUtil.configToMap();
 
-        Properties properties = new Properties();
-        InputStream inputStream = new FileInputStream(savePath);
-        OutputStream outputStream = new FileOutputStream(savePath);
+        Boolean b = configMap.replace("trafficManager.avgPool ", configMap.get("trafficManager.avgPool "),avgPool.toString());
+        System.out.println(b);
 
-        properties.load(inputStream);
-        properties.setProperty("auth.username", PropertyPlaceholder.getProperty("auth.username").toString());
-        properties.setProperty("auth.password", PropertyPlaceholder.getProperty("auth.password").toString());
-        properties.setProperty("mock.isOpen", PropertyPlaceholder.getProperty("mock.isOpen").toString());
-        properties.setProperty("mock.file", PropertyPlaceholder.getProperty("mock.file").toString());
-        properties.setProperty("ipTable.isOpen", PropertyPlaceholder.getProperty("ipTable.isOpen").toString());
-        properties.setProperty("ipTable.file", PropertyPlaceholder.getProperty("ipTable.file").toString());
-        properties.setProperty("trafficManager.isOpen", PropertyPlaceholder.getProperty("trafficManager.isOpen").toString());
-        properties.setProperty("trafficManager.maxPool", PropertyPlaceholder.getProperty("trafficManager.maxPool").toString());
-        properties.setProperty("trafficManager.avgFlow", avgPool.toString());
-        properties.store(outputStream, "trafficManager.avgPool change to "+avgPool);
-
-        return true;
+        return configUtil.mapToConfig(configMap);
     }
 }
