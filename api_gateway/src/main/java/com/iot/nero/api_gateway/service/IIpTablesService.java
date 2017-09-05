@@ -1,5 +1,6 @@
 package com.iot.nero.api_gateway.service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -14,8 +15,8 @@ public interface IIpTablesService {
 
     List<String> getIP();
 
-    boolean addIP(String ip);
+    boolean addIP(String ip) throws IOException;
 
-    boolean delIP(String ip);
+    boolean delIP(String ip) throws IOException;
 
 }
