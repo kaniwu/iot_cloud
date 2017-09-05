@@ -1,7 +1,7 @@
 package com.iot.nero.api_gateway.service.impl;
 
 import com.iot.nero.api_gateway.core.core.ApiMapping;
-import com.iot.nero.api_gateway.service.IDataTrafficManager;
+import com.iot.nero.api_gateway.service.IDataTrafficManagerService;
 
 /**
  * Author neroyang
@@ -9,7 +9,7 @@ import com.iot.nero.api_gateway.service.IDataTrafficManager;
  * Date   2017/9/5
  * Time   下午3:06
  */
-public class DataTrafficManager implements IDataTrafficManager {
+public class DataTrafficManager implements IDataTrafficManagerService {
 
     @ApiMapping("sys.traffic.set")
     public boolean setTrafficManagerStatus(String isOpen) {

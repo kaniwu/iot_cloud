@@ -5,6 +5,7 @@ import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 import com.iot.nero.api_gateway.service.IMockService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author neroyang
@@ -20,7 +21,7 @@ public class MockService implements IMockService {
     }
 
     @ApiMapping("sys.mock.list")
-    public List<ApiMock> getMocks() {
+    public Map<String,ApiMock> getMocks() {
         return null;
     }
 
