@@ -55,9 +55,52 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     private static final String PARAMS = "params";
     private static final String SYS_PARAMS = "sysParams";
 
-    private static final String TRAFFIC_OPEN = PropertyPlaceholder.getProperty("trafficManager.isOpen").toString();
-    private static final String TRAFFIC_AVG = PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString();
-    private static final String TRAFFIC_MAX = PropertyPlaceholder.getProperty("trafficManager.maxPool").toString();
+    private static String TRAFFIC_OPEN = PropertyPlaceholder.getProperty("trafficManager.isOpen").toString();
+    private static String TRAFFIC_AVG = PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString();
+    private static String TRAFFIC_MAX = PropertyPlaceholder.getProperty("trafficManager.maxPool").toString();
+    private static String MOCK_OPEN = PropertyPlaceholder.getProperty("mock.isOpen").toString();
+    private static String IP_TABLE_OPEN = PropertyPlaceholder.getProperty("ipTable.isOpen").toString();
+
+    public static void setIpTableOpen(String ipTableOpen) {
+        IP_TABLE_OPEN = ipTableOpen;
+    }
+
+    public static void setTrafficOpen(String trafficOpen) {
+        TRAFFIC_OPEN = trafficOpen;
+    }
+
+    public static void setTrafficAvg(String trafficAvg) {
+        TRAFFIC_AVG = trafficAvg;
+    }
+
+    public static void setTrafficMax(String trafficMax) {
+        TRAFFIC_MAX = trafficMax;
+    }
+
+    public static void setMockOpen(String mockOpen) {
+        MOCK_OPEN = mockOpen;
+    }
+
+
+    public static String getIpTableOpen() {
+        return IP_TABLE_OPEN;
+    }
+
+    public static String getTrafficOpen() {
+        return TRAFFIC_OPEN;
+    }
+
+    public static String getTrafficAvg() {
+        return TRAFFIC_AVG;
+    }
+
+    public static String getTrafficMax() {
+        return TRAFFIC_MAX;
+    }
+
+    public static String getMockOpen() {
+        return MOCK_OPEN;
+    }
 
     private ApiDoc apiDoc;
     private IpTables ipTables;
@@ -104,15 +147,15 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
             logger.info(gson.toJson(new Log(0001, new ApiLog(NetUtil.getRealIP(request), method, params, sysParams, request.getRequestURL().toString()), date.getTime())));
 
-            if (PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")) {
+            if ("yes".equals(IP_TABLE_OPEN)) {
                 ipTables.filter(request, response);
             }
 
             paramsValdate(request);
-            if (method.subSequence(0, 3).equals("sys")) {
+            if ("sys".equals(method.subSequence(0, 3))) {
                 sysParamsValid(request);
                 adminAuth.auth(sysParams);
-                if (method.equals("sys.doc")) {
+                if ("sys.doc".equals(method)) {
                     result = apiDoc.getApis(apiStore.findApiRunnables());
                 } else {
                     apiRunnable = sysParamsValdate(request);
@@ -123,7 +166,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             } else {
                 apiRunnable = sysParamsValdate(request);
 
-                if (PropertyPlaceholder.getProperty("mock.isOpen").equals("yes")) {
+                if ("yes".equals(MOCK_OPEN)) {
                     Mock mock = new Mock();
                     result = mock.run(apiRunnable);
                 } else {
@@ -205,11 +248,11 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         String apiName = request.getParameter(METHOD);
         String json = request.getParameter(PARAMS);
 
-
         if (apiName == null || "".equals(apiName)) {
             throw new ApiException("调用失败，参数 'method' 为空");
         } else if (json == null || "".equals(json)) {
-            throw new ApiException("调用失败，参数 'params' 为空");
+            throw new ApiException("调用失败，" +
+                    "参数 'params' 为空");
         }
     }
 
@@ -301,6 +344,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
 
 
             Map<String, Object> returnResult = new HashMap<String, Object>();
+            returnResult.put("code", 1000);
             returnResult.put("data", result);
 
             String json = UtilJson.writeValueAsString(returnResult);
