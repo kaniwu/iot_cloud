@@ -1,5 +1,7 @@
 package com.iot.nero.api_gateway.service.impl;
 
+import com.iot.nero.api_gateway.common.ConfigUtil;
+import com.iot.nero.api_gateway.core.core.ApiGatewayHandler;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 import com.iot.nero.api_gateway.core.mock.Mock;
@@ -24,6 +26,7 @@ public class MockService implements IMockService {
 
     private static final String MOCK_FILR_DIR = PropertyPlaceholder.getProperty("mock.file").toString();
 
+    Map<String, String> configMap;
     private WebApplicationContext webApplicationContext;
     private ServletContext servletContext;
     private String savePath;
@@ -31,37 +34,19 @@ public class MockService implements IMockService {
     @ApiMapping("sys.mock.set")
     public Boolean setMockStatus(String isOpen) throws IOException {
 
-        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-        servletContext = webApplicationContext.getServletContext();
-        savePath = servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/config.properties");
 
-        Properties properties = new Properties();
-        InputStream inputStream = new FileInputStream(savePath);
-        OutputStream outputStream = new FileOutputStream(savePath);
+        configMap = ConfigUtil.configToMap();
 
-        properties.load(inputStream);
-        properties.setProperty("auth.username", PropertyPlaceholder.getProperty("auth.username").toString());
-        properties.setProperty("auth.password", PropertyPlaceholder.getProperty("auth.password").toString());
-        properties.setProperty("mock.isOpen", isOpen);
-        properties.setProperty("mock.file", PropertyPlaceholder.getProperty("mock.file").toString());
-        properties.setProperty("ipTable.isOpen", PropertyPlaceholder.getProperty("ipTable.isOpen").toString());
-        properties.setProperty("ipTable.file", PropertyPlaceholder.getProperty("ipTable.file").toString());
-        properties.setProperty("trafficManager.isOpen", PropertyPlaceholder.getProperty("trafficManager.isOpen").toString());
-        properties.setProperty("trafficManager.maxPool", PropertyPlaceholder.getProperty("trafficManager.maxPool").toString());
-        properties.setProperty("trafficManager.avgFlow", PropertyPlaceholder.getProperty("trafficManager.avgFlow").toString());
-        properties.store(outputStream, "mockState change to "+isOpen);
+        configMap.replace("mock.isOpen ", configMap.get("mock.isOpen "),isOpen);
+        ApiGatewayHandler.setMockOpen(isOpen);
 
-        return true;
+        return ConfigUtil.mapToConfig(configMap);
     }
 
     @ApiMapping("sys.mock.list")
     public Map<String, ApiMock> getMocks() throws IOException {
         Mock mock = new Mock();
         return mock.getMocks();
-    }
-
-    public Boolean addMock(ApiMock apiMock) {
-        return null;
     }
 
     @ApiMapping("sys.mock.add")

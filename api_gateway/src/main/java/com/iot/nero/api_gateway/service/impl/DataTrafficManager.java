@@ -1,6 +1,7 @@
 package com.iot.nero.api_gateway.service.impl;
 
 import com.iot.nero.api_gateway.common.ConfigUtil;
+import com.iot.nero.api_gateway.core.core.ApiGatewayHandler;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.service.IDataTrafficManager;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
@@ -20,40 +21,38 @@ import java.util.Properties;
  */
 public class DataTrafficManager implements IDataTrafficManager {
 
-    private ConfigUtil configUtil;
     Map<String, String> configMap;
 
     @ApiMapping("sys.traffic.set")
     public boolean setTrafficManagerStatus(String isOpen) throws IOException {
 
-        configUtil = new ConfigUtil();
-        configMap = configUtil.configToMap();
+        configMap = ConfigUtil.configToMap();
 
         configMap.replace("trafficManager.isOpen ", configMap.get("trafficManager.isOpen "),isOpen);
+        ApiGatewayHandler.setTrafficOpen(isOpen);
 
-        return configUtil.mapToConfig(configMap);
+        return ConfigUtil.mapToConfig(configMap);
     }
 
     @ApiMapping("sys.traffic.max")
     public boolean setMaxTraffic(Integer maxPool) throws IOException {
 
-        configUtil = new ConfigUtil();
-        configMap = configUtil.configToMap();
+        configMap = ConfigUtil.configToMap();
 
         configMap.replace("trafficManager.maxPool ", configMap.get("trafficManager.maxPool "),maxPool.toString());
+        ApiGatewayHandler.setTrafficMax(maxPool.toString());
 
-        return configUtil.mapToConfig(configMap);
+        return ConfigUtil.mapToConfig(configMap);
     }
 
     @ApiMapping("sys.traffic.avg")
-    public boolean setAvgTraffic(Integer avgPool) throws IOException {
+    public boolean setAvgTraffic(Integer avgFlow) throws IOException {
 
-        configUtil = new ConfigUtil();
-        configMap = configUtil.configToMap();
+        configMap = ConfigUtil.configToMap();
 
-        Boolean b = configMap.replace("trafficManager.avgPool ", configMap.get("trafficManager.avgPool "),avgPool.toString());
-        System.out.println(b);
+        configMap.replace("trafficManager.avgFlow ", configMap.get("trafficManager.avgFlow "),avgFlow.toString());
+        ApiGatewayHandler.setTrafficAvg(avgFlow.toString());
 
-        return configUtil.mapToConfig(configMap);
+        return ConfigUtil.mapToConfig(configMap);
     }
 }
