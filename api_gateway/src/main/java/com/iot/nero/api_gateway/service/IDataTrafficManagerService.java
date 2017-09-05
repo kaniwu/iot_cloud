@@ -6,7 +6,7 @@ package com.iot.nero.api_gateway.service;
  * Date   2017/9/5
  * Time   下午3:04
  */
-public interface IDataTrafficManager {
+public interface IDataTrafficManagerService {
 
     boolean setTrafficManagerStatus(String isOpen);
 

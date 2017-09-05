@@ -3,6 +3,7 @@ package com.iot.nero.api_gateway.service;
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author neroyang
@@ -14,7 +15,7 @@ public interface IMockService {
 
     Boolean setMockStatus(String isOpen);
 
-    List<ApiMock> getMocks();
+    Map<String,ApiMock> getMocks();
 
     Boolean addMock(ApiMock apiMock);
 

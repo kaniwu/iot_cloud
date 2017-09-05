@@ -107,18 +107,13 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             if (PropertyPlaceholder.getProperty("ipTable.isOpen").equals("yes")) {
                 ipTables.filter(request, response);
             }
+
             paramsValdate(request);
             if (method.subSequence(0, 3).equals("sys")) {
                 sysParamsValid(request);
                 adminAuth.auth(sysParams);
                 if (method.equals("sys.doc")) {
                     result = apiDoc.getApis(apiStore.findApiRunnables());
-                } else if (method.equals("sys.mock")) {
-                    Mock mock = new Mock();
-                    result = mock.getMocks();
-                } else if (method.equals("sys.ipTable")) {
-                    IpTables ipTables = new IpTables();
-                    result = ipTables.getIpTables();
                 } else {
                     apiRunnable = sysParamsValdate(request);
                     Object[] args = buildParams(apiRunnable, params, request, response);
