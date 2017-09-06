@@ -22,10 +22,13 @@ public class IpTablesService implements IIpTablesService {
 
 
     @ApiMapping("sys.ipTables.set")
-    public boolean setIpTableStatus(String isOpen) throws IOException {
+    public boolean setIpTableStatus(Boolean isOpen) throws IOException {
+        String status;
+        if(isOpen==true) status="yes";
+        else status="no";
         configMap = ConfigUtil.configToMap();
-        configMap.replace("ipTable.isOpen ", configMap.get("ipTable.isOpen "), isOpen);
-        ApiGatewayHandler.setIpTableOpen(isOpen);
+        configMap.replace("ipTable.isOpen ", configMap.get("ipTable.isOpen "),status);
+        ApiGatewayHandler.setIpTableOpen(status);
         return ConfigUtil.mapToConfig(configMap);
     }
 
@@ -45,6 +48,14 @@ public class IpTablesService implements IIpTablesService {
     public boolean delIP(String ip) throws IOException {
             IpCache ipCache = new IpCache();
             return ipCache.deleteIP(ip.trim());
+    }
+    @ApiMapping("sys.ipTables.status")
+    public boolean lookStatus() throws IOException{
+        configMap = ConfigUtil.configToMap();
+        String status=configMap.get("ipTable.isOpen ");
+        if("yes".equals(status.trim())) {return true;}
+        else if("no".equals(status.trim())){return false;}
+        else {return true;}
     }
 
     private boolean isIP(String addr)
