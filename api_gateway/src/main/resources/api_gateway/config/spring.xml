@@ -50,5 +50,12 @@
           class="com.iot.nero.api_gateway.service.impl.DataTrafficManager">
 
     </bean>
+    <bean id="IOriginService"
+          class="com.iot.nero.api_gateway.service.impl.OriginService">
+    </bean>
+
+    <bean id="ILogKafkaService"
+          class="com.iot.nero.api_gateway.service.impl.LogKafkaService">
+    </bean>
 
 </beans>

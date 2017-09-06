@@ -38,9 +38,4 @@ public class IpTables {
             //没有，过
 
     }
-
-    public HashSet<String> getIpTables() throws IOException {
-        ipCache =new IpCache();
-        return ipCache.getIPSet();
-    }
 }
