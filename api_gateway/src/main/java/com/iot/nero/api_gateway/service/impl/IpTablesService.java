@@ -20,46 +20,14 @@ import java.util.regex.Pattern;
 public class IpTablesService implements IIpTablesService {
     Map<String, String> configMap;
     @ApiMapping("sys.ipTables.set")
-<<<<<<< HEAD
-    public boolean setIpTableStatus(String isOpen) throws IOException {
+    public boolean setIpTableStatus(Boolean isOpen) throws IOException {
+        String status;
+        if(isOpen==true) status="yes";
+        else status="no";
         configMap = ConfigUtil.configToMap();
-        configMap.replace("ipTable.isOpen ", configMap.get("ipTable.isOpen "),isOpen);
-        ApiGatewayHandler.setIpTableOpen(isOpen);
+        configMap.replace("ipTable.isOpen ", configMap.get("ipTable.isOpen "),status);
+        ApiGatewayHandler.setIpTableOpen(status);
         return ConfigUtil.mapToConfig(configMap);
-=======
-    public boolean setIpTableStatus(String isOpen) {
-        isOpen = isOpen.trim();
-        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-        servletContext = webApplicationContext.getServletContext();
-
-        String path =servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/config.properties");
-
-        File file = new File(path);
-        Properties prop = new Properties();// 属性集合对象
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            prop.load(fis);// 将属性文件流装载到Properties对象中
-            fis.close();// 关闭流
-        } catch (IOException e) {
-            return false;
-        }
-        System.out.println(prop.getProperty("ipTable.isOpen"));
-        if (prop.getProperty("ipTable.isOpen").equals(isOpen)) {
-            return true;
-        } else {
-            prop.setProperty("ipTable.isOpen", isOpen);
-            // 文件输出流
-            try {
-                FileOutputStream fos = new FileOutputStream(file);
-                // 将Properties集合保存到流中
-                prop.store(fos, "firewall:" + isOpen);
-                fos.close();// 关闭流
-            } catch (IOException e) {
-                return false;
-            }
-            return true;
-        }
->>>>>>> iot_cloud/master
     }
 
     @ApiMapping("sys.ipTables.list")
@@ -78,6 +46,14 @@ public class IpTablesService implements IIpTablesService {
     public boolean delIP(String ip) throws IOException {
             IpCache ipCache = new IpCache();
             return ipCache.deleteIP(ip.trim());
+    }
+    @ApiMapping("sys.ipTables.status")
+    public boolean lookStatus() throws IOException{
+        configMap = ConfigUtil.configToMap();
+        String status=configMap.get("ipTable.isOpen ");
+        if("yes".equals(status.trim())) {return true;}
+        else if("no".equals(status.trim())){return false;}
+        else {return true;}
     }
 
     private boolean isIP(String addr)
