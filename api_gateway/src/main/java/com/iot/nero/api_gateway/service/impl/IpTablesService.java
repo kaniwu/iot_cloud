@@ -34,8 +34,7 @@ public class IpTablesService implements IIpTablesService {
 
     @ApiMapping("sys.ipTables.list")
     public List<String> getIP() throws IOException {
-        IpCache ipCache = new IpCache();
-        return new ArrayList<String>(ipCache.getIPSet());
+        return new ArrayList<String>(IpCache.getIPSet());
     }
 
     @ApiMapping("sys.ipTables.add")
