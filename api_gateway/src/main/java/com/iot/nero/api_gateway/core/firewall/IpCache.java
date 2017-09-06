@@ -112,8 +112,8 @@ public class IpCache {
                 if (file.isFile() && file.exists())
                 // 判断文件是否存在
                 {
-                    //inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
-                    inputStreamReader = new InputStreamReader(new FileInputStream(new File(IP_CACHE_DIR)));//inputStream);
+                    inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
+                    inputStreamReader = new InputStreamReader(inputStream);
                     bufferedReader = new BufferedReader(inputStreamReader);
                     String line=bufferedReader.readLine();
                     if(line!=null) line+=";" + ip;
