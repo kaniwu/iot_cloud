@@ -1,11 +1,7 @@
 package com.iot.nero.api_gateway.core.firewall;
-import com.alibaba.com.caucho.hessian.io.InputStreamSerializer;
-import com.iot.nero.api_gateway.common.IOUtils;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
-
 import javax.servlet.ServletContext;
 import java.io.*;
 import java.util.HashSet;
@@ -19,20 +15,35 @@ import java.util.HashSet;
  */
 public class IpCache {
     private HashSet<String> ipSet = null;
-    private static final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
+    private final String IP_CACHE_DIR ="E:/test.txt";//PropertyPlaceholder.getProperty("ipTable.file").toString();
     private ServletContext servletContext;
     private WebApplicationContext webApplicationContext;
     private String path;
     public IpCache() throws IOException {
         webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();
-        path = servletContext.getRealPath("/WEB-INF/classes"+IP_CACHE_DIR);
+        path = "E:/test.txt";//servletContext.getRealPath("/WEB-INF/classes"+IP_CACHE_DIR);
         ipSet =new HashSet<String>();
         cacheSet();
     }
     public Object findIP(String ip) {
-        if(ipSet.contains(ip)) return "拒绝访问";
-        else return null;
+        if(ipSet.isEmpty()){
+            return null;
+        } else if(ipSet.contains(ip)) {
+            return "拒绝访问";
+        } else{
+            String ipRequest[]=ip.split("\\.");
+            String eachIpPieces[];
+            for (String eachIp:ipSet){
+                eachIpPieces=eachIp.split("\\.");
+                if(!("*".equals(eachIpPieces[0]))&& !(ipRequest[0].equals(eachIpPieces[0]))){continue;}
+                else if(!("*".equals(eachIpPieces[1]))&& !(ipRequest[1].equals(eachIpPieces[1]))) {continue;}
+                else if(!("*".equals(eachIpPieces[3]))&& !(ipRequest[2].equals(eachIpPieces[2]))){continue;}
+                else if(!("*".equals(eachIpPieces[3]))&& !(ipRequest[3].equals(eachIpPieces[3]))) { continue; }
+                else {return "拒绝访问";}
+            }
+            return null;
+        }
     }
 
     private void cacheSet() throws IOException {
@@ -56,8 +67,8 @@ public class IpCache {
         InputStreamReader inputStreamReader  = null;
         BufferedReader bufferedReader = null;
         try {
-            inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
-            inputStreamReader = new InputStreamReader(inputStream);
+            //inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
+            inputStreamReader = new InputStreamReader(new FileInputStream(new File(IP_CACHE_DIR)));//inputStream);
             bufferedReader = new BufferedReader(inputStreamReader);
             line = bufferedReader.readLine();
             if(line==null) ips=null;
@@ -92,7 +103,6 @@ public class IpCache {
      * @param ip
      */
     public boolean createBlankIP(String ip) throws IOException{
-        ip=ip.trim();
         try {
             if(!ipSet.contains(ip)){
                 File file =new File(this.path);
@@ -102,8 +112,8 @@ public class IpCache {
                 if (file.isFile() && file.exists())
                 // 判断文件是否存在
                 {
-                    inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
-                    inputStreamReader = new InputStreamReader(inputStream);
+                    //inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
+                    inputStreamReader = new InputStreamReader(new FileInputStream(new File(IP_CACHE_DIR)));//inputStream);
                     bufferedReader = new BufferedReader(inputStreamReader);
                     String line=bufferedReader.readLine();
                     if(line!=null) line+=";" + ip;
@@ -130,7 +140,6 @@ public class IpCache {
      *将ip从黑名单移除
      */
     public boolean deleteIP(String ip) throws IOException{
-        ip=ip.trim();
         try{
             if(ipSet.contains(ip)){
                 ipSet.remove(ip);

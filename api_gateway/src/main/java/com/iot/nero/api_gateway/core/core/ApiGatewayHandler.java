@@ -144,7 +144,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
                     throw new FlowOverException(CONSTANT.FLOW_OVER);
                 }
             }
-
             logger.info(gson.toJson(new Log(0001, new ApiLog(NetUtil.getRealIP(request), method, params, sysParams, request.getRequestURL().toString()), date.getTime())));
 
             if ("yes".equals(IP_TABLE_OPEN)) {
