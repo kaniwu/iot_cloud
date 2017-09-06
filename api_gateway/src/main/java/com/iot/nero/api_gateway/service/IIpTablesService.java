@@ -11,12 +11,14 @@ import java.util.List;
  */
 public interface IIpTablesService {
 
-    boolean setIpTableStatus(String isOpen) throws IOException;
+    boolean setIpTableStatus(Boolean isOpen) throws IOException;
 
     List<String> getIP() throws IOException;
 
     boolean addIP(String ip) throws IOException;
 
     boolean delIP(String ip) throws IOException;
+
+    boolean lookStatus() throws IOException;
 
 }
