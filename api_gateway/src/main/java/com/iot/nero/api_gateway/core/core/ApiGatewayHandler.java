@@ -144,7 +144,6 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
                     throw new FlowOverException(CONSTANT.FLOW_OVER);
                 }
             }
-
             logger.info(gson.toJson(new Log(0001, new ApiLog(NetUtil.getRealIP(request), method, params, sysParams, request.getRequestURL().toString()), date.getTime())));
 
             if ("yes".equals(IP_TABLE_OPEN)) {
@@ -201,6 +200,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } catch (FlowOverException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
+        } catch (InstantiationException e) {
+            response.setStatus(500);
+            result = handleErr(e.fillInStackTrace());
         }
 
         returnResult(result, response);
@@ -235,10 +237,10 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("error", code);
         result.put("msg", message);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream stream = new PrintStream(out);
-        e.printStackTrace(stream);
-        result.put("track", e.getStackTrace());
+        //ByteArrayOutputStream out = new ByteArrayOutputStream();
+        //PrintStream stream = new PrintStream(out);
+        //e.printStackTrace(stream);
+        //result.put("track", e.getStackTrace());
 
         return result;
     }

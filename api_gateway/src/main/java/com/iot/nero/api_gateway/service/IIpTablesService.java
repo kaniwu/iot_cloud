@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface IIpTablesService {
 
-    boolean setIpTableStatus(String isOpen);
+    boolean setIpTableStatus(String isOpen) throws IOException;
 
     List<String> getIP() throws IOException;
 
