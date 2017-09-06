@@ -31,16 +31,30 @@ public class MockService implements IMockService {
     private ServletContext servletContext;
     private String savePath;
 
-    @ApiMapping("sys.mock.set")
-    public Boolean setMockStatus(String isOpen) throws IOException {
+    @ApiMapping("sys.mock.status.set")
+    public Boolean setMockStatus(Boolean isOpen) throws IOException {
 
 
         configMap = ConfigUtil.configToMap();
 
-        configMap.replace("mock.isOpen ", configMap.get("mock.isOpen "),isOpen);
-        ApiGatewayHandler.setMockOpen(isOpen);
+        if(isOpen) {
+            configMap.replace("mock.isOpen ", configMap.get("mock.isOpen "), "yes");
+            ApiGatewayHandler.setMockOpen("yes");
+        }else{
+            configMap.replace("mock.isOpen ", configMap.get("mock.isOpen "), "no");
+            ApiGatewayHandler.setMockOpen("no");
+        }
 
         return ConfigUtil.mapToConfig(configMap);
+    }
+
+    @ApiMapping("sys.mock.status.get")
+    public Boolean getMockStatus() throws IOException {
+
+        configMap = ConfigUtil.configToMap();
+
+        if("yes".equals(configMap.get("mock.isOpen ")))return true;
+        return false;
     }
 
     @ApiMapping("sys.mock.list")
