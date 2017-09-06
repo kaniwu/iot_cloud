@@ -32,4 +32,13 @@ public class Origin implements Serializable{
     public void setOrigin(String origin) {
         this.origin = origin;
     }
+
+
+    @Override
+    public String toString() {
+        return "Origin{" +
+                "name='" + name + '\'' +
+                ", origin='" + origin + '\'' +
+                '}';
+    }
 }

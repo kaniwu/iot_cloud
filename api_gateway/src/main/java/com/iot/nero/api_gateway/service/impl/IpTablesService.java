@@ -21,7 +21,7 @@ public class IpTablesService implements IIpTablesService {
     Map<String, String> configMap;
 
 
-    @ApiMapping("sys.ipTables.set")
+    @ApiMapping("sys.ipTables.status.set")
     public boolean setIpTableStatus(Boolean isOpen) throws IOException {
         String status;
         if(isOpen==true) status="yes";
@@ -48,7 +48,7 @@ public class IpTablesService implements IIpTablesService {
             IpCache ipCache = new IpCache();
             return ipCache.deleteIP(ip.trim());
     }
-    @ApiMapping("sys.ipTables.status")
+    @ApiMapping("sys.ipTables.status.get")
     public boolean lookStatus() throws IOException{
         configMap = ConfigUtil.configToMap();
         String status=configMap.get("ipTable.isOpen ");
