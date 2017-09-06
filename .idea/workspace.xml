@@ -7,21 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30c8fc0e-a8f3-4152-9d27-a411269d3d98" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/ILogKafkaService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/LogKafkaService.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway.spring/spring-dao.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/common/ConfigUtil.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/common/ConfigUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/entity/Origin.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/entity/Origin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IDataTrafficManagerService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IDataTrafficManagerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IMockService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IMockService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IOriginFilterService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IOriginFilterService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/DataTrafficManager.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/DataTrafficManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/MockService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/MockService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/OriginService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/OriginService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/cros_filter.txt" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/cros_filter.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/spring.xml" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/spring.xml" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,10 +31,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CORSFilter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CORSFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/filter/CORSFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-304">
+            <state relative-caret-position="128">
               <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
               <folding>
                 <marker date="1504710986768" expanded="false" signature="832:848" ph="&lt;~&gt;" />
@@ -66,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IpTablesService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="IpTablesService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+            <state relative-caret-position="211">
+              <caret line="45" column="25" lean-forward="true" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,7 +78,7 @@
       <file leaf-file-name="AdminAuth.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/AdminAuth.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
+            <state relative-caret-position="19">
               <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding />
             </state>
@@ -101,8 +88,8 @@
       <file leaf-file-name="IpCache.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="84" column="7" lean-forward="false" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+            <state relative-caret-position="256">
+              <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -130,6 +117,14 @@
       <projects_view />
     </option>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" />
+        <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java" />
+      </list>
+    </option>
+  </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
@@ -143,7 +138,7 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="width" value="3200" />
     <option name="height" value="1812" />
   </component>
@@ -539,15 +534,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1504708562039</updated>
-      <workItem from="1504708569579" duration="4830000" />
+      <workItem from="1504708569579" duration="5740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4830000" />
+    <option name="totallyTimeSpent" value="5740000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1600" height="906" extended-state="1" />
+    <frame x="0" y="0" width="1600" height="906" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -562,12 +557,12 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955974" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955974" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -663,17 +658,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/filter/CORSFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+          <folding>
+            <marker date="1504710986768" expanded="false" signature="832:848" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="84" column="7" lean-forward="false" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+        <state relative-caret-position="256">
+          <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/AdminAuth.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
+        <state relative-caret-position="19">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
@@ -681,20 +686,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        <state relative-caret-position="211">
+          <caret line="45" column="25" lean-forward="true" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/filter/CORSFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-304">
-          <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-          <folding>
-            <marker date="1504710986768" expanded="false" signature="832:848" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>
