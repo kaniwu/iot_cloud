@@ -1,3 +1,1 @@
-name1:www.baidu.com
-name2:www.qq.com
-name3:www.bb.com
+本地测试:localhost
