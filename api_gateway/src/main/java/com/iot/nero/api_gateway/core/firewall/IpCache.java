@@ -14,7 +14,7 @@ import java.util.HashSet;
  * Time   上午11:38
  */
 public class IpCache {
-    private HashSet<String> ipSet = null;
+    private static HashSet<String> ipSet = null;
     private final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
     private ServletContext servletContext;
     private WebApplicationContext webApplicationContext;
@@ -85,7 +85,7 @@ public class IpCache {
     /**
      * 返回ipSet
      */
-     public HashSet<String> getIPSet(){
+     public static HashSet<String> getIPSet(){
         return ipSet;
      }
 
