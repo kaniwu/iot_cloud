@@ -15,6 +15,7 @@ import java.util.HashSet;
  */
 public class IpCache {
     private HashSet<String> ipSet = null;
+
     private final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
     private ServletContext servletContext;
     private WebApplicationContext webApplicationContext;
