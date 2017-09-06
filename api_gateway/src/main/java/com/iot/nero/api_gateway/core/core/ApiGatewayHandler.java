@@ -234,10 +234,10 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("error", code);
         result.put("msg", message);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintStream stream = new PrintStream(out);
-        e.printStackTrace(stream);
-        result.put("track", e.getStackTrace());
+        //ByteArrayOutputStream out = new ByteArrayOutputStream();
+        //PrintStream stream = new PrintStream(out);
+        //e.printStackTrace(stream);
+        //result.put("track", e.getStackTrace());
 
         return result;
     }

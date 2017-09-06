@@ -50,5 +50,8 @@
           class="com.iot.nero.api_gateway.service.impl.DataTrafficManager">
 
     </bean>
+    <bean id="IOriginService"
+          class="com.iot.nero.api_gateway.service.impl.OriginService">
+    </bean>
 
 </beans>

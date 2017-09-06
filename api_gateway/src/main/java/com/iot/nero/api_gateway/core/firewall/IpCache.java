@@ -15,14 +15,14 @@ import java.util.HashSet;
  */
 public class IpCache {
     private HashSet<String> ipSet = null;
-    private final String IP_CACHE_DIR ="E:/test.txt";//PropertyPlaceholder.getProperty("ipTable.file").toString();
+    private final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
     private ServletContext servletContext;
     private WebApplicationContext webApplicationContext;
     private String path;
     public IpCache() throws IOException {
         webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();
-        path = "E:/test.txt";//servletContext.getRealPath("/WEB-INF/classes"+IP_CACHE_DIR);
+        path = servletContext.getRealPath("/WEB-INF/classes"+IP_CACHE_DIR);
         ipSet =new HashSet<String>();
         cacheSet();
     }
