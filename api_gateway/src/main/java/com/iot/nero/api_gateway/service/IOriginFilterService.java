@@ -1,5 +1,7 @@
 package com.iot.nero.api_gateway.service;
 
+import java.util.Map;
+
 /**
  * Author neroyang
  * Email  nerosoft@outlook.com
@@ -12,4 +14,6 @@ public interface IOriginFilterService {
     boolean addOrigin(String name,String origin);
 
     boolean delOrigin(String name,String origin);
+
+    Map<String,String> getOrigin();
 }

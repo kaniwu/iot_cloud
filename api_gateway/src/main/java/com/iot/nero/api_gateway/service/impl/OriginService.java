@@ -1,5 +1,7 @@
 package com.iot.nero.api_gateway.service.impl;
 
+import com.alibaba.dubbo.common.json.JSONArray;
+import com.alibaba.dubbo.common.json.JSONObject;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.core.firewall.filter.CORSFilter;
 import com.iot.nero.api_gateway.service.IOriginFilterService;
@@ -7,10 +9,7 @@ import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import javax.servlet.ServletContext;
 /**
  * Author neroyang
@@ -109,5 +108,31 @@ public class OriginService implements IOriginFilterService {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    @ApiMapping("sys.origin.list")
+    public Map<String,String> getOrigin(){
+        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+        servletContext = webApplicationContext.getServletContext();
+        savePath = servletContext.getRealPath("/WEB-INF/classes"+CROS_FILE_DIR);
+        File f = new File(savePath);
+        try {
+            // 以utf-8的方式打开文件
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                    new FileInputStream(f),encoding
+            ));
+            Map map = new HashMap<String,String>();
+            String line;
+            while ((line=bufferedReader.readLine())!=null){
+                String key = line.split(";")[0];
+                String value = line.split(":")[1];
+                map.put(key,value);
+            }
+            return map;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
