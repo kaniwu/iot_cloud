@@ -19,6 +19,8 @@ import java.util.regex.Pattern;
  */
 public class IpTablesService implements IIpTablesService {
     Map<String, String> configMap;
+
+
     @ApiMapping("sys.ipTables.set")
     public boolean setIpTableStatus(Boolean isOpen) throws IOException {
         String status;

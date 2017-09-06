@@ -6,45 +6,24 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ced0f64-2525-418a-a0e9-d60141c08c36" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IIpTablesService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IIpTablesService.java" />
+    <list default="true" id="61c077f7-d144-41bc-a1d7-a0f7fd740c1c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/Consumer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/entity/Origin.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/demo/Provider.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/dubbo/consumer.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/dubbo/provider.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/api_gateway.iml" afterPath="$PROJECT_DIR$/api_gateway/api_gateway.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiStore.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiStore.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/filter/CORSFilter.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/filter/CORSFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/demo/service/impl/HelloWorld.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/demo/service/impl/HelloWorld.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IOriginFilterService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IOriginFilterService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/OriginService.java" afterPath="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/OriginService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties" afterPath="$PROJECT_DIR$/api_gateway/src/main/resources/api_gateway/config/config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api_gateway/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/api_gateway/src/main/webapp/WEB-INF/web.xml" />
     </list>
-    <ignored path="$PROJECT_DIR$/facade_admin/target/" />
-    <ignored path="$PROJECT_DIR$/facade_agent/target/" />
-    <ignored path="$PROJECT_DIR$/common/target/" />
-    <ignored path="$PROJECT_DIR$/facade_balance/target/" />
-    <ignored path="$PROJECT_DIR$/facade_app/target/" />
-    <ignored path="$PROJECT_DIR$/facade_cms/target/" />
-    <ignored path="$PROJECT_DIR$/facade_data/target/" />
-    <ignored path="$PROJECT_DIR$/facade_monitor/target/" />
-    <ignored path="$PROJECT_DIR$/facade_log/target/" />
-    <ignored path="$PROJECT_DIR$/facade_resources/target/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <ignored path="$PROJECT_DIR$/parent/target/" />
-    <ignored path="$PROJECT_DIR$/mq/target/" />
-    <ignored path="$PROJECT_DIR$/facade_sso/target/" />
-    <ignored path="$PROJECT_DIR$/parent_app/target/" />
-    <ignored path="$PROJECT_DIR$/parent_admin/target/" />
-    <ignored path="$PROJECT_DIR$/parent_balance/target/" />
-    <ignored path="$PROJECT_DIR$/parent_data/target/" />
-    <ignored path="$PROJECT_DIR$/parent_agent/target/" />
-    <ignored path="$PROJECT_DIR$/parent_cms/target/" />
-    <ignored path="$PROJECT_DIR$/parent_log/target/" />
-    <ignored path="$PROJECT_DIR$/api_gateway/target/" />
-    <ignored path="$PROJECT_DIR$/parent_monitor/target/" />
-    <ignored path="$PROJECT_DIR$/parent_resources/target/" />
-    <ignored path="$PROJECT_DIR$/parent_sso/target/" />
-    <ignored path="$PROJECT_DIR$/service_agent/target/" />
-    <ignored path="$PROJECT_DIR$/service_monitor/target/" />
-    <ignored path="$PROJECT_DIR$/service_cms/target/" />
-    <ignored path="$PROJECT_DIR$/service_app/target/" />
-    <ignored path="$PROJECT_DIR$/service_sso/target/" />
-    <ignored path="$PROJECT_DIR$/web_app/target/" />
-    <ignored path="$PROJECT_DIR$/web_sso/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,8 +36,19 @@
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="235">
-              <caret line="298" column="21" lean-forward="true" selection-start-line="298" selection-start-column="21" selection-end-line="298" selection-end-column="21" />
-              <folding />
+              <caret line="301" column="21" lean-forward="false" selection-start-line="301" selection-start-column="21" selection-end-line="301" selection-end-column="21" />
+              <folding>
+                <marker date="1504710986760" expanded="true" signature="7959:8163" ph="{...}" />
+                <marker date="1504710986760" expanded="true" signature="8207:9175" ph="{...}" />
+                <marker date="1504710986760" expanded="false" signature="8848:8864" ph="&lt;~&gt;" />
+                <marker date="1504710986760" expanded="true" signature="8947:9145" ph="//..." />
+                <marker date="1504710986760" expanded="true" signature="9257:9632" ph="{...}" />
+                <marker date="1504710986760" expanded="true" signature="9732:10047" ph="{...}" />
+                <marker date="1504710986760" expanded="true" signature="10210:11997" ph="{...}" />
+                <marker date="1504710986760" expanded="true" signature="12074:12994" ph="{...}" />
+                <marker date="1504710986760" expanded="true" signature="13072:13918" ph="{...}" />
+                <marker date="1504710986760" expanded="false" signature="13263:13279" ph="&lt;~&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,7 +58,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="112">
               <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-              <folding />
+              <folding>
+                <marker date="1504710986768" expanded="false" signature="832:848" ph="&lt;~&gt;" />
+                <marker date="1504710986768" expanded="true" signature="1183:1774" ph="{...}" />
+                <marker date="1504710986768" expanded="true" signature="1847:1883" ph="{...}" />
+                <marker date="1504710986768" expanded="true" signature="2036:3132" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,11 +81,9 @@
       <file leaf-file-name="IpTablesService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="24" column="38" lean-forward="true" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="96">
+              <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IIpTablesService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="208">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -149,8 +142,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/firewall/IpCache.java" />
-        <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java" />
         <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IIpTablesService.java" />
+        <option value="$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java" />
       </list>
     </option>
   </component>
@@ -318,10 +311,6 @@
       <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -564,12 +553,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1504708562039</updated>
-      <workItem from="1504708569579" duration="2131000" />
+      <workItem from="1504708569579" duration="2511000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2131000" />
+    <option name="totallyTimeSpent" value="2511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="906" extended-state="0" />
@@ -592,7 +581,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -622,8 +611,19 @@
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/core/core/ApiGatewayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
-          <caret line="298" column="21" lean-forward="true" selection-start-line="298" selection-start-column="21" selection-end-line="298" selection-end-column="21" />
-          <folding />
+          <caret line="301" column="21" lean-forward="false" selection-start-line="301" selection-start-column="21" selection-end-line="301" selection-end-column="21" />
+          <folding>
+            <marker date="1504710986760" expanded="true" signature="7959:8163" ph="{...}" />
+            <marker date="1504710986760" expanded="true" signature="8207:9175" ph="{...}" />
+            <marker date="1504710986760" expanded="false" signature="8848:8864" ph="&lt;~&gt;" />
+            <marker date="1504710986760" expanded="true" signature="8947:9145" ph="//..." />
+            <marker date="1504710986760" expanded="true" signature="9257:9632" ph="{...}" />
+            <marker date="1504710986760" expanded="true" signature="9732:10047" ph="{...}" />
+            <marker date="1504710986760" expanded="true" signature="10210:11997" ph="{...}" />
+            <marker date="1504710986760" expanded="true" signature="12074:12994" ph="{...}" />
+            <marker date="1504710986760" expanded="true" signature="13072:13918" ph="{...}" />
+            <marker date="1504710986760" expanded="false" signature="13263:13279" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -655,7 +655,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
+          <folding>
+            <marker date="1504710986768" expanded="false" signature="832:848" ph="&lt;~&gt;" />
+            <marker date="1504710986768" expanded="true" signature="1183:1774" ph="{...}" />
+            <marker date="1504710986768" expanded="true" signature="1847:1883" ph="{...}" />
+            <marker date="1504710986768" expanded="true" signature="2036:3132" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -678,18 +683,16 @@
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/IIpTablesService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api_gateway/src/main/java/com/iot/nero/api_gateway/service/impl/IpTablesService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="24" column="38" lean-forward="true" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="96">
+          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

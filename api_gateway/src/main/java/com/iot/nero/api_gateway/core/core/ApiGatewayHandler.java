@@ -200,6 +200,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         } catch (FlowOverException e) {
             response.setStatus(500);
             result = handleErr(e.fillInStackTrace());
+        } catch (InstantiationException e) {
+            response.setStatus(500);
+            result = handleErr(e.fillInStackTrace());
         }
 
         returnResult(result, response);

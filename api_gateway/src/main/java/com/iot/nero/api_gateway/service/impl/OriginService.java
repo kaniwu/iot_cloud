@@ -1,16 +1,16 @@
 package com.iot.nero.api_gateway.service.impl;
 
+import com.alibaba.dubbo.common.json.JSONArray;
+import com.alibaba.dubbo.common.json.JSONObject;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
+import com.iot.nero.api_gateway.core.firewall.entity.Origin;
 import com.iot.nero.api_gateway.core.firewall.filter.CORSFilter;
 import com.iot.nero.api_gateway.service.IOriginFilterService;
 import com.iot.nero.utils.spring.PropertyPlaceholder;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import javax.servlet.ServletContext;
 /**
  * Author neroyang
@@ -26,15 +26,15 @@ public class OriginService implements IOriginFilterService {
     private String savePath;
     private String encoding = "utf-8";
     @ApiMapping("sys.origin.add")
-    public boolean addOrigin(String name,String origin) {
+    public boolean addOrigin(String name,String origin) throws IOException {
         webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();
         savePath = servletContext.getRealPath("/WEB-INF/classes"+CROS_FILE_DIR);
         Map<String ,String >crosMap = new HashMap<String,String>();
         File f = new File(savePath);
-        try {
+
             String line;
-            if (f.isFile()&&f.exists()){
+
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
                         new FileInputStream(f), encoding));
                 //判断配置文件中是否已存在信任站点
@@ -65,21 +65,17 @@ public class OriginService implements IOriginFilterService {
                 bufferedWriter.close();
                 CORSFilter.loadOriginMap();
                 return true;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return false;
+
+
     }
 
     @ApiMapping("sys.origin.del")
-    public boolean delOrigin(String name,String origin) {
+    public boolean delOrigin(String name,String origin) throws IOException {
         webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();
         savePath = servletContext.getRealPath("/WEB-INF/classes"+CROS_FILE_DIR);
         File f = new File(savePath);
         Map<String ,String >crosMap = new HashMap<String,String>();
-        try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
                     new FileInputStream(f), encoding));
             String line;
@@ -104,10 +100,25 @@ public class OriginService implements IOriginFilterService {
             bufferedReader.close();
             CORSFilter.loadOriginMap();
             return true;
+    }
+    @ApiMapping("sys.origin.list")
+    public List<Origin> getOrigin() throws IOException {
+        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+        servletContext = webApplicationContext.getServletContext();
+        savePath = servletContext.getRealPath("/WEB-INF/classes"+CROS_FILE_DIR);
+        File f = new File(savePath);
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return false;
+            // 以utf-8的方式打开文件
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                    new FileInputStream(f), encoding
+            ));
+            List<Origin> list = new ArrayList<>();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String key = line.split(";")[0];
+                String value = line.split(":")[1];
+                list.add(new Origin(key, value));
+            }
+            return list;
     }
 }

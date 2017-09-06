@@ -1,6 +1,8 @@
 package com.iot.nero.api_gateway.core.core;
 
+import com.iot.nero.api_gateway.core.Consumer;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.util.Assert;
 
@@ -24,8 +26,11 @@ import java.util.List;
 public class ApiStore {
 
         private ApplicationContext applicationContext;
+
+
         private static HashMap<String,ApiRunnable> apiRunnableHashMap = new HashMap<String, ApiRunnable>();
         final ParameterNameDiscoverer parameterNameDiscoverer;
+
 
     public ApiStore(ApplicationContext applicationContext,ParameterNameDiscoverer parameterNameDiscoverer) {
         Assert.notNull(applicationContext);
@@ -148,10 +153,13 @@ public class ApiStore {
             this.annotations = annotations;
         }
 
-        public Object run(Object... args) throws InvocationTargetException, IllegalAccessException {
+        public Object run(Object... args) throws InvocationTargetException, IllegalAccessException, InstantiationException {
             if(target==null){
+                //target = Consumer.singleton().getBean(targetName);
                 target = applicationContext.getBean(targetName);
             }
+            System.out.println(target.toString());
+            System.out.println(target.getClass().toString());
             return targetMethod.invoke(target,args);
         }
 

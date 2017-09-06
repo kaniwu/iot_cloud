@@ -23,6 +23,7 @@ import java.util.Set;
  */
 @Component
 public class CORSFilter implements Filter {
+
     private static final String CROS_FILE_DIR = PropertyPlaceholder.getProperty("crosFilter.file").toString();
     private static Map<String,String> crosMap = new HashMap<String, String>();
     private static WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();;
