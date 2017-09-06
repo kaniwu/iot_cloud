@@ -3,6 +3,7 @@ package com.iot.nero.api_gateway.demo.service.impl;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.demo.dto.Hello;
 import com.iot.nero.api_gateway.demo.service.IHelloWorld;
+import org.springframework.stereotype.Service;
 
 /**
  * Author neroyang
@@ -10,6 +11,7 @@ import com.iot.nero.api_gateway.demo.service.IHelloWorld;
  * Date   2017/8/25
  * Time   下午7:44
  */
+@Service
 public class HelloWorld implements IHelloWorld {
 
     @ApiMapping("api.hello")
