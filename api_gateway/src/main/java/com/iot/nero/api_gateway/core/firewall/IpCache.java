@@ -36,10 +36,10 @@ public class IpCache {
             String eachIpPieces[];
             for (String eachIp:ipSet){
                 eachIpPieces=eachIp.split("\\.");
-                if(!("*".equals(eachIpPieces[0]))&& !(ipRequest[0].equals(eachIpPieces[0]))){continue;}
-                else if(!("*".equals(eachIpPieces[1]))&& !(ipRequest[1].equals(eachIpPieces[1]))) {continue;}
-                else if(!("*".equals(eachIpPieces[3]))&& !(ipRequest[2].equals(eachIpPieces[2]))){continue;}
-                else if(!("*".equals(eachIpPieces[3]))&& !(ipRequest[3].equals(eachIpPieces[3]))) { continue; }
+                if(!("0".equals(eachIpPieces[0]))&& !(ipRequest[0].equals(eachIpPieces[0]))){continue;}
+                else if(!("0".equals(eachIpPieces[1]))&& !(ipRequest[1].equals(eachIpPieces[1]))) {continue;}
+                else if(!("0".equals(eachIpPieces[3]))&& !(ipRequest[2].equals(eachIpPieces[2]))){continue;}
+                else if(!("0".equals(eachIpPieces[3]))&& !(ipRequest[3].equals(eachIpPieces[3]))) { continue; }
                 else {return "拒绝访问";}
             }
             return null;
