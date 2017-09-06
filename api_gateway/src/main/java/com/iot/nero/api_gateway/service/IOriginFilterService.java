@@ -9,7 +9,7 @@ package com.iot.nero.api_gateway.service;
 public interface IOriginFilterService {
 
 
-    boolean addOrigin(String origin);
+    boolean addOrigin(String name,String origin);
 
-    boolean delOrigin(String origin);
+    boolean delOrigin(String name,String origin);
 }
