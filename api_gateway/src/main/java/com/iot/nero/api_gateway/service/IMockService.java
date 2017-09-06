@@ -14,8 +14,9 @@ import java.util.Map;
  */
 public interface IMockService {
 
-    Boolean setMockStatus(String isOpen) throws IOException;
+    Boolean setMockStatus(Boolean isOpen) throws IOException;
 
+    Boolean getMockStatus() throws IOException;
 
     Map<String, ApiMock> getMocks() throws IOException;
 

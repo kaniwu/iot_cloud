@@ -11,10 +11,16 @@ import java.io.IOException;
  */
 public interface IDataTrafficManagerService {
 
-    boolean setTrafficManagerStatus(String isOpen) throws IOException;
+    Boolean setTrafficManagerStatus(Boolean isOpen) throws IOException;
 
-    boolean setMaxTraffic(Integer maxPool) throws IOException;
+    Boolean setMaxTraffic(Integer maxPool) throws IOException;
 
-    boolean setAvgTraffic(Integer avgPool) throws IOException;
+    Boolean setAvgTraffic(Integer avgPool) throws IOException;
+
+    Boolean getTrafficManagerStatus() throws IOException;
+
+    String getMaxTraffic() throws IOException;
+
+    String getAvgTraffic() throws IOException;
 
 }
