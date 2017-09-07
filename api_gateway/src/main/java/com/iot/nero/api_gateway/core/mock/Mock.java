@@ -18,12 +18,12 @@ import java.util.Map;
 
 public class Mock {
 
-    private static Map<String,ApiMock> apiMockCache;
+    private static Map<String,ApiMock> apiMockCache = new HashMap<String,ApiMock>();
     private static final String MOCK_FILR_DIR = PropertyPlaceholder.getProperty("mock.file").toString();
 
 
     public Mock() throws IOException {
-        apiMockCache = new HashMap<String, ApiMock>();
+        //apiMockCache = new HashMap<String, ApiMock>();
         init();
     }
 
