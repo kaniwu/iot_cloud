@@ -12,6 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.ServletContext;
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,34 +68,16 @@ public class MockService implements IMockService {
     @ApiMapping("sys.mock.add")
     public Boolean addMock(String apiName, String apiReturn) throws IOException {
 
-        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-        servletContext = webApplicationContext.getServletContext();
-        savePath = servletContext.getRealPath("/WEB-INF/classes"+MOCK_FILR_DIR);
-
-        BufferedWriter bufferedWriter = null;
-        OutputStream outputStream = null;
-        OutputStreamWriter outputStreamWriter = null;
-
-
             Mock mock = new Mock();
-            if(mock.getMocks().get(apiName)==null){
+            Map<String,ApiMock> apiMocks = mock.getMocks();
+            if(apiMocks.get(apiName)==null){
 
-                outputStream = new FileOutputStream(savePath);
-                outputStreamWriter = new OutputStreamWriter(outputStream);
-                bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-                for(Map.Entry<String, ApiMock> entry : mock.getMocks().entrySet()){
-                    bufferedWriter.write(entry.getKey()+"#"+entry.getValue().getApiReturn()+"\n");
-                    bufferedWriter.flush();
-                }
+                ApiMock apiMock = new ApiMock(apiName,apiReturn);
+                //mock.addApiMocksToCache(apiMock);
+                apiMocks.put(apiName,apiMock);
 
-                bufferedWriter.write(apiName+"#"+apiReturn+"\n");
-                bufferedWriter.flush();
-
-                bufferedWriter.close();
-                outputStreamWriter.close();
-                outputStream.close();
-                return true;
+                return ConfigUtil.mapToApiMocks(apiMocks);
             }
 
         return false;
@@ -103,36 +86,15 @@ public class MockService implements IMockService {
     @ApiMapping("sys.mock.del")
     public Boolean delMock(String mockName) throws IOException {
 
-        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-        servletContext = webApplicationContext.getServletContext();
-        savePath = servletContext.getRealPath("/WEB-INF/classes"+MOCK_FILR_DIR);
-
-        BufferedWriter bufferedWriter = null;
-        OutputStream outputStream = null;
-        OutputStreamWriter outputStreamWriter = null;
-
             Mock mock = new Mock();
-
             Map<String, ApiMock> apiMocks = mock.getMocks();
+
             if(apiMocks.get(mockName) != null){
 
                 apiMocks.remove(mockName);
 
-                outputStream = new FileOutputStream(savePath);
-                outputStreamWriter = new OutputStreamWriter(outputStream);
-                bufferedWriter = new BufferedWriter(outputStreamWriter);
-
-                for(Map.Entry<String, ApiMock> entry : apiMocks.entrySet()){
-                    bufferedWriter.write(entry.getKey()+"#"+entry.getValue().getApiReturn()+"\n");
-                    bufferedWriter.flush();
-                }
-
-                bufferedWriter.close();
-                outputStreamWriter.close();
-                outputStream.close();
-                return true;
+                return ConfigUtil.mapToApiMocks(apiMocks);
             }
-
 
         return false;
     }

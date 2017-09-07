@@ -15,7 +15,7 @@ import java.util.*;
 
 public class Mock {
 
-    private Map<String,ApiMock> apiMockCache;
+    private static Map<String,ApiMock> apiMockCache;
     private static final String MOCK_FILR_DIR = PropertyPlaceholder.getProperty("mock.file").toString();
 
 
