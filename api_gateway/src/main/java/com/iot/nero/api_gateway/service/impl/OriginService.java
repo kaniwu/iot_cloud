@@ -65,8 +65,6 @@ public class OriginService implements IOriginFilterService {
                 bufferedWriter.close();
                 CORSFilter.loadOriginMap();
                 return true;
-
-
     }
 
     @ApiMapping("sys.origin.del")
@@ -101,9 +99,12 @@ public class OriginService implements IOriginFilterService {
             CORSFilter.loadOriginMap();
             return true;
     }
+
+
     @ApiMapping("sys.origin.list")
+
     public List<Origin> getOrigin() throws IOException {
-        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+       webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();
         savePath = servletContext.getRealPath("/WEB-INF/classes"+CROS_FILE_DIR);
         File f = new File(savePath);
@@ -112,10 +113,11 @@ public class OriginService implements IOriginFilterService {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
                     new FileInputStream(f), encoding
             ));
-            List<Origin> list = new ArrayList<>();
+
+            List<Origin> list = new ArrayList<Origin>();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                String key = line.split(";")[0];
+                String key = line.split(":")[0];
                 String value = line.split(":")[1];
                 list.add(new Origin(key, value));
             }

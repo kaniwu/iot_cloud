@@ -1,5 +1,7 @@
 package com.iot.nero.api_gateway.service;
 
+import com.iot.nero.api_gateway.core.firewall.entity.Origin;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -19,5 +21,5 @@ public interface IOriginFilterService {
 
     boolean delOrigin(String name,String origin) throws IOException;
 
-    List getOrigin() throws IOException;
+    List<Origin> getOrigin() throws IOException;
 }

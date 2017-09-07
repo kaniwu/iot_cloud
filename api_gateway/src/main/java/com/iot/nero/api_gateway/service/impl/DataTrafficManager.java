@@ -27,6 +27,7 @@ public class DataTrafficManager implements IDataTrafficManagerService {
     Map<String, String> configMap;
 
     @ApiMapping("sys.traffic.status.set")
+
     public Boolean setTrafficManagerStatus(Boolean isOpen) throws IOException {
 
         configMap = ConfigUtil.configToMap();

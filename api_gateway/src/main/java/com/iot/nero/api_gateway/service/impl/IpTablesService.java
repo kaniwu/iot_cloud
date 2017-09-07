@@ -21,7 +21,7 @@ public class IpTablesService implements IIpTablesService {
     Map<String, String> configMap;
 
 
-    @ApiMapping("sys.ipTables.set")
+    @ApiMapping("sys.ipTables.status.set")
     public boolean setIpTableStatus(Boolean isOpen) throws IOException {
         String status;
         if(isOpen==true) status="yes";
@@ -34,22 +34,32 @@ public class IpTablesService implements IIpTablesService {
 
     @ApiMapping("sys.ipTables.list")
     public List<String> getIP() throws IOException {
-        IpCache ipCache = new IpCache();
-        return new ArrayList<String>(ipCache.getIPSet());
+        return new ArrayList<String>(IpCache.getIPSet());
     }
 
     @ApiMapping("sys.ipTables.add")
     public boolean addIP(String ip) throws IOException{
+        ip=ip.trim();
+        if(isIP(ip)){
             IpCache ipCache = new IpCache();
-            return ipCache.createBlankIP(ip.trim());
+            return ipCache.createBlankIP(ip);
+        }else{
+            return false;
+        }
+
     }
 
     @ApiMapping("sys.ipTables.del")
     public boolean delIP(String ip) throws IOException {
+        if(isIP(ip.trim())){
             IpCache ipCache = new IpCache();
             return ipCache.deleteIP(ip.trim());
+        }else{
+            return false;
+        }
+
     }
-    @ApiMapping("sys.ipTables.status")
+    @ApiMapping("sys.ipTables.status.get")
     public boolean lookStatus() throws IOException{
         configMap = ConfigUtil.configToMap();
         String status=configMap.get("ipTable.isOpen ");
@@ -67,7 +77,7 @@ public class IpTablesService implements IIpTablesService {
         /**
          * 判断IP格式和范围
          */
-        String rexp = "([1-9]|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])(\\.(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])){3}";
+        String rexp = "(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)";
         Pattern pat = Pattern.compile(rexp);
         Matcher mat = pat.matcher(addr);
         boolean ipAddress = mat.find();
