@@ -39,9 +39,10 @@ public class IpTablesService implements IIpTablesService {
 
     @ApiMapping("sys.ipTables.add")
     public boolean addIP(String ip) throws IOException{
+        ip=ip.trim();
         if(isIP(ip)){
             IpCache ipCache = new IpCache();
-            return ipCache.createBlankIP(ip.trim());
+            return ipCache.createBlankIP(ip);
         }else{
             return false;
         }
