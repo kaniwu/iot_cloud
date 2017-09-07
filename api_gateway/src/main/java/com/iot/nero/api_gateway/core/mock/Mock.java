@@ -11,10 +11,7 @@ import javafx.beans.property.Property;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Mock {
 
@@ -88,7 +85,17 @@ public class Mock {
     }
 
     public Map<String,ApiMock> getMocks() {
-
         return this.apiMockCache;
+    }
+
+    public List<ApiMock> getMockList() {
+
+        List<ApiMock> apiMocks = new ArrayList<>();
+
+        for (ApiMock apiMock : apiMockCache.values()) {
+            apiMocks.add(apiMock);
+        }
+
+        return apiMocks;
     }
 }

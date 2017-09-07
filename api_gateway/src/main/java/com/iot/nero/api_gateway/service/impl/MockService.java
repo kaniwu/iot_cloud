@@ -59,9 +59,9 @@ public class MockService implements IMockService {
 
     @ApiMapping("sys.mock.list")
 
-    public Map<String, ApiMock> getMocks() throws IOException {
+    public List< ApiMock> getMocks() throws IOException {
         Mock mock = new Mock();
-        return mock.getMocks();
+        return mock.getMockList();
     }
 
     @ApiMapping("sys.mock.add")
