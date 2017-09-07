@@ -1,6 +1,7 @@
 package com.iot.nero.api_gateway.common;
 
 import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
+import com.iot.nero.api_gateway.core.mock.Mock;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -8,6 +9,8 @@ import javax.servlet.ServletContext;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+
+
 
 public class ConfigUtil {
 
@@ -121,6 +124,32 @@ public class ConfigUtil {
         bufferedWriter.close();
 
         return true;
+    }
+
+    public static Map<String, ApiMock> apiMocksToMap() throws IOException {
+
+        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+        servletContext = webApplicationContext.getServletContext();
+        savePath = servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/mock_api.txt");
+
+        Map<String, ApiMock> apiMocks = new HashMap<String, ApiMock>();
+        InputStream inputStream = new FileInputStream(savePath);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+        String line;
+        String[] lines;
+        while((line = bufferedReader.readLine()) != null){
+
+            lines = line.split("#");
+            if (apiMocks.get(lines[0]) == null) {
+                apiMocks.put(lines[0], new ApiMock(lines[0], lines[1]));
+            }
+        }
+        inputStream.close();
+        inputStreamReader.close();
+        bufferedReader.close();
+        return apiMocks;
     }
 
     public static Boolean mapToApiMocks(Map<String,ApiMock> apiMocks) throws IOException {
