@@ -112,23 +112,10 @@ public class IpCache {
      * @param ip
      */
     public boolean createBlankIP(String ip) throws IOException {
-        InputStream inputStream = null;
-        InputStreamReader inputStreamReader = null;
-        BufferedReader bufferedReader = null;
         try {
             if (!ipSet.contains(ip)) {
-                File file = new File(this.path);
-//                inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
-//                inputStreamReader = new InputStreamReader(inputStream);
-//                bufferedReader = new BufferedReader(inputStreamReader);
-//                String line = bufferedReader.readLine();
-//                if (line != null) line += ";" + ip;
-//                else line = ip;
-//                bufferedReader.close();
-//                inputStreamReader.close();
-//                updateIpInCacheFile(file, line);
                 ipSet.add(ip);
-                updateIpInCacheFile(file,stringSet());
+                updateIpInCacheFile(new File(this.path),stringSet());
                 return true;
             } else {
                 return false;
