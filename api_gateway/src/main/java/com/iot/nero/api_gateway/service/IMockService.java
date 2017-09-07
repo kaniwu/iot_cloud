@@ -18,7 +18,7 @@ public interface IMockService {
 
     Boolean getMockStatus() throws IOException;
 
-    Map<String, ApiMock> getMocks() throws IOException;
+    List<ApiMock> getMocks() throws IOException;
 
     Boolean addMock(String apiName, String apiReturn) throws  IOException;
 

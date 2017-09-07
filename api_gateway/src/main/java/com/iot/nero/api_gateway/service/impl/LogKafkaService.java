@@ -37,6 +37,20 @@ public class LogKafkaService implements ILogKafkaService{
         return logMap.get("log4j.appender.kafka.brokerList");
     }
 
+    @ApiMapping("sys.log.kafka.broker.topic.set")
+    public Boolean setLogKafkaBrokerTopic(String topic) throws IOException {
+        logMap = ConfigUtil.logToMap();
+        logMap.replace("log4j.appender.kafka.topic", logMap.get("log4j.appender.kafka.topic"),topic);
+
+        return ConfigUtil.mapToLog(logMap);
+    }
+
+    @ApiMapping("sys.log.kafka.broker.topic.get")
+    public String setLogKafkaBrokerTopic() throws IOException {
+        logMap = ConfigUtil.logToMap();
+        return logMap.get("log4j.appender.kafka.topic");
+    }
+
 }
 
 
