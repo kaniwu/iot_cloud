@@ -14,7 +14,8 @@ import java.util.HashSet;
  * Time   上午11:38
  */
 public class IpCache {
-    private HashSet<String> ipSet = null;
+
+    private static HashSet<String> ipSet = null;
 
     private final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
     private ServletContext servletContext;
@@ -37,10 +38,10 @@ public class IpCache {
             String eachIpPieces[];
             for (String eachIp:ipSet){
                 eachIpPieces=eachIp.split("\\.");
-                if(!("*".equals(eachIpPieces[0]))&& !(ipRequest[0].equals(eachIpPieces[0]))){continue;}
-                else if(!("*".equals(eachIpPieces[1]))&& !(ipRequest[1].equals(eachIpPieces[1]))) {continue;}
-                else if(!("*".equals(eachIpPieces[3]))&& !(ipRequest[2].equals(eachIpPieces[2]))){continue;}
-                else if(!("*".equals(eachIpPieces[3]))&& !(ipRequest[3].equals(eachIpPieces[3]))) { continue; }
+                if(!("0".equals(eachIpPieces[0]))&& !(ipRequest[0].equals(eachIpPieces[0]))){continue;}
+                else if(!("0".equals(eachIpPieces[1]))&& !(ipRequest[1].equals(eachIpPieces[1]))) {continue;}
+                else if(!("0".equals(eachIpPieces[3]))&& !(ipRequest[2].equals(eachIpPieces[2]))){continue;}
+                else if(!("0".equals(eachIpPieces[3]))&& !(ipRequest[3].equals(eachIpPieces[3]))) { continue; }
                 else {return "拒绝访问";}
             }
             return null;
@@ -86,7 +87,7 @@ public class IpCache {
     /**
      * 返回ipSet
      */
-     public HashSet<String> getIPSet(){
+     public static HashSet<String> getIPSet(){
         return ipSet;
      }
 
