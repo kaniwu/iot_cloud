@@ -65,8 +65,6 @@ public class OriginService implements IOriginFilterService {
                 bufferedWriter.close();
                 CORSFilter.loadOriginMap();
                 return true;
-
-
     }
 
     @ApiMapping("sys.origin.del")
