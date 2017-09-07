@@ -105,6 +105,15 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     private ApiDoc apiDoc;
     private IpTables ipTables;
     private AdminAuth adminAuth;
+    private static Boolean isMockInit = false;
+
+    public static Boolean getIsMockInit() {
+        return isMockInit;
+    }
+
+    public static void setIsMockInit(Boolean isMockInit) {
+        ApiGatewayHandler.isMockInit = isMockInit;
+    }
 
     ApiStore apiStore;
     final ParameterNameDiscoverer parameterNameDiscoverer;
@@ -151,6 +160,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             }
 
             paramsValdate(request);
+            if(!isMockInit){
+                Mock.init();
+            }
             if ("sys".equals(method.subSequence(0, 3))) {
                 sysParamsValid(request);
                 adminAuth.auth(sysParams);
@@ -166,8 +178,7 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
                 apiRunnable = sysParamsValdate(request);
 
                 if ("yes".equals(MOCK_OPEN)) {
-                    Mock mock = new Mock();
-                    result = mock.run(apiRunnable);
+                    result = Mock.run(apiRunnable);
                 } else {
                     Object[] args = buildParams(apiRunnable, params, request, response);
                     result = apiRunnable.run(args);

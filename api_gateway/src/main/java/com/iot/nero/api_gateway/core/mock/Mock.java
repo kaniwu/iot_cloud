@@ -1,6 +1,8 @@
 package com.iot.nero.api_gateway.core.mock;
 
+import com.iot.nero.api_gateway.common.ConfigUtil;
 import com.iot.nero.api_gateway.common.IOUtils;
+import com.iot.nero.api_gateway.core.core.ApiGatewayHandler;
 import com.iot.nero.api_gateway.core.core.ApiMapping;
 import com.iot.nero.api_gateway.core.core.ApiStore;
 import com.iot.nero.api_gateway.core.exceptions.MockApiNotFoundException;
@@ -20,40 +22,19 @@ public class Mock {
 
 
     public Mock() throws IOException {
-        //apiMockCache = new HashMap<String, ApiMock>();
-        init();
+
     }
 
 
-    public void init() throws IOException {
-        String line;
-        String[] apiMember;
+    public static void init() throws IOException {
 
-        InputStream inputStream = null;
-        InputStreamReader inputStreamReader  = null;
-        BufferedReader bufferedReader = null;
-        try {
-            inputStream = this.getClass().getResourceAsStream(MOCK_FILR_DIR);
-            inputStreamReader = new InputStreamReader(inputStream);
-            bufferedReader = new BufferedReader(inputStreamReader);
+        apiMockCache = ConfigUtil.apiMocksToMap();
+        ApiGatewayHandler.setIsMockInit(true);
 
-            while ((line = bufferedReader.readLine()) != null) {
-                apiMember = line.split("#");
-                if (apiMockCache.get(apiMember[0]) == null) {
-                    apiMockCache.put(apiMember[0], new ApiMock(apiMember[0], apiMember[1]));
-                }
-            }
-        }catch (IOException e){
-            throw e;
-        }finally {
-            bufferedReader.close();
-            inputStreamReader.close();
-            inputStream.close();
         }
-    }
 
 
-    public Object run(ApiStore.ApiRunnable apiRunnable) throws MockApiNotFoundException {
+    public static Object run(ApiStore.ApiRunnable apiRunnable) throws MockApiNotFoundException {
         Object result;
         Class<?> returnType = apiRunnable.getReturnType();
         if(returnType.getName().equals(String.class.getName())){
@@ -84,11 +65,11 @@ public class Mock {
         return result;
     }
 
-    public Map<String,ApiMock> getMocks() {
-        return this.apiMockCache;
+    public static Map<String,ApiMock> getMocks() {
+        return apiMockCache;
     }
 
-    public List<ApiMock> getMockList() {
+    public static List<ApiMock> getMockList() {
 
         List<ApiMock> apiMocks = new ArrayList<>();
 

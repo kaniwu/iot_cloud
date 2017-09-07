@@ -60,16 +60,14 @@ public class MockService implements IMockService {
 
     @ApiMapping("sys.mock.list")
 
-    public List< ApiMock> getMocks() throws IOException {
-        Mock mock = new Mock();
-        return mock.getMockList();
+    public List<ApiMock> getMocks() throws IOException {
+        return Mock.getMockList();
     }
 
     @ApiMapping("sys.mock.add")
     public Boolean addMock(String apiName, String apiReturn) throws IOException {
 
-            Mock mock = new Mock();
-            Map<String,ApiMock> apiMocks = mock.getMocks();
+            Map<String,ApiMock> apiMocks = Mock.getMocks();
             if(apiMocks.get(apiName)==null){
 
 
@@ -86,8 +84,7 @@ public class MockService implements IMockService {
     @ApiMapping("sys.mock.del")
     public Boolean delMock(String mockName) throws IOException {
 
-            Mock mock = new Mock();
-            Map<String, ApiMock> apiMocks = mock.getMocks();
+            Map<String, ApiMock> apiMocks = Mock.getMocks();
 
             if(apiMocks.get(mockName) != null){
 
