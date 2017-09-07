@@ -8,6 +8,8 @@
 5. Start Tomcat Server
 6. Start Service
 
+The above is a must. Besides, you may need Nginx+KeepAlive, dubbo-admin, redis, mysql, HBase
+
 ## 2.License
 1. This code is for learning and communication. 
 2. Rights Reserved, Not for commercial use.
