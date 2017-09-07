@@ -14,69 +14,77 @@ import java.util.HashSet;
  * Time   上午11:38
  */
 public class IpCache {
-    private static HashSet<String> ipSet = null;
-    private final String IP_CACHE_DIR =PropertyPlaceholder.getProperty("ipTable.file").toString();
+    public static boolean flag = true;
+    private static HashSet<String> ipSet =  new HashSet<String>();
+    private static final String IP_CACHE_DIR = PropertyPlaceholder.getProperty("ipTable.file").toString();
     private ServletContext servletContext;
     private WebApplicationContext webApplicationContext;
     private String path;
-    public IpCache() throws IOException {
+
+    public IpCache()  {
         webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
         servletContext = webApplicationContext.getServletContext();
-        path = servletContext.getRealPath("/WEB-INF/classes"+IP_CACHE_DIR);
-        ipSet =new HashSet<String>();
-        cacheSet();
+        path = servletContext.getRealPath("/WEB-INF/classes" + IP_CACHE_DIR);
     }
+
     public Object findIP(String ip) {
-        if(ipSet.isEmpty()){
+        if (ipSet.isEmpty()) {
             return null;
-        } else if(ipSet.contains(ip)) {
+        } else if (ipSet.contains(ip)) {
             return "拒绝访问";
-        } else{
-            String ipRequest[]=ip.split("\\.");
+        } else {
+            String ipRequest[] = ip.split("\\.");
             String eachIpPieces[];
-            for (String eachIp:ipSet){
-                eachIpPieces=eachIp.split("\\.");
-                if(!("0".equals(eachIpPieces[0]))&& !(ipRequest[0].equals(eachIpPieces[0]))){continue;}
-                else if(!("0".equals(eachIpPieces[1]))&& !(ipRequest[1].equals(eachIpPieces[1]))) {continue;}
-                else if(!("0".equals(eachIpPieces[3]))&& !(ipRequest[2].equals(eachIpPieces[2]))){continue;}
-                else if(!("0".equals(eachIpPieces[3]))&& !(ipRequest[3].equals(eachIpPieces[3]))) { continue; }
-                else {return "拒绝访问";}
+            for (String eachIp : ipSet) {
+                eachIpPieces = eachIp.split("\\.");
+                if (!("0".equals(eachIpPieces[0])) && !(ipRequest[0].equals(eachIpPieces[0]))) {
+                    continue;
+                } else if (!("0".equals(eachIpPieces[1])) && !(ipRequest[1].equals(eachIpPieces[1]))) {
+                    continue;
+                } else if (!("0".equals(eachIpPieces[3])) && !(ipRequest[2].equals(eachIpPieces[2]))) {
+                    continue;
+                } else if (!("0".equals(eachIpPieces[3])) && !(ipRequest[3].equals(eachIpPieces[3]))) {
+                    continue;
+                } else {
+                    return "拒绝访问";
+                }
             }
             return null;
         }
     }
 
-    private void cacheSet() throws IOException {
-       String ips[] =readCacheFile(IP_CACHE_DIR);
-       if(ips!=null){
-           for(int i=0;i<ips.length;i++){
-               ipSet.add(ips[i]);
-           }
-       }
+    public void cacheSet() throws IOException {
+        String ips[] = readCacheFile(IP_CACHE_DIR);
+        if (ips != null) {
+            for (int i = 0; i < ips.length; i++) {
+                ipSet.add(ips[i]);
+            }
+        }
     }
 
     /**
-     *读取缓存文件
+     * 读取缓存文件
+     *
      * @param dir
      * @return
      */
-    private String [] readCacheFile(String dir) throws IOException {
-        String line="";
+    private String[] readCacheFile(String dir) throws IOException {
+        String line = "";
         String[] ips;
         InputStream inputStream = null;
-        InputStreamReader inputStreamReader  = null;
+        InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
         try {
-            inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
+            inputStream = this.getClass().getResourceAsStream(dir);
             inputStreamReader = new InputStreamReader(inputStream);
             bufferedReader = new BufferedReader(inputStreamReader);
             line = bufferedReader.readLine();
-            if(line==null) ips=null;
-            else ips= line.split(";");
+            if (line == null) ips = null;
+            else ips = line.split(";");
             return ips;
-        }catch (IOException e){
+        } catch (IOException e) {
             throw e;
-        }finally {
+        } finally {
             bufferedReader.close();
             inputStreamReader.close();
         }
@@ -85,87 +93,63 @@ public class IpCache {
     /**
      * 返回ipSet
      */
-     public static HashSet<String> getIPSet(){
+    public static HashSet<String> getIPSet() {
         return ipSet;
-     }
+    }
 
     /**
      * 更新缓存文件ip列表
      */
-    public void updateIpInCacheFile(File file,String ip) throws IOException{
-        BufferedWriter out=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+    public void updateIpInCacheFile(File file, String ip) throws IOException {
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
         out.write(ip);
         out.close();
     }
 
     /**
      * 添加新的ip到黑名单，并更新黑名单缓存
+     *
      * @param ip
      */
-    public boolean createBlankIP(String ip) throws IOException{
+    public boolean createBlankIP(String ip) throws IOException {
         try {
-            if(!ipSet.contains(ip)){
-                File file =new File(this.path);
-                InputStream inputStream = null;
-                InputStreamReader inputStreamReader  = null;
-                BufferedReader bufferedReader = null;
-                if (file.isFile() && file.exists())
-                // 判断文件是否存在
-                {
-                    inputStream = this.getClass().getResourceAsStream(IP_CACHE_DIR);
-                    inputStreamReader = new InputStreamReader(inputStream);
-                    bufferedReader = new BufferedReader(inputStreamReader);
-                    String line=bufferedReader.readLine();
-                    if(line!=null) line+=";" + ip;
-                    else line=ip;
-                    System.out.println("line:"+line);
-                    bufferedReader.close();
-                    inputStreamReader.close();
-                    updateIpInCacheFile(file,line);
-                    ipSet.add(ip);
-                    return true;
-                }else {
-                    return false;
-                }
-            }else {
-                return false;
-            }
-        }catch (IOException e)
-        {
-            throw e;
-        }
-    }
-
-    /**
-     *将ip从黑名单移除
-     */
-    public boolean deleteIP(String ip) throws IOException{
-        try{
-            if(ipSet.contains(ip)){
-                ipSet.remove(ip);
+            if (!ipSet.contains(ip)) {
+                ipSet.add(ip);
                 updateIpInCacheFile(new File(this.path),stringSet());
                 return true;
-            }else {
+            } else {
                 return false;
             }
-        }catch(IOException e){
+        } catch (IOException e) {
             throw e;
         }
-
     }
 
     /**
-     *连接set
+     * 将ip从黑名单移除
      */
-    private String stringSet(){
-        if(ipSet.isEmpty()){
-            return "";
-        }else{
-            String ips="";
-            for(String ip:ipSet){
-                ips+=ip+";";
+    public boolean deleteIP(String ip) throws IOException {
+            if (ipSet.contains(ip)) {
+                ipSet.remove(ip);
+                updateIpInCacheFile(new File(this.path), stringSet());
+                return true;
+            } else {
+                return false;
             }
-            return ips.substring(0,ips.length()-1);
+    }
+
+    /**
+     * 连接set
+     */
+    private static String stringSet() {
+        if (ipSet.isEmpty()) {
+            return "";
+        } else {
+            String ips = "";
+            for (String ip : ipSet) {
+                ips += ip + ";";
+            }
+            return ips.substring(0, ips.length() - 1);
         }
     }
 }
