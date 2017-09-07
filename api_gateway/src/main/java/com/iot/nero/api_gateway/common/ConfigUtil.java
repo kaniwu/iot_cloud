@@ -1,5 +1,6 @@
 package com.iot.nero.api_gateway.common;
 
+import com.iot.nero.api_gateway.core.mock.Entity.ApiMock;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -118,6 +119,27 @@ public class ConfigUtil {
         outputStream.close();
         outputStreamWriter.close();
         bufferedWriter.close();
+
+        return true;
+    }
+
+    public static Boolean mapToApiMocks(Map<String,ApiMock> apiMocks) throws IOException {
+        webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+        servletContext = webApplicationContext.getServletContext();
+        savePath = servletContext.getRealPath("/WEB-INF/classes/api_gateway/config/mock_api.txt");
+
+        OutputStream outputStream = new FileOutputStream(savePath);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+        BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+        for(Map.Entry<String, ApiMock> entry : apiMocks.entrySet()){
+            bufferedWriter.write(entry.getKey()+"#"+entry.getValue().getApiReturn()+"\n");
+            bufferedWriter.flush();
+        }
+
+        bufferedWriter.close();
+        outputStreamWriter.close();
+        outputStream.close();
 
         return true;
     }

@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class Mock {
 
-    private Map<String,ApiMock> apiMockCache;
+    private static Map<String,ApiMock> apiMockCache;
     private static final String MOCK_FILR_DIR = PropertyPlaceholder.getProperty("mock.file").toString();
 
 
@@ -90,5 +90,10 @@ public class Mock {
     public Map<String,ApiMock> getMocks() {
 
         return this.apiMockCache;
+    }
+
+    public Boolean addApiMocksToCache(ApiMock apiMock){
+        apiMockCache.put(apiMock.getApiName(),apiMock);
+        return true;
     }
 }
