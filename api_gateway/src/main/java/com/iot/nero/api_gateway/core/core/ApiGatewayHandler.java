@@ -41,9 +41,9 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 /**
- * Author neroyang
- * Email  nerosoft@outlook.com
- * Date   2017/8/25
+ * Author 和少帅
+ * Email  15107558620@163.com.
+ * Date   2017/9 1
  * Time   下午12:41
  */
 public class ApiGatewayHandler implements InitializingBean, ApplicationContextAware {
@@ -131,7 +131,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         apiStore = new ApiStore(applicationContext, parameterNameDiscoverer);
     }
-
+/*
+异常处理
+ */
     public void afterPropertiesSet() throws Exception {
         apiStore.loadApiFromSpringBeans();
     }
@@ -163,6 +165,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
             if(!isMockInit){
                 Mock.init();
             }
+            /*
+            循环并处理异常
+             */
             if ("sys".equals(method.subSequence(0, 3))) {
                 sysParamsValid(request);
                 adminAuth.auth(sysParams);
@@ -279,7 +284,9 @@ public class ApiGatewayHandler implements InitializingBean, ApplicationContextAw
         return apiRunnable;
     }
 
-
+/*
+调用函数
+ */
     private Object[] buildParams(ApiStore.ApiRunnable apiRunnable, String params, HttpServletRequest request, HttpServletResponse response) throws ApiException {
         Map<String, Object> map = null;
         try {
