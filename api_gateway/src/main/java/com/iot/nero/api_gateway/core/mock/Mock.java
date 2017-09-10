@@ -14,7 +14,9 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.*;
+/*定义mock类
 
+ */
 public class Mock {
 
     private static Map<String,ApiMock> apiMockCache = new HashMap<String,ApiMock>();
