@@ -20,6 +20,7 @@ The above is a must. Besides, you may need Nginx+KeepAlive, dubbo-admin, redis, 
 1. gtBailly 戈通
 2. ENERROR 胡亦豐
 3. ene 胡亦豐
-4. yuchunyu97 餘春鈺
-5. JDwu1120 吳金東
-6. nerosoft 楊興鋒
+4. jiersof 何少帥
+5. yuchunyu97 餘春鈺
+6. JDwu1120 吳金東
+7. nerosoft 楊興鋒
