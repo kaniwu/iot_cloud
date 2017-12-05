@@ -62,12 +62,12 @@ public class PublishReceived implements OnPublishReceivedCallback {
 
         try{
             clientService = (IClientService) Consumer.singleton().getBean("IClientService");
-            Result<MQMessage> messageResult = clientService.sendMessage(secretKey,from,to,qos,message);
-            if(messageResult.isState()){
-                logger.info(messageResult.getData().toString());
-            }else{
-                logger.info(messageResult.getMsg());
-            }
+            Object messageResult = clientService.sendMessage(secretKey,from,to,qos,message);
+//            if(messageResult.isState()){
+//                logger.info(messageResult.getData().toString());
+//            }else{
+//                logger.info(messageResult.getMsg());
+//            }
 
         }catch (IllegalStateException e){
             logger.info("Client message save failed！");
